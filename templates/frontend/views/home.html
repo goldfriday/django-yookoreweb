@@ -37,8 +37,8 @@
                              aria-labelledby="headingOne">
                             <div class="panel-body">
                                 <!--login form-->
-                                <form ng-submit="submit()" name="login" class="login-area" ng-controller="LoginCtrl"
-                                      novalidate>
+                                <form action="login" method = "POST">
+                                    {% csrf_token %}
                                     <div class="field50-wrap">
                                         <div class="field50-left">
                                             <input name="username" ng-model="username" type="text" class="form-control"
@@ -67,7 +67,12 @@
                                         <div class="clear"></div>
                                     </div>
                                     <div class="forgot-password">forgot password?</div>
-                                    <button type="submit" class="btn btn-signin">Sign In</button>
+
+                                    <!-- Replacing button tag by input-->
+
+                                    <input type="submit" value="Sign In" class="btn btn-signin"> </input>
+                                    
+
                                     <div class="social-identity">
                                         Or... Log in with
                                     <span class="social-identity-icons"><img src="static/images/icons/Facebook.png"
@@ -80,8 +85,7 @@
                     </div>
 
                     <!--sign up form-->
-                    <form class="panel panel-default" ng-submit="submit()" name="register" ng-controller="RegisterCtrl"
-                          novalidate>
+                    <form action="yookore_signup" method="POST">
                         <div class="panel-heading" role="tab" id="headingTwo">
                             <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
                                aria-expanded="false" aria-controls="collapseTwo">
