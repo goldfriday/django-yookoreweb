@@ -1,0 +1,584 @@
+{% extends 'frontend/base.html' %}
+
+{% block body %}
+<body ng-app="TabsApp">
+<div class="top-header-bar">
+	<div class="container">
+    	<div class="logo"></div>
+        <!--<div class="top-header-bar-icons"></div>
+        <div class="search-bar"></div>-->
+    </div>
+</div>
+<div class="container">
+<div class="row">
+<!--left column-->
+	 <div class="col-lg-3 col-md-3 col-sm-3 left-col">
+     <!--profile section-->
+     	<div class="profile-info-wrapper">
+        	<div class="profile-pix-card">
+            	<div class="profile-pix-img"><img src="/static/images/pix.jpg" width="100%"></div>
+            </div>
+                <div class="profile-name">Paul Imisi</div>
+                <div class="edit-profile">Edit Profile</div>
+                <div class="profile-stats-wrapper">
+                	<div class="profile-stats-info">
+                    	<div class="ps-friends">4k</div><span>Friends</span>
+                    </div>
+                    <div class="profile-stats-info">
+                    	<div class="ps-pages">15</div><span>Pages</span>
+                    </div>
+                    <div class="profile-stats-info">
+                    	<div class="ps-groups">9</div><span>Groups</span>
+                    </div>
+                </div>
+        </div>
+     <!--side menu-->
+     	<div class="side-menu-wrapper">
+        <div class="list-group">
+            <a href="#" class="list-group-item">
+                <span class="list-group-icons"><img src="/static/images/icons/profile.png" width="18"></span> Profile</a>
+            <a href="#" class="list-group-item">
+                <span class="list-group-icons"><img src="/static/images/icons/photo.png" width="18"></span> Photos <span class="badge">15</span>
+            </a>
+            <a href="#" class="list-group-item">
+                <span class="list-group-icons"><img src="/static/images/icons/blogs.png" width="18"></span> Blogs <span class="badge">5</span>
+            </a>
+            <a href="#" class="list-group-item">
+                <span class="list-group-icons"><img src="/static/images/icons/video.png" width="18"></span> Videos <span class="badge">8</span>
+            </a>
+            <a href="#" class="list-group-item">
+                <span class="list-group-icons"><img src="/static/images/icons/friends.png" width="18"></span> Friends <span class="badge">48</span>
+            </a>
+            <a href="#" class="list-group-item">
+                <span class="list-group-icons"><img src="/static/images/icons/pgs.png" width="18"></span> Pages</a>
+            <a href="#" class="list-group-item">
+                <span class="list-group-icons"><img src="/static/images/icons/grp.png" width="18"></span> Groups
+            </a>
+            <a href="#" class="list-group-item">
+                <span class="list-group-icons"><img src="/static/images/icons/msg.png" width="18"></span> Messages <span class="badge">8</span>
+            </a>
+            <a href="#" class="list-group-item"><span class="list-group-icons"><img src="/static/images/icons/settings.png" width="18"></span> Settings</a>
+        </div>
+        </div>
+     </div>
+<!--left column ends-->
+<!--middle column starts-->
+     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 center-col">
+<!--status update card-->
+<div class="status-update-wrapper">
+     <u class="nav nav-tabs" role="tablist" id="myTab" ng-init="tab = 1">
+			<li role="presentation" ng-class="{active:tab===1}">
+				<a href="#main" aria-controls="main" role="tab" data-toggle="tab"><span class="status-update-icon-active"><img src="/static/images/icons/status-blue.png" width="12" ></span>Status</a>
+			</li>
+			<li role="presentation" ng-class="{active:tab===2}">
+				<a href="#photo" aria-controls="photo" role="tab" data-toggle="tab"><span class="status-update-icon"><img src="/static/images/icons/pv-white.png" width="12" ></span>Photo/Video</a>
+			</li>
+			<li role="presentation" ng-class="{active:tab===3}">
+				<a href="#blog" aria-controls="blog" role="tab" data-toggle="tab"><span class="status-update-icon"><img src="/static/images/icons/blog-white.png" width="12" ></span>Blog</a>
+			</li>
+		</u>
+        <div class="tab-content">
+			<p ng-show="tab === 1"> I eat chocolates, alive! </p>
+			<p ng-show="tab === 2"> I drink pulpy orange juice, mango milk shake... </p>
+			<p ng-show="tab === 3"> yeah, I sleep at weekend. I am human... :D</p>
+            </div>
+  <div class="clear"></div>
+</div>
+<!--status update card ends-->
+<!--activity card001 starts-->
+     	<div class="activity-stream-wrapper">
+        	<div class="activity-card">
+    <!--activity header starts-->
+            <div class="activity-header">
+            	<div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
+                <div class="content-owner-wrapper">
+                	<div class="content-owner-name">Paul Imisi</div>
+                    <div class="activity-verb">updated his status</div>
+                </div>
+                <div class="status-update-timestamp">2hours ago</div>
+            <div class="clear"></div>
+            </div>
+   <!--activity header stops-->
+   <!--Photo in post-->
+   			<div class="photo-in-post-wrapper">
+   				<div class="photo-in-status-update-auto">
+                </div>
+            </div>
+            <!--content stats-->
+            <div class="content-stats-wrapper">
+            	<div class="content-stats">82 Likes <span style="margin:0 5px" class="glyphicon glyphicon-asterisk"></span>14 Comments</div>
+                <div class="more-content"><img src="/static/images/icons/more.png" width="40" ></div>
+            	<div class="clear"></div>
+            </div>
+            <!--interactin bar-->
+            <div class="interaction-bar">
+            	<ul class="list-inline">
+                    <li><span><img src="/static/images/icons/like.png" width="18" ></span> Like</li>
+                    <li><span><img src="/static/images/icons/comment.png" width="18" ></span> Comment</li>
+                    <li><span><img src="/static/images/icons/share.png" width="18" ></span> Share</li>
+            	</ul>
+            </div>
+            <!--comment section-->
+            <!--comment card00-
+            <div class="comment-wrapper">
+            	<div class="comment-card">
+                	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                    <div class="comment-details">
+                    	<div class="comment-owner-name">Paul Imisi</div>
+                        <div class="comment-text">She has struggled relentlessly to awaken and empower the Nigerian woman through her various summits,</div>
+                    </div>
+                <div class="clear"></div>
+                </div>
+                <div class="comment-socials"><span><img src="/static/images/icons/like.png" width="18" ><br>15</span></div>
+            <div class="clear"></div>
+            </div>
+            <!--post comment-->
+            <div class="post-comment-wrapper">
+            	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                <div class="post-comment-form-wrap">
+               	<div class="post-comment-card">
+                	 <div class="post-comment-form">
+                      <textarea rows="1" placeholder="Add a comment"></textarea>
+                	</div>
+                     <div class="add-comment-socials">
+                    <img src="/static/images/icons/location.png" width="18" ><img src="/static/images/icons/photo-grey.png" width="18" >
+                    </div>
+                <div style="clear:left;"></div>
+                </div>
+                <div class="press-enter">Press enter to post comment</div>
+              </div>
+            <div class="clear"></div>
+            </div>
+            <!--post comment ends-
+            <div class="more-comments">See 25 more</div>-->
+            </div>
+        </div>
+<!--activity card00 ends-->
+<!--activity card0 starts-->
+     	<div class="activity-stream-wrapper">
+        	<div class="activity-card">
+    <!--activity header starts-->
+            <div class="activity-header">
+            	<div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
+                <div class="content-owner-wrapper">
+                	<div class="content-owner-name">Paul Imisi</div>
+                    <div class="activity-verb">uploaded a new video</div>
+                </div>
+                <div class="status-update-timestamp">2hours ago</div>
+            <div class="clear"></div>
+            </div>
+   <!--activity header stops-->
+   <!--Photo in post-->
+   			<div class="photo-in-post-wrapper">
+   				<div class="photo-in-status-update embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QjUqjxSTv3A" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="text-content">
+            The project "Women For Change Initiative" was established in 2010 to sensitise, empower and mobilise women to participate actively in governance.
+			</div>
+            <!--content stats-->
+            <div class="content-stats-wrapper">
+            	<div class="content-stats">82 Likes <span style="margin:0 5px" class="glyphicon glyphicon-asterisk"></span>14 Comments</div>
+                <div class="more-content"><img src="/static/images/icons/more.png" width="40" ></div>
+            	<div class="clear"></div>
+            </div>
+            <!--interactin bar-->
+            <div class="interaction-bar">
+            	<ul class="list-inline">
+                    <li><span><img src="/static/images/icons/like.png" width="18" ></span> Like</li>
+                    <li><span><img src="/static/images/icons/comment.png" width="18" ></span> Comment</li>
+                    <li><span><img src="/static/images/icons/share.png" width="18" ></span> Share</li>
+            	</ul>
+            </div>
+            <!--comment section-->
+            <!--comment card1-->
+            <div class="comment-wrapper">
+            	<div class="comment-card">
+                	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                    <div class="comment-details">
+                    	<div class="comment-owner-name">Paul Imisi</div>
+                        <div class="comment-text">She has struggled relentlessly to awaken and empower the Nigerian woman through her various summits,</div>
+                    </div>
+                <div class="clear"></div>
+                </div>
+                <div class="comment-socials"><span><img src="/static/images/icons/like.png" width="18" ><br>15</span></div>
+            <div class="clear"></div>
+            </div>
+            <!--post comment-->
+            <div class="post-comment-wrapper">
+            	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                <div class="post-comment-form-wrap">
+               	<div class="post-comment-card">
+                	 <div class="post-comment-form">
+                      <textarea rows="1" placeholder="Add a comment"></textarea>
+                	</div>
+                     <div class="add-comment-socials">
+                    <img src="/static/images/icons/location.png" width="18" ><img src="/static/images/icons/photo-grey.png" width="18" >
+                    </div>
+                <div style="clear:left;"></div>
+                </div>
+                <div class="press-enter">Press enter to post comment</div>
+              </div>
+            <div class="clear"></div>
+            </div>
+            <!--post comment ends-->
+            <div class="more-comments">See 25 more</div>
+            </div>
+        </div>
+<!--activity card0 ends-->
+<!--activity card1 starts-->
+     	<div class="activity-stream-wrapper">
+        	<div class="activity-card">
+    <!--activity header starts-->
+            <div class="activity-header">
+            	<div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
+                <div class="content-owner-wrapper">
+                	<div class="content-owner-name">Paul Imisi</div>
+                    <div class="activity-verb">An audio blog post</div>
+                </div>
+                <div class="status-update-timestamp">2hours ago</div>
+            <div class="clear"></div>
+            </div>
+   <!--activity header stops-->
+   <!--Photo in post-->
+   			<div class="photo-in-post-wrapper">
+   				<div class="photo-in-status-update">
+                <audio controls>
+                    <source src="mp3/open_your_eyes.mp3" type="audio/mpeg" />
+                    <a href="#">Open Your Eyes</a>
+                </audio>
+            <!--<img src="/static/images/uploads/hazard.png" class="img-responsive" alt="Photo">
+               <!-- <img src="/static/images/uploads/port.jpg" class="img-responsive" alt="Photo">-->
+                </div>
+            </div>
+           <!-- <div class="text-content">
+            The project "Women For Change Initiative" was established in 2010 to sensitise, empower and mobilise women to participate actively in governance.
+			</div>
+            <!--content stats-->
+            <div class="content-stats-wrapper">
+            	<div class="content-stats">82 Likes <span style="margin:0 5px" class="glyphicon glyphicon-asterisk"></span>14 Comments</div>
+                <div class="more-content"><img src="/static/images/icons/more.png" width="40" ></div>
+            	<div class="clear"></div>
+            </div>
+            <!--interactin bar-->
+            <div class="interaction-bar">
+            	<ul class="list-inline">
+                    <li><span><img src="/static/images/icons/like.png" width="18" ></span> Like</li>
+                    <li><span><img src="/static/images/icons/comment.png" width="18" ></span> Comment</li>
+                    <li><span><img src="/static/images/icons/share.png" width="18" ></span> Share</li>
+            	</ul>
+            </div>
+            <!--comment section-->
+            <!--comment card1-->
+            <div class="comment-wrapper">
+            	<div class="comment-card">
+                	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                    <div class="comment-details">
+                    	<div class="comment-owner-name">Paul Imisi</div>
+                        <div class="comment-text">She has struggled relentlessly to awaken and empower the Nigerian woman through her various summits,</div>
+                    </div>
+                <div class="clear"></div>
+                </div>
+                <div class="comment-socials"><span><img src="/static/images/icons/like.png" width="18" ><br>15</span></div>
+            <div class="clear"></div>
+            </div>
+            <!--post comment-->
+            <div class="post-comment-wrapper">
+            	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                <div class="post-comment-form-wrap">
+               	<div class="post-comment-card">
+                	 <div class="post-comment-form">
+                      <textarea rows="1" placeholder="Add a comment"></textarea>
+                	</div>
+                     <div class="add-comment-socials">
+                    <img src="/static/images/icons/location.png" width="18" ><img src="/static/images/icons/photo-grey.png" width="18" >
+                    </div>
+                <div style="clear:left;"></div>
+                </div>
+                <div class="press-enter">Press enter to post comment</div>
+              </div>
+            <div class="clear"></div>
+            </div>
+            <!--post comment ends-->
+            <div class="more-comments">See 25 more</div>
+            </div>
+        </div>
+<!--activity card1 ends-->
+<!--activity card2 starts-->
+     	<div class="activity-stream-wrapper">
+        	<div class="activity-card">
+    <!--activity header starts-->
+            <div class="activity-header">
+            	<div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
+                <div class="content-owner-wrapper">
+                	<div class="content-owner-name">Paul Imisi</div>
+                    <div class="activity-verb">updated his status</div>
+                </div>
+                <div class="status-update-timestamp">2hours ago</div>
+            <div class="clear"></div>
+            </div>
+   <!--activity header stops-->
+            <div class="text-content">
+            The project "Women For Change Initiative" was established in 2010 to sensitise, empower and mobilise women to participate actively in governance.<br><br>
+Dame Patience Jonathan is fighting to make Life better for women in the country and totally restore the dignity of womanhood.
+			</div>
+            <!--content stats-->
+            <div class="content-stats-wrapper">
+            	<div class="content-stats">82 Likes <span style="margin:0 5px" class="glyphicon glyphicon-asterisk"></span>14 Comments</div>
+                <div class="more-content"><img src="/static/images/icons/more.png" width="40" ></div>
+            	<div class="clear"></div>
+            </div>
+            <!--interactin bar-->
+            <div class="interaction-bar">
+            	<ul class="list-inline">
+                    <li><span><img src="/static/images/icons/like.png" width="18" ></span> Like</li>
+                    <li><span><img src="/static/images/icons/comment.png" width="18" ></span> Comment</li>
+                    <li><span><img src="/static/images/icons/share.png" width="18" ></span> Share</li>
+            	</ul>
+            </div>
+            <!--comment section-->
+            <!--comment card1-->
+            <div class="comment-wrapper">
+            	<div class="comment-card">
+                	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                    <div class="comment-details">
+                    	<div class="comment-owner-name">Paul Imisi</div>
+                        <div class="comment-text">She has struggled relentlessly to awaken and empower the Nigerian woman through her various summits,</div>
+                    </div>
+                <div class="clear"></div>
+                </div>
+                <div class="comment-socials"><span><img src="/static/images/icons/like.png" width="18" ><br>15</span></div>
+            <div class="clear"></div>
+            </div>
+            <!--comment card2-->
+            <div class="comment-wrapper">
+            	<div class="comment-card">
+                	<div class="comment-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
+                    <div class="comment-details">
+                    	<div class="comment-owner-name">Paul Imisi</div>
+                        <div class="comment-text">She has struggled relentlessly to awaken.</div>
+                    </div>
+                <div class="clear"></div>
+                </div>
+                <div class="comment-socials"><span><img src="/static/images/icons/like.png" width="18" ><br>15</span></div>
+            <div class="clear"></div>
+            </div>
+            <!--comment card2 ends-->
+            <!--post comment-->
+            <div class="post-comment-wrapper">
+            	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                <div class="post-comment-form-wrap">
+               	<div class="post-comment-card">
+                	 <div class="post-comment-form">
+                      <textarea rows="1" placeholder="Add a comment"></textarea>
+                	</div>
+                     <div class="add-comment-socials">
+                    <img src="/static/images/icons/location.png" width="18" ><img src="/static/images/icons/photo-grey.png" width="18" >
+                    </div>
+                <div class="clear"></div>
+                </div>
+                <div class="press-enter">Press enter to post comment</div>
+              </div>
+            <div class="clear"></div>
+            </div>
+            <!--post comment ends-->
+            <div class="more-comments">See 25 more</div>
+            </div>
+        </div>
+<!--activity card2 ends-->
+     </div>
+<!--middle column ends-->
+<!--right column starts-->
+     <div class="col-lg-3 col-md-3 col-sm-3 right-col">
+     	<div class="advert-wrapper">
+        	<div class="ad-section-header">
+            	<div class="sponsored-title">sponsored</div>
+                <div class="create-ad-link">Create Ad</div>
+            	<div class="clear"></div>
+            </div>
+            <!--ad card begins-->
+            <div class="ad-card">
+            	<div class="ad-image"><img src="/static/images/uploads/rado.png" width="100%" ></div>
+                <div class="ad-title">Timeless pieces from $120!</div>
+                <div class="ad-link">www.buyright.co.za</div>
+                <div class="ad-description">Loafers are arguable the best quality footwear that makes your feet stand out! Shop our wi...</div>
+            </div>
+            <!--ad card ends-->
+             <!--ad card begins-->
+            <div class="ad-card">
+            	<div class="ad-image"><img src="/static/images/uploads/watches5.png" width="100%" ></div>
+                <div class="ad-title">Timeless pieces from $120!</div>
+                <div class="ad-link">www.buyright.co.za</div>
+                <div class="ad-description">Loafers are arguable the best quality footwear that makes your feet stand out! Shop our wi...</div>
+            </div>
+            <!--ad card ends-->
+        </div>
+     </div>
+<!--right column ends-->
+<div class="clear"></div>
+</div>
+</div>
+ <script>
+  function __log(e, data) {
+    log.innerHTML += "\n" + e + " " + (data || '');
+  }
+
+  var audio_context;
+  var recorder;
+
+  function startUserMedia(stream) {
+    var input = audio_context.createMediaStreamSource(stream);
+    //__log('Media stream created.' );
+	//__log("input sample rate " +input.context.sampleRate);
+
+    input.connect(audio_context.destination);
+    //__log('Input connected to audio context destination.');
+
+    recorder = new Recorder(input);
+    __log('Recorder initialised.');
+  }
+
+  function startRecording(button) {
+    recorder && recorder.record();
+    button.disabled = true;
+    button.nextElementSibling.disabled = false;
+    __log('Recording...');
+  }
+
+  function stopRecording(button) {
+    recorder && recorder.stop();
+    button.disabled = true;
+    button.previousElementSibling.disabled = false;
+    __log('Stopped recording.');
+
+    // create WAV download link using audio data blob
+    createDownloadLink();
+
+    recorder.clear();
+  }
+
+  function createDownloadLink() {
+    recorder && recorder.exportWAV(function(blob) {
+      /*var url = URL.createObjectURL(blob);
+      var li = document.createElement('li');
+      var au = document.createElement('audio');
+      var hf = document.createElement('a');
+
+      au.controls = true;
+      au.src = url;
+      hf.href = url;
+      hf.download = new Date().toISOString() + '.wav';
+      hf.innerHTML = hf.download;
+      li.appendChild(au);
+      li.appendChild(hf);
+      recordingslist.appendChild(li);*/
+    });
+  }
+
+  window.onload = function init() {
+    try {
+      // webkit shim
+      window.AudioContext = window.AudioContext || window.webkitAudioContext;
+      navigator.getUserMedia = ( navigator.getUserMedia ||
+                       navigator.webkitGetUserMedia ||
+                       navigator.mozGetUserMedia ||
+                       navigator.msGetUserMedia);
+      window.URL = window.URL || window.webkitURL;
+
+      audio_context = new AudioContext;
+      //__log('Audio context set up.');
+     // __log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
+    } catch (e) {
+      alert('No web audio support found in this browser! You will not be able to use the audio blog feature.');
+    }
+
+    navigator.getUserMedia({audio: true}, startUserMedia, function(e) {
+      __log('No live audio input: ' + e);
+    });
+  };
+  </script>
+<script type="text/javascript">
+var resizeTextarea = function() {
+    this.style.height = "";
+
+    var
+        $this = $(this),
+        outerHeight = $this.outerHeight(),
+        scrollHeight = this.scrollHeight,
+        innerHeight = $this.innerHeight(),
+        magic = outerHeight - innerHeight;
+    this.style.height = scrollHeight + magic + "px";
+};
+$('textarea')
+    .keydown(resizeTextarea)
+    .keyup(resizeTextarea)
+    .change(resizeTextarea)
+    .focus(resizeTextarea);
+</script>
+<script>
+
+angular.module('TabsApp', [])
+.controller('TabsCtrl', ['$scope', function ($scope) {
+    $scope.tabs = [{
+            title: 'Status',
+            url: 'status.tpl.html'
+        }, {
+            title: 'Photo/Video',
+            url: 'photo.tpl.html'
+        }, {
+            title: 'Blog',
+            url: 'blog.tpl.html'
+    }];
+
+    $scope.currentTab = 'status.tpl.html';
+
+    $scope.onClickTab = function (tab) {
+        $scope.currentTab = tab.url;
+    }
+
+    $scope.isActiveTab = function(tabUrl) {
+        return tabUrl == $scope.currentTab;
+    }
+}]);
+</script>
+<script>$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').focus()
+  })</script>
+<!-- The template to display files available for upload -->
+
+<script src="js/bootstrap3_player.js"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<!-- The Templates plugin is included to render the upload/download listings -->
+<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- blueimp Gallery script -->
+<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="js/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<script src="js/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
+<script src="js/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="js/jquery.fileupload-validate.js"></script>
+<!-- The File Upload user interface plugin -->
+<script src="js/jquery.fileupload-ui.js"></script>
+<!-- The main application script -->
+<script src="js/main.js"></script>
+<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
+<!--[if (gte IE 8)&(lt IE 10)]>
+<script src="js/cors/jquery.xdr-transport.js"></script>
+<![endif]-->
+</body>
+{% endblock %}

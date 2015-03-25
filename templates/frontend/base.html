@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+{% load staticfiles %}
+
+<head lang="en">
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <!--  <meta name="viewport" content="width=device-width,initial-scale=1" > -->
+
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=.0,user-scalable=no"
+          name="viewport"/>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="{% static  "scripts/components/bootstrap/dist/css/bootstrap.css" %}"/>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="/static/styles/main.css">
+    <!-- endbuild -->
+    <!--- Custom Css Files -->
+
+    <link href="/static/styles/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+    <link rel="stylesheet" href="/static/styles/jquery.fileupload.css">
+    <link rel="stylesheet" href="/static/styles/jquery.fileupload-ui.css">
+    <link rel="stylesheet" href="/static/styles/bootstrap3_player.css">
+    <!-- CSS adjustments for browsers with JavaScript disabled -->
+
+    <noscript>
+        <link rel="stylesheet" href="/static/styles/jquery.fileupload-noscript.css">
+    </noscript>
+    <noscript>
+        <link rel="stylesheet" href="/static/styles/jquery.fileupload-ui-noscript.css">
+    </noscript>
+</head>
+<body>
+{% include 'frontend/_header.html' %}
+{% block body %}
+
+{% endblock %}
+</body>
+</html>

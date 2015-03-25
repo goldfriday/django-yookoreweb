@@ -1,0 +1,86 @@
+@charset "utf-8";
+/* CSS Document */
+.mp-right-col{padding:0; width:100%; max-width:860px; float:right; background:#fff; border-radius:4px; border:1px solid #ddd;}
+.mp-left-col{padding:0; width:100%; max-width:265px; float:left;}
+
+.mp-view-header{padding:15px; border-bottom:1px solid #ddd; margin-bottom:15px;}
+.mp-less-pad{padding:0 3px;}
+
+.thumbnail {
+display: block;
+padding: 0px;
+margin-bottom: 0px;
+line-height: 1.42857143;
+background-color: #fff;
+border: 1px solid #ddd;
+border-radius: 0px;
+-webkit-transition: all .2s ease-in-out;
+-o-transition: all .2s ease-in-out;
+transition: all .2s ease-in-out;
+}
+.thumbnail img{max-height:200px !important; width:100%; min-height:200px;}
+.caption h3{font-size:16px; padding:0; margin:0;}
+.photo-btn{border-radius:0;}
+
+@media (min-width: 220px) and (max-width : 479px) {
+.mp-left-col{display:none;}
+.mp-right-col{padding:0; width:100%;}
+}
+@media (min-width: 480px) and (max-width: 859px) {
+.mp-left-col{display:none;}
+
+}
+@media (min-width: 860px) and (max-width: 1139px) {
+.mp-right-col{padding:0; width:100%; max-width:615px; float:right; background:#fff; height:500px;}
+.mp-left-col{padding:0; width:100%; max-width:240px; float:left;}
+}
+
+/************************************* My Photos *************************************************************/
+
+.mp-right-col{padding:0; width:100%; max-width:860px; float:right; background:#fff; border-radius:4px; border:1px solid #ddd;}
+.mp-left-col{padding:0; width:100%; max-width:265px; float:left;}
+
+.mp-view-header{padding:15px; border-bottom:1px solid #ddd; margin-bottom:15px;}
+.mp-less-pad{padding:0 3px;}
+
+.thumbnail {
+display: block;
+padding: 0px;
+margin-bottom: 0px;
+line-height: 1.42857143;
+background-color: #fff;
+border: 1px solid #ddd;
+border-radius: 0px;
+-webkit-transition: all .2s ease-in-out;
+-o-transition: all .2s ease-in-out;
+transition: all .2s ease-in-out;
+}
+.thumbnail img{max-height:200px !important; width:100%; min-height:200px;}
+.caption h3{font-size:16px; padding:0; margin:0;}
+.photo-btn{border-radius:0;}
+
+@media (min-width: 220px) and (max-width : 479px) {
+.mp-left-col{display:none;}
+.mp-right-col{padding:0; width:100%;}
+}
+@media (min-width: 480px) and (max-width: 859px) {
+.mp-left-col{display:none;}
+
+}
+@media (min-width: 860px) and (max-width: 1139px) {
+.mp-right-col{padding:0; width:100%; max-width:615px; float:right; background:#fff; height:500px;}
+.mp-left-col{padding:0; width:100%; max-width:240px; float:left;}
+}
+
+
+/************************************* My Photos *************************************************************/
+
+
+/*
+  Allow angular.js to be loaded in body, hiding cloaked elements until
+  templates compile.  The !important is important given that there may be
+  other selectors that are more specific or come later and might alter display.
+ */
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
