@@ -10,4 +10,7 @@ urlpatterns = patterns('',
     url(r'^$', 'frontend.views.home', name='home'),
     url(r'^activity$', 'frontend.views.activitystream', name='activity'),
     url(r'^profile$', 'frontend.views.userprofile', name='profile'),
+
+    url(r'^login$', 'frontend.views.yookore_login'),
+
 )

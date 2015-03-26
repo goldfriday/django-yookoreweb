@@ -1,7 +1,12 @@
 {% extends 'frontend/base.html' %}
 
+<!-- Getting variable from the login page : username (pk) and sessionid-->
+{{ data.username }}
+
 {% block body %}
 <body ng-app="TabsApp">
+
+
 <div class="top-header-bar">
 	<div class="container">
     	<div class="logo"></div>
@@ -18,7 +23,14 @@
         	<div class="profile-pix-card">
             	<div class="profile-pix-img"><img src="/static/images/pix.jpg" width="100%"></div>
             </div>
-                <div class="profile-name">Paul Imisi</div>
+                <div class="profile-name">
+                    {% if fullname %}
+                    {{ fullname }}
+                    {% else %}
+                    {{ username}}
+                    {% endif %}
+
+                </div>
                 <div class="edit-profile">Edit Profile</div>
                 <div class="profile-stats-wrapper">
                 	<div class="profile-stats-info">
@@ -86,6 +98,20 @@
 </div>
 <!--status update card ends-->
 <!--activity card001 starts-->
+        {% if activities %}
+            {% for activity in activities %}
+                activity
+
+            {% endfor %}
+
+            {% for key, value in activities.list %}
+                {{ key }}: {{ value }}
+            {% endfor %}
+
+
+        {% else %}
+            No activities found for {{ username }}
+        {% endif%}
      	<div class="activity-stream-wrapper">
         	<div class="activity-card">
     <!--activity header starts-->
