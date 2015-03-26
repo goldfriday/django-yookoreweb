@@ -61,101 +61,8 @@
                             </div>
                             <!--comment section-->
                             <!--comment card00-->
-                            <div class="comment-wrapper-xs">
-                                <div class="comment-card">
-                                    <div class="comment-owner-pix-xs"><img
-                                            src="/static/images/people/guy-1.jpg" width="100%"></div>
-                                    <div class="comment-details-xs">
-                                        <div class="comment-owner-name-xs">Paul Imisi</div>
-                                        <div class="comment-text">cool</div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="comment-socials"><span><img src="/static/images/icons/like.png"
-                                                                        width="18"><br>15</span></div>
-                                <div class="clear"></div>
-                            </div>
-                            <!--comment card00-->
-                            <div class="comment-wrapper-xs">
-                                <div class="comment-card">
-                                    <div class="comment-owner-pix-xs"><img
-                                            src="/static/images/people/woman-4.jpg" width="100%"></div>
-                                    <div class="comment-details-xs">
-                                        <div class="comment-owner-name-xs">Paul Imisi</div>
-                                        <div class="comment-text">Nigerian woman through her various
-                                            summits,
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="comment-socials"><span><img src="/static/images/icons/like.png"
-                                                                        width="18"><br>15</span></div>
-                                <div class="clear"></div>
-                            </div>
-                            <!--comment card00-->
-                            <div class="comment-wrapper-xs">
-                                <div class="comment-card">
-                                    <div class="comment-owner-pix-xs"><img
-                                            src="/static/images/people/guy-2.jpg" width="100%"></div>
-                                    <div class="comment-details-xs">
-                                        <div class="comment-owner-name-xs">Paul Imisi</div>
-                                        <div class="comment-text">cool</div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="comment-socials"><span><img src="/static/images/icons/like.png"
-                                                                        width="18"><br>15</span></div>
-                                <div class="clear"></div>
-                            </div>
-                            <!--comment card00-->
-                            <div class="comment-wrapper-xs">
-                                <div class="comment-card">
-                                    <div class="comment-owner-pix-xs"><img
-                                            src="/static/images/people/guy-4.jpg" width="100%"></div>
-                                    <div class="comment-details-xs">
-                                        <div class="comment-owner-name-xs">Paul Imisi</div>
-                                        <div class="comment-text">Nigerian woman through her various
-                                            summits,
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="comment-socials"><span><img src="/static/images/icons/like.png"
-                                                                        width="18"><br>15</span></div>
-                                <div class="clear"></div>
-                            </div>
-                            <!--comment card00-->
-                            <div class="comment-wrapper-xs">
-                                <div class="comment-card">
-                                    <div class="comment-owner-pix-xs"><img
-                                            src="/static/images/people/woman-3.jpg" width="100%"></div>
-                                    <div class="comment-details-xs">
-                                        <div class="comment-owner-name-xs">Paul Imisi</div>
-                                        <div class="comment-text">cool</div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="comment-socials"><span><img src="/static/images/icons/like.png"
-                                                                        width="18"><br>15</span></div>
-                                <div class="clear"></div>
-                            </div>
-                            <!--comment card00-->
-                            <div class="comment-wrapper-xs">
-                                <div class="comment-card">
-                                    <div class="comment-owner-pix-xs"><img
-                                            src="/static/images/people/guy-6.jpg" width="100%"></div>
-                                    <div class="comment-details-xs">
-                                        <div class="comment-owner-name-xs">Paul Imisi</div>
-                                        <div class="comment-text">Nigerian woman through her various
-                                            summits,
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="comment-socials"><span><img src="/static/images/icons/like.png"
-                                                                        width="18"><br>15</span></div>
-                                <div class="clear"></div>
-                            </div>
+
+                            {% include 'frontend/activity-items/comment.html' %}
                             <!--post comment-->
                             <div class="post-comment-wrapper-xs" id="co3">
                                 <div class="comment-owner-pix-xs"><img
@@ -175,7 +82,6 @@
                                 <div class="clear"></div>
                             </div>
                             <!--post comment ends--->
-                            <div class="more-comments">See 25 more</div>
                         </div>
                     </div>
 
@@ -193,64 +99,21 @@
         </div>
         <div class="text-content">
             {# Putting the content in the card #}
-
             {{ activity.object.text }}
         </div>
         <!--content stats-->
-        <div class="content-stats-wrapper">
-            {# Like count #}
-            <div class="content-stats">
-                {{ activity.object.likes }} Likes 
-                <span style="margin:0 5px" class="glyphicon glyphicon-asterisk"></span>
-                {{ activity.object.commentcount }} Comments
-            </div>
-            <div class="more-content"><img src="/static/images/icons/more.png" width="40"></div>
-            <div class="clear"></div>
-        </div>
+        {% include 'frontend/activity-items/content-stats.html' %}
         <!--interactin bar-->
-        <div class="interaction-bar">
-            <ul class="list-inline">
-                <li><span><img src="/static/images/icons/like.png" width="18"></span> Like</li>
-                <li><span><img src="/static/images/icons/comment.png" width="18"></span> Comment</li>
-                <li><span><img src="/static/images/icons/share.png" width="18"></span> Share</li>
-            </ul>
-        </div>
+{% include 'frontend/activity-items/interaction-bar.html' %}
         <!--comment section-->
         <!--comment card00-->
         <div class="comment-wrapper">
-            <div class="comment-card">
-                <div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
-                <div class="comment-details">
-                    <div class="comment-owner-name">Paul Imisi</div>
-                    <div class="comment-text">She has struggled relentlessly to awaken and empower the
-                        Nigerian woman through her various summits,
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="comment-socials"><span><img src="/static/images/icons/like.png"
-                                                    width="18"><br>15</span></div>
-            <div class="clear"></div>
+            {% include 'frontend/activity-items/comment.html' %}
         </div>
         <!--post comment-->
         <div class="post-comment-wrapper">
-            <div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
-            <div class="post-comment-form-wrap">
-                <div class="post-comment-card">
-                    <div class="post-comment-form">
-                        <textarea rows="1" placeholder="Add a comment"></textarea>
-                    </div>
-                    <div class="add-comment-socials">
-                        <img src="/static/images/icons/location.png" width="18"><img
-                            src="/static/images/icons/photo-grey.png" width="18">
-                    </div>
-                    <div style="clear:left;"></div>
-                </div>
-                <div class="press-enter">Press enter to post comment</div>
-            </div>
-            <div class="clear"></div>
+            {% include 'frontend/activity-items/comment-post.html' %}
         </div>
         <!--post comment ends--->
-        <div class="more-comments">See 25 more</div>
     </div>
 </div>

@@ -8,28 +8,14 @@
         {% for activity in activities.list %}
             <p>{{ activity.object }}</p>
             {% ifequal activity.object.type 'statusupdate' %}
-
                 {% include 'frontend/activity-items/statusupdate.html' %}
-
             {% endifequal %}
             
             {% ifequal activity.object.type 'audio' %}
-
                 {% include 'frontend/activity-items/audio.html' %}
-
             {% endifequal %}
-
-
         {% endfor %}
 
-        <!--activity card001 starts-->
-        {% include 'frontend/activity-items/statusupdate.html' %}
-        <!--activity card00 ends-->
-        <!--activity card0 starts-->
-        {% include 'frontend/activity-items/video.html' %}
-        <!--activity card0 ends-->
-        <!--activity card1 starts-->
-        
 
     </div>
 {% endblock %}
