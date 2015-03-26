@@ -1,7 +1,11 @@
 <div class="content-stats-wrapper">
     {# Like count #}
     <div class="content-stats">
-        {{ activity.object.likes }} Likes
+    	{% if activity.object.likes < 2 %}
+        	{{ activity.object.likes }} Like
+        {% else %}
+        	{{ activity.object.likes }} Likes
+        {% endif %}
         <span style="margin:0 5px" class="glyphicon glyphicon-asterisk"></span>
         {{ activity.object.commentcount }} Comments
     </div>

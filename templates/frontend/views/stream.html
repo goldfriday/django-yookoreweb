@@ -6,7 +6,7 @@
 
         {% include 'frontend/_content-input-pane.html' %}
         {% for activity in activities.list %}
-            <p>{{ activity.object }}</p>
+           
             {% ifequal activity.object.type 'statusupdate' %}
                 {% include 'frontend/activity-items/statusupdate.html' %}
             {% endifequal %}
@@ -14,6 +14,15 @@
             {% ifequal activity.object.type 'audio' %}
                 {% include 'frontend/activity-items/audio.html' %}
             {% endifequal %}
+
+            {% ifequal activity.object.type 'blogpost' %}
+                <p>blogpost</p>
+            {% endifequal %}
+
+            {% ifequal activity.object.type 'photo' %}
+                <p>photo</p>
+            {% endifequal %}
+
         {% endfor %}
 
 

@@ -6,7 +6,8 @@
             <div class="content-owner-wrapper">
                 <div class="content-owner-name">Paul Imisi Akpoduado</div>
                 <div class="activity-verb">updated his status</div>
-                <div class="status-update-timestamp">2hours ago</div>
+
+                <div class="status-update-timestamp">2 hours ago </div>
             </div>
             <div class="clear"></div>
         </div>
@@ -89,12 +90,24 @@
                 </div>
             </div>
             <!----******************Modal Quick View Ends-----------**********---->
-            <p class="allow-modal"><a id="open-mikes-modal" href="picture_full_view.php"
-                                      style="cursor:pointer;"><img class="img-responsive"
-                                                                   src="/static/images/cricket.jpg"></a></p>
+            <p class="allow-modal">
+                <a id="open-mikes-modal" href="picture_full_view.php" style="cursor:pointer;">
+                    {% if activity.object.image_url %}
 
-            <p class="deny-modal"><a href="picture_full_view.php" style="cursor:pointer;"><img
-                    class="img-responsive" src="/static/images/cricket.jpg"></a></p>
+                        {% with "http://192.168.10.123:8000/"|add:activity.object.image_url as link %}
+                            <img class="img-responsive" src={{link }}>
+                        {% endwith %}
+                         
+                    {% endif %}
+                    
+                </a>
+            </p>
+
+            <p class="deny-modal">
+                <a href="picture_full_view.php" style="cursor:pointer;">
+                    <img class="img-responsive" src="/static/images/cricket.jpg">
+                </a>
+            </p>
 
         </div>
         <div class="text-content">
@@ -104,7 +117,7 @@
         <!--content stats-->
         {% include 'frontend/activity-items/content-stats.html' %}
         <!--interactin bar-->
-{% include 'frontend/activity-items/interaction-bar.html' %}
+        {% include 'frontend/activity-items/interaction-bar.html' %}
         <!--comment section-->
         <!--comment card00-->
         <div class="comment-wrapper">
