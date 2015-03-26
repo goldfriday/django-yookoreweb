@@ -21,6 +21,7 @@ def home(request):
 
 def activitystream(request):
     context = {}
+    context['activities'] = get_activities('ptchankue')
     return render(request, 'frontend/views/stream.html', context)
 
 def userprofile(request):
@@ -28,7 +29,6 @@ def userprofile(request):
     return render(request, 'frontend/views/profile.html', context)
 
 def yookore_login(request):
-
 	if request.method == 'POST':
 
 		url = "http://192.168.10.144:3000/auth/login"
