@@ -1,601 +1,677 @@
 {% extends 'frontend/base.html' %}
 
-<!-- Getting variable from the login page : username (pk) and sessionid-->
-{{ data.username }}
+{% block middle-content %}
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 center-col">
+        <!--status update card-->
 
-{% block body %}
-<body ng-app="TabsApp">
+        <div class="status-update-wrapper">
+            <ul class="nav nav-tabs" role="tablist" id="myTab">
+                <li role="presentation"><a href="#main" aria-controls="main" role="tab" data-toggle="tab"><span
+                        class="status-update-icon-active"><img src="/static/images/icons/status-blue.png"
+                                                               width="12"></span>Status</a></li>
+                <li role="presentation"><a href="#photo" aria-controls="photo" role="tab" data-toggle="tab"><span
+                        class="status-update-icon"><img src="/static/images/icons/pv-white.png"
+                                                        width="12"></span>Photo<span
+                        class="hide-div">/Video</span></a></li>
+                <li role="presentation"><a href="#blog" aria-controls="blog" role="tab" data-toggle="tab"><span
+                        class="status-update-icon"><img src="/static/images/icons/blog-white.png" width="12"></span>Blog</a>
+                </li>
+                <li role="presentation"><a href="#audio" aria-controls="audio" role="tab" data-toggle="tab"><span
+                        class="status-update-icon"><img src="/static/images/icons/audio.png" width="12"></span>Audio</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <!--status update text-->
+                <div role="tabpanel" class="tab-pane active" id="main" ng-controller="StatusupdateCtrl">
+                    <div class="status-update-form-wrapper">
+                            <textarea rows="3" class="update-status" ng-model="body"
+                                      placeholder="What's on your mind?"></textarea>
+                    </div>
+                    <div class="status-update-bottom">
+                        <div class="status-update-bottom-icons">
+                            <ul class="list-inline">
+                                <li role="presentation"><span><a href="#photo" aria-controls="photo" role="tab"
+                                                                 data-toggle="tab"><img
+                                        src="/static/images/icons/photo.png" width="18"></a></span></li>
+                                <li><span><img src="/static/images/icons/tag.png" width="18"></span></li>
+                                <li><span><img src="/static/images/icons/location.png" width="18"></span></li>
+                            </ul>
+                        </div>
+                        <div ng-submit="submit()" class="post-update-button">Post</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <!--status update photo/video-->
+                <div role="tabpanel" class="tab-pane" id="photo">
+                    <div class="status-update-form-wrapper">
+                        <textarea rows="1" class="update-status" placeholder="Write something..."></textarea>
+                    </div>
+                    <!-- The file upload form used as target for the file upload widget -->
+                    <form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST"
+                          enctype="multipart/form-data">
+                        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+                        <noscript><input type="hidden" name="redirect"
+                                         value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
+                        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                        <div class="drag-drop-photo">Drag and drop files to upload<br>OR<br>
+                            <!-- The fileinput-button span is used to style the file input field as button -->
+    <span class="btn add-photo-button fileinput-button">
+        <span class="add-photo-button-icon">Add Photos...</span>
+        <!-- The file input field used as target for the file upload widget -->
+        <input id="fileupload" type="file" name="files[]" multiple>
+    </span>
+                        </div>
+                        <!-- The table listing the files available for upload/download -->
+                        <div role="presentation" style="padding:0 5px 0px; text-align:center;">
+                            <div class="files">
+                            </div>
+                            <div class="clear"></div>
+                            <div class="row fileupload-buttonbar">
+                                <div class="post-photo-bottom">
+                                    <button type="submit" class="post-update-button start">Upload</button>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--blog post-->
+                <div role="tabpanel" class="tab-pane" id="blog">
+                    <div class="blog-post-body">
+                        <input type="text" class="form-control" placeholder="Title" style="margin-bottom:10px;">
+                        <textarea rows="3" class="form-control" placeholder="Message"></textarea>
+            <span class="btn add-photo-button fileinput-button" style="margin-top:10px;">
+            <span class="add-photo-button-icon">Add Photos...</span>
+            <!-- The file input field used as target for the file upload widget -->
+            <input id="fileupload" type="file" name="files[]" multiple>
+            </span>
+                    </div>
+                    <div class="status-update-bottom">
+                        <div class="status-update-bottom-icons">
+                            <ul class="list-inline">
+                                <li><span>Posting to Frank's Blog</span></li>
+                            </ul>
+                        </div>
+                        <div class="post-update-button">Post</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <!--blog post ends-->
+                <!--audio blog starts-->
+                <div role="tabpanel" class="tab-pane" id="audio">
+                    <div class="audio-post-body" style="text-align:center;">
+                        <textarea rows="1" class="update-status" placeholder="Write something..."></textarea>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn audio-blog-button" data-toggle="modal"
+                                data-target="#myModal">
+                            Record Your Message
+                        </button>
+                        <br>OR<br>
+             <span class="btn add-photo-button fileinput-button" style="margin-top:10px;">
+            <span class="add-photo-button-icon">Upload Audio Message</span>
+            <!-- The file input field used as target for the file upload widget -->
+            <input id="fileupload" type="file" name="files[]" multiple>
+            </span>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Record Your Message</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
 
+                                        <div id="recorder-wrap">
+                                            <div id="recorder">
+                                                <button class="btn reg-audio-button"
+                                                        onclick="startRecording(this);">start recording
+                                                </button>
+                                                <button class="btn reg-audio-button-stop"
+                                                        onclick="stopRecording(this);" disabled>stop
+                                                </button>
+                                                <div id="log"></div>
+                                                <ul id="recordingslist"></ul>
+                                            </div>
+                                        </div>
+                                        <div id="audio_container">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                        </button>
+                                        <button type="button" class="btn btn-primary">Continue</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="status-update-bottom">
+                        <div class="post-update-button">Post</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <!--audio blog ends-->
+            </div>
+        </div>
+        <!--status update card ends-->
 
-<div class="top-header-bar">
-	<div class="container">
-    	<div class="logo"></div>
-        <!--<div class="top-header-bar-icons"></div>
-        <div class="search-bar"></div>-->
+        <!--activity card001 starts-->
+        <div class="activity-stream-wrapper">
+            <div class="activity-card">
+                <!--activity header starts-->
+                <div class="activity-header">
+                    <div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
+                    <div class="content-owner-wrapper">
+                        <div class="content-owner-name">Paul Imisi Akpoduado</div>
+                        <div class="activity-verb">updated his status</div>
+                        <div class="status-update-timestamp">2hours ago</div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!--activity header stops-->
+                <!--Photo in post-->
+                <div class="photo-in-post-wrapper">
+                    <div class="photo-in-status-update">
+                        <!----******************Modal Quick View of Photo Starts-------************---->
+                        <!--modal content starts-->
+                        <div class="mikes-modal" id="pixModal">
+                            <div class="mike-modal-photo">
+                                <img class="img-responsive" style="vertical-align:middle"
+                                     src="/static/images/cricket.jpg">
+                            </div>
+                            <div class="description">
+                                <div class='title-area'>
+                                    <!--activity header starts-->
+                                    <div class="activity-header">
+                                        <div class="content-owner-pix"><img src="/static/images/pix.png"
+                                                                            width="100%"></div>
+                                        <div class="content-owner-wrapper">
+                                            <div class="content-owner-name">Paul Imisi Akpoduado</div>
+                                            <div class="activity-verb">updated his status</div>
+                                            <div class="status-update-timestamp">2hours ago</div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!--activity header stops-->
+                                    <!--content stats-->
+                                    <div class="content-stats-wrapper">
+                                        <div class="content-stats">82 Likes <span style="margin:0 5px"
+                                                                                  class="glyphicon glyphicon-asterisk"></span>14
+                                            Comments
+                                        </div>
+                                        <div class="more-content"><img src="/static/images/icons/more.png"
+                                                                       width="40"></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!--interactin bar-->
+                                    <div class="interaction-bar-xs">
+                                        <ul class="list-inline">
+                                            <li><span><img src="/static/images/icons/like.png" width="18"></span>
+                                                Like
+                                            </li>
+                                            <li><a href="#co3"><span><img style="margin-right:5px;"
+                                                                          src="/static/images/icons/comment.png"
+                                                                          width="18"></span>Comment</a></li>
+                                            <li><span><img src="/static/images/icons/share.png" width="18"></span>
+                                                Share
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--comment section-->
+                                    <!--comment card00-->
+                                    <div class="comment-wrapper-xs">
+                                        <div class="comment-card">
+                                            <div class="comment-owner-pix-xs"><img
+                                                    src="/static/images/people/guy-1.jpg" width="100%"></div>
+                                            <div class="comment-details-xs">
+                                                <div class="comment-owner-name-xs">Paul Imisi</div>
+                                                <div class="comment-text">cool</div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="comment-socials"><span><img src="/static/images/icons/like.png"
+                                                                                width="18"><br>15</span></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!--comment card00-->
+                                    <div class="comment-wrapper-xs">
+                                        <div class="comment-card">
+                                            <div class="comment-owner-pix-xs"><img
+                                                    src="/static/images/people/woman-4.jpg" width="100%"></div>
+                                            <div class="comment-details-xs">
+                                                <div class="comment-owner-name-xs">Paul Imisi</div>
+                                                <div class="comment-text">Nigerian woman through her various
+                                                    summits,
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="comment-socials"><span><img src="/static/images/icons/like.png"
+                                                                                width="18"><br>15</span></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!--comment card00-->
+                                    <div class="comment-wrapper-xs">
+                                        <div class="comment-card">
+                                            <div class="comment-owner-pix-xs"><img
+                                                    src="/static/images/people/guy-2.jpg" width="100%"></div>
+                                            <div class="comment-details-xs">
+                                                <div class="comment-owner-name-xs">Paul Imisi</div>
+                                                <div class="comment-text">cool</div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="comment-socials"><span><img src="/static/images/icons/like.png"
+                                                                                width="18"><br>15</span></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!--comment card00-->
+                                    <div class="comment-wrapper-xs">
+                                        <div class="comment-card">
+                                            <div class="comment-owner-pix-xs"><img
+                                                    src="/static/images/people/guy-4.jpg" width="100%"></div>
+                                            <div class="comment-details-xs">
+                                                <div class="comment-owner-name-xs">Paul Imisi</div>
+                                                <div class="comment-text">Nigerian woman through her various
+                                                    summits,
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="comment-socials"><span><img src="/static/images/icons/like.png"
+                                                                                width="18"><br>15</span></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!--comment card00-->
+                                    <div class="comment-wrapper-xs">
+                                        <div class="comment-card">
+                                            <div class="comment-owner-pix-xs"><img
+                                                    src="/static/images/people/woman-3.jpg" width="100%"></div>
+                                            <div class="comment-details-xs">
+                                                <div class="comment-owner-name-xs">Paul Imisi</div>
+                                                <div class="comment-text">cool</div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="comment-socials"><span><img src="/static/images/icons/like.png"
+                                                                                width="18"><br>15</span></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!--comment card00-->
+                                    <div class="comment-wrapper-xs">
+                                        <div class="comment-card">
+                                            <div class="comment-owner-pix-xs"><img
+                                                    src="/static/images/people/guy-6.jpg" width="100%"></div>
+                                            <div class="comment-details-xs">
+                                                <div class="comment-owner-name-xs">Paul Imisi</div>
+                                                <div class="comment-text">Nigerian woman through her various
+                                                    summits,
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="comment-socials"><span><img src="/static/images/icons/like.png"
+                                                                                width="18"><br>15</span></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!--post comment-->
+                                    <div class="post-comment-wrapper-xs" id="co3">
+                                        <div class="comment-owner-pix-xs"><img
+                                                src="/static/images/people/woman-9.jpg" width="100%"></div>
+                                        <div class="post-comment-form-wrap-xs">
+                                            <div class="post-comment-card">
+                                                <div class="post-comment-form">
+                                                    <textarea rows="1" placeholder="Add a comment"></textarea>
+                                                </div>
+                                                <div class="add-comment-socials"><img
+                                                        src="/static/images/icons/photo-grey.png" width="18">
+                                                </div>
+                                                <div style="clear:left;"></div>
+                                            </div>
+                                            <div class="press-enter">Press enter to post comment</div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!--post comment ends--->
+                                    <div class="more-comments">See 25 more</div>
+                                </div>
+                            </div>
+
+                            <!--modal content ends-->
+                        </div>
+                    </div>
+                    <!----******************Modal Quick View Ends-----------**********---->
+                    <p class="allow-modal"><a id="open-mikes-modal" href="picture_full_view.php"
+                                              style="cursor:pointer;"><img class="img-responsive"
+                                                                           src="/static/images/cricket.jpg"></a></p>
+
+                    <p class="deny-modal"><a href="picture_full_view.php" style="cursor:pointer;"><img
+                            class="img-responsive" src="/static/images/cricket.jpg"></a></p>
+
+                </div>
+                <div class="text-content">
+                    The project "Women For Change Initiative" was established in 2010 to sensitise, empower and
+                    mobilise women to participate actively in governance.
+                </div>
+                <!--content stats-->
+                <div class="content-stats-wrapper">
+                    <div class="content-stats">82 Likes <span style="margin:0 5px"
+                                                              class="glyphicon glyphicon-asterisk"></span>14
+                        Comments
+                    </div>
+                    <div class="more-content"><img src="/static/images/icons/more.png" width="40"></div>
+                    <div class="clear"></div>
+                </div>
+                <!--interactin bar-->
+                <div class="interaction-bar">
+                    <ul class="list-inline">
+                        <li><span><img src="/static/images/icons/like.png" width="18"></span> Like</li>
+                        <li><span><img src="/static/images/icons/comment.png" width="18"></span> Comment</li>
+                        <li><span><img src="/static/images/icons/share.png" width="18"></span> Share</li>
+                    </ul>
+                </div>
+                <!--comment section-->
+                <!--comment card00-->
+                <div class="comment-wrapper">
+                    <div class="comment-card">
+                        <div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                        <div class="comment-details">
+                            <div class="comment-owner-name">Paul Imisi</div>
+                            <div class="comment-text">She has struggled relentlessly to awaken and empower the
+                                Nigerian woman through her various summits,
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="comment-socials"><span><img src="/static/images/icons/like.png"
+                                                            width="18"><br>15</span></div>
+                    <div class="clear"></div>
+                </div>
+                <!--post comment-->
+                <div class="post-comment-wrapper">
+                    <div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                    <div class="post-comment-form-wrap">
+                        <div class="post-comment-card">
+                            <div class="post-comment-form">
+                                <textarea rows="1" placeholder="Add a comment"></textarea>
+                            </div>
+                            <div class="add-comment-socials">
+                                <img src="/static/images/icons/location.png" width="18"><img
+                                    src="/static/images/icons/photo-grey.png" width="18">
+                            </div>
+                            <div style="clear:left;"></div>
+                        </div>
+                        <div class="press-enter">Press enter to post comment</div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!--post comment ends--->
+                <div class="more-comments">See 25 more</div>
+            </div>
+        </div>
+        <!--activity card00 ends-->
+        <!--activity card0 starts-->
+        <div class="activity-stream-wrapper">
+            <div class="activity-card">
+                <!--activity header starts-->
+                <div class="activity-header">
+                    <div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
+                    <div class="content-owner-wrapper">
+                        <div class="content-owner-name">Paul Imisi</div>
+                        <div class="activity-verb">uploaded a new video</div>
+                    </div>
+                    <div class="status-update-timestamp">2hours ago</div>
+                    <div class="clear"></div>
+                </div>
+                <!--activity header stops-->
+                <!--Video in post-->
+                <div class="photo-in-post-wrapper">
+                    <div class="photo-in-status-update embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QjUqjxSTv3A"
+                                frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="text-content">
+                    The project "Women For Change Initiative" was established in 2010 to sensitise, empower and
+                    mobilise women to participate actively in governance.
+                </div>
+                <!--content stats-->
+                <div class="content-stats-wrapper">
+                    <div class="content-stats">82 Likes <span style="margin:0 5px"
+                                                              class="glyphicon glyphicon-asterisk"></span>14
+                        Comments
+                    </div>
+                    <div class="more-content"><img src="/static/images/icons/more.png" width="40"></div>
+                    <div class="clear"></div>
+                </div>
+                <!--interactin bar-->
+                <div class="interaction-bar">
+                    <ul class="list-inline">
+                        <li><span><img src="/static/images/icons/like.png" width="18"></span> Like</li>
+                        <li><span><img src="/static/images/icons/comment.png" width="18"></span> Comment</li>
+                        <li><span><img src="/static/images/icons/share.png" width="18"></span> Share</li>
+                    </ul>
+                </div>
+                <!--comment section-->
+                <!--comment card1-->
+                <div class="comment-wrapper">
+                    <div class="comment-card">
+                        <div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                        <div class="comment-details">
+                            <div class="comment-owner-name">Paul Imisi</div>
+                            <div class="comment-text">She has struggled relentlessly to awaken and empower the
+                                Nigerian woman through her various summits,
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="comment-socials"><span><img src="/static/images/icons/like.png"
+                                                            width="18"><br>15</span></div>
+                    <div class="clear"></div>
+                </div>
+                <!--post comment-->
+                <div class="post-comment-wrapper">
+                    <div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                    <div class="post-comment-form-wrap">
+                        <div class="post-comment-card">
+                            <div class="post-comment-form">
+                                <textarea rows="1" placeholder="Add a comment"></textarea>
+                            </div>
+                            <div class="add-comment-socials">
+                                <img src="/static/images/icons/location.png" width="18"><img
+                                    src="/static/images/icons/photo-grey.png" width="18">
+                            </div>
+                            <div style="clear:left;"></div>
+                        </div>
+                        <div class="press-enter">Press enter to post comment</div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!--post comment ends-->
+                <div class="more-comments">See 25 more</div>
+            </div>
+        </div>
+        <!--activity card0 ends-->
+        <!--activity card1 starts-->
+        <div class="activity-stream-wrapper">
+            <div class="activity-card">
+                <!--activity header starts-->
+                <div class="activity-header">
+                    <div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
+                    <div class="content-owner-wrapper">
+                        <div class="content-owner-name">Paul Imisi</div>
+                        <div class="activity-verb">An audio blog post</div>
+                    </div>
+                    <div class="status-update-timestamp">2hours ago</div>
+                    <div class="clear"></div>
+                </div>
+                <!--activity header stops-->
+                <!--Photo in post-->
+                <div class="photo-in-post-wrapper">
+                    <div class="photo-in-status-update">
+                        <audio controls>
+                            <source src="mp3/open_your_eyes.mp3" type="audio/mpeg"/>
+                            <a href="#">Open Your Eyes</a>
+                        </audio>
+                        <!--<img src="img/uploads/hazard.png" class="img-responsive" alt="Photo">
+                           <!-- <img src="img/uploads/port.jpg" class="img-responsive" alt="Photo">-->
+                    </div>
+                </div>
+                <!-- <div class="text-content">
+                 The project "Women For Change Initiative" was established in 2010 to sensitise, empower and mobilise women to participate actively in governance.
+                 </div>
+                 <!--content stats-->
+                <div class="content-stats-wrapper">
+                    <div class="content-stats">82 Likes <span style="margin:0 5px"
+                                                              class="glyphicon glyphicon-asterisk"></span>14
+                        Comments
+                    </div>
+                    <div class="more-content"><img src="/static/images/icons/more.png" width="40"></div>
+                    <div class="clear"></div>
+                </div>
+                <!--interactin bar-->
+                <div class="interaction-bar">
+                    <ul class="list-inline">
+                        <li><span><img src="/static/images/icons/like.png" width="18"></span> Like</li>
+                        <li><span><img src="/static/images/icons/comment.png" width="18"></span> Comment</li>
+                        <li><span><img src="/static/images/icons/share.png" width="18"></span> Share</li>
+                    </ul>
+                </div>
+                <!--comment section-->
+                <!--comment card1-->
+                <div class="comment-wrapper">
+                    <div class="comment-card">
+                        <div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                        <div class="comment-details">
+                            <div class="comment-owner-name">Paul Imisi</div>
+                            <div class="comment-text">She has struggled relentlessly to awaken and empower the
+                                Nigerian woman through her various summits,
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="comment-socials"><span><img src="/static/images/icons/like.png"
+                                                            width="18"><br>15</span></div>
+                    <div class="clear"></div>
+                </div>
+                <!--post comment-->
+                <div class="post-comment-wrapper">
+                    <div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                    <div class="post-comment-form-wrap">
+                        <div class="post-comment-card">
+                            <div class="post-comment-form">
+                                <textarea rows="1" placeholder="Add a comment"></textarea>
+                            </div>
+                            <div class="add-comment-socials">
+                                <img src="/static/images/icons/location.png" width="18"><img
+                                    src="/static/images/icons/photo-grey.png" width="18">
+                            </div>
+                            <div style="clear:left;"></div>
+                        </div>
+                        <div class="press-enter">Press enter to post comment</div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!--post comment ends-->
+                <div class="more-comments">See 25 more</div>
+            </div>
+        </div>
+        <!--activity card1 ends-->
+        <!--activity card2 starts-->
+        <div class="activity-stream-wrapper">
+            <div class="activity-card">
+                <!--activity header starts-->
+                <div class="activity-header">
+                    <div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
+                    <div class="content-owner-wrapper">
+                        <div class="content-owner-name">Paul Imisi</div>
+                        <div class="activity-verb">updated his status</div>
+                    </div>
+                    <div class="status-update-timestamp">2hours ago</div>
+                    <div class="clear"></div>
+                </div>
+                <!--activity header stops-->
+                <div class="text-content">
+                    The project "Women For Change Initiative" was established in 2010 to sensitise, empower and
+                    mobilise women to participate actively in governance.<br><br>
+                    Dame Patience Jonathan is fighting to make Life better for women in the country and totally
+                    restore the dignity of womanhood.
+                </div>
+                <!--content stats-->
+                <div class="content-stats-wrapper">
+                    <div class="content-stats">82 Likes <span style="margin:0 5px"
+                                                              class="glyphicon glyphicon-asterisk"></span>14
+                        Comments
+                    </div>
+                    <div class="more-content"><img src="/static/images/icons/more.png" width="40"></div>
+                    <div class="clear"></div>
+                </div>
+                <!--interactin bar-->
+                <div class="interaction-bar">
+                    <ul class="list-inline">
+                        <li><span><img src="/static/images/icons/like.png" width="18"></span> Like</li>
+                        <li><span><img src="/static/images/icons/comment.png" width="18"></span> Comment</li>
+                        <li><span><img src="/static/images/icons/share.png" width="18"></span> Share</li>
+                    </ul>
+                </div>
+                <!--comment section-->
+                <!--comment card1-->
+                <div class="comment-wrapper">
+                    <div class="comment-card">
+                        <div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                        <div class="comment-details">
+                            <div class="comment-owner-name">Paul Imisi</div>
+                            <div class="comment-text">She has struggled relentlessly to awaken and empower the
+                                Nigerian woman through her various summits,
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="comment-socials"><span><img src="/static/images/icons/like.png"
+                                                            width="18"><br>15</span></div>
+                    <div class="clear"></div>
+                </div>
+                <!--comment card2-->
+                <div class="comment-wrapper">
+                    <div class="comment-card">
+                        <div class="comment-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
+                        <div class="comment-details">
+                            <div class="comment-owner-name">Paul Imisi</div>
+                            <div class="comment-text">She has struggled relentlessly to awaken.</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="comment-socials"><span><img src="/static/images/icons/like.png"
+                                                            width="18"><br>15</span></div>
+                    <div class="clear"></div>
+                </div>
+                <!--comment card2 ends-->
+                <!--post comment-->
+                <div class="post-comment-wrapper">
+                    <div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+                    <div class="post-comment-form-wrap">
+                        <div class="post-comment-card">
+                            <div class="post-comment-form">
+                                <textarea rows="1" placeholder="Add a comment"></textarea>
+                            </div>
+                            <div class="add-comment-socials">
+                                <img src="/static/images/icons/location.png" width="18"><img
+                                    src="/static/images/icons/photo-grey.png" width="18">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="press-enter">Press enter to post comment</div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!--post comment ends-->
+                <div class="more-comments">See 25 more</div>
+            </div>
+        </div>
+        <!--activity card2 ends-->
     </div>
-</div>
-<div class="container">
-<div class="row">
-<!--left column-->
-	 <div class="col-lg-3 col-md-3 col-sm-3 left-col">
-     <!--profile section-->
-     	<div class="profile-info-wrapper">
-        	<div class="profile-pix-card">
-            	<div class="profile-pix-img"><img src="/static/images/pix.jpg" width="100%"></div>
-            </div>
-                <div class="profile-name">
-                    {% if fullname %}
-                        {{ fullname }}
-                    {% else %}
-                        {{ username}}
-                    {% endif %}
-
-                </div>
-                <div class="edit-profile">Edit Profile</div>
-                <div class="profile-stats-wrapper">
-                	<div class="profile-stats-info">
-                    	<div class="ps-friends">4k</div><span>Friends</span>
-                    </div>
-                    <div class="profile-stats-info">
-                    	<div class="ps-pages">15</div><span>Pages</span>
-                    </div>
-                    <div class="profile-stats-info">
-                    	<div class="ps-groups">9</div><span>Groups</span>
-                    </div>
-                </div>
-        </div>
-     <!--side menu-->
-     	<div class="side-menu-wrapper">
-        <div class="list-group">
-            <a href="#" class="list-group-item">
-                <span class="list-group-icons"><img src="/static/images/icons/profile.png" width="18"></span> Profile</a>
-            <a href="#" class="list-group-item">
-                <span class="list-group-icons"><img src="/static/images/icons/photo.png" width="18"></span> Photos <span class="badge">15</span>
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="list-group-icons"><img src="/static/images/icons/blogs.png" width="18"></span> Blogs <span class="badge">5</span>
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="list-group-icons"><img src="/static/images/icons/video.png" width="18"></span> Videos <span class="badge">8</span>
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="list-group-icons"><img src="/static/images/icons/friends.png" width="18"></span> Friends <span class="badge">48</span>
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="list-group-icons"><img src="/static/images/icons/pgs.png" width="18"></span> Pages</a>
-            <a href="#" class="list-group-item">
-                <span class="list-group-icons"><img src="/static/images/icons/grp.png" width="18"></span> Groups
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="list-group-icons"><img src="/static/images/icons/msg.png" width="18"></span> Messages <span class="badge">8</span>
-            </a>
-            <a href="#" class="list-group-item"><span class="list-group-icons"><img src="/static/images/icons/settings.png" width="18"></span> Settings</a>
-        </div>
-        </div>
-     </div>
-<!--left column ends-->
-<!--middle column starts-->
-     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 center-col">
-<!--status update card-->
-<div class="status-update-wrapper">
-     <u class="nav nav-tabs" role="tablist" id="myTab" ng-init="tab = 1">
-			<li role="presentation" ng-class="{active:tab===1}">
-				<a href="#main" aria-controls="main" role="tab" data-toggle="tab"><span class="status-update-icon-active"><img src="/static/images/icons/status-blue.png" width="12" ></span>Status</a>
-			</li>
-			<li role="presentation" ng-class="{active:tab===2}">
-				<a href="#photo" aria-controls="photo" role="tab" data-toggle="tab"><span class="status-update-icon"><img src="/static/images/icons/pv-white.png" width="12" ></span>Photo/Video</a>
-			</li>
-			<li role="presentation" ng-class="{active:tab===3}">
-				<a href="#blog" aria-controls="blog" role="tab" data-toggle="tab"><span class="status-update-icon"><img src="/static/images/icons/blog-white.png" width="12" ></span>Blog</a>
-			</li>
-		</u>
-        <div class="tab-content">
-			<p ng-show="tab === 1"> I eat chocolates, alive! </p>
-			<p ng-show="tab === 2"> I drink pulpy orange juice, mango milk shake... </p>
-			<p ng-show="tab === 3"> yeah, I sleep at weekend. I am human... :D</p>
-            </div>
-  <div class="clear"></div>
-</div>
-<!--status update card ends-->
-<!--activity card001 starts-->
-{% load dictionary_extras %}
-
-
-
-        {% if activities %}
-
-            <br/><br/>
-            Number of item in the payload {{ activities.list|length }}<br/>
-
-            
-            {% for key, values in activities.list %}
-
-                <!--get one activity-->
-                {# We are writing out a comment here #}
-                {% ifequal key 'object' %}
-                    
-                {% endifequal %}
-
-               
-            {% endfor %}
-
-
-            <script type="text/javascript">
-                document.writeln("Hello World!");
-
-                var list = activities.list
-
-                var data = jQuery.parseJSON('{{ activities.list|safe }}');
-                alert(data.length);
-                console.log(list);
-                console.log(results);
-                document.write('From javascript \n' + data)
-            </script>
-            
-            
-
-            Verb: {{ activities.list|access:0 }}<br/><br/>
-
-            Verb: {{ activities.list.object }}<br/><br/>
-
-            Object: {{ activities.list|access:1 }}<br/>
-            
-            
-            {% for key, values in list %}
-                {{ key }}=={{ values }}<br/>
-
-               
-            {% endfor%}
-
-            {% for key, values in activities.items.list %}
-                {{ key }}<br/>{{ values }}
-
-               
-            {% endfor%}
-
-        {% else %}
-            No activities found for {{ username }}
-        {% endif%}
-     	<div class="activity-stream-wrapper">
-        	<div class="activity-card">
-    <!--activity header starts-->
-            <div class="activity-header">
-                {{ activities.list|access:0 }}<br/><br/>
-                <!--get user profile pic, content-type, user fullname, time of post, link to like and comment -->
-                {% for x in activities.list.items %}
-                    {{ x }}
-                {% endfor %}
-            	<div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
-                <div class="content-owner-wrapper">
-                	<div class="content-owner-name">Paul Imisi</div>
-                    <div class="activity-verb">updated his status</div>
-                </div>
-                <div class="status-update-timestamp">2hours ago</div>
-            <div class="clear"></div>
-            </div>
-   <!--activity header stops-->
-   <!--Photo in post-->
-   			<div class="photo-in-post-wrapper">
-   				<div class="photo-in-status-update-auto">
-                </div>
-            </div>
-            <!--content stats-->
-            <div class="content-stats-wrapper">
-            	<div class="content-stats">82 Likes <span style="margin:0 5px" class="glyphicon glyphicon-asterisk"></span>14 Comments</div>
-                <div class="more-content"><img src="/static/images/icons/more.png" width="40" ></div>
-            	<div class="clear"></div>
-            </div>
-            <!--interactin bar-->
-            <div class="interaction-bar">
-            	<ul class="list-inline">
-                    <li><span><img src="/static/images/icons/like.png" width="18" ></span> Like</li>
-                    <li><span><img src="/static/images/icons/comment.png" width="18" ></span> Comment</li>
-                    <li><span><img src="/static/images/icons/share.png" width="18" ></span> Share</li>
-            	</ul>
-            </div>
-            <!--comment section-->
-            <!--comment card00-
-            <div class="comment-wrapper">
-            	<div class="comment-card">
-                	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
-                    <div class="comment-details">
-                    	<div class="comment-owner-name">Paul Imisi</div>
-                        <div class="comment-text">She has struggled relentlessly to awaken and empower the Nigerian woman through her various summits,</div>
-                    </div>
-                <div class="clear"></div>
-                </div>
-                <div class="comment-socials"><span><img src="/static/images/icons/like.png" width="18" ><br>15</span></div>
-            <div class="clear"></div>
-            </div>
-            <!--post comment-->
-            <div class="post-comment-wrapper">
-            	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
-                <div class="post-comment-form-wrap">
-               	<div class="post-comment-card">
-                	 <div class="post-comment-form">
-                      <textarea rows="1" placeholder="Add a comment"></textarea>
-                	</div>
-                     <div class="add-comment-socials">
-                    <img src="/static/images/icons/location.png" width="18" ><img src="/static/images/icons/photo-grey.png" width="18" >
-                    </div>
-                <div style="clear:left;"></div>
-                </div>
-                <div class="press-enter">Press enter to post comment</div>
-              </div>
-            <div class="clear"></div>
-            </div>
-            <!--post comment ends-
-            <div class="more-comments">See 25 more</div>-->
-            </div>
-        </div>
-<!--activity card00 ends-->
-<!--activity card0 starts-->
-     	<div class="activity-stream-wrapper">
-        	<div class="activity-card">
-    <!--activity header starts-->
-            <div class="activity-header">
-            	<div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
-                <div class="content-owner-wrapper">
-                	<div class="content-owner-name">Paul Imisi</div>
-                    <div class="activity-verb">uploaded a new video</div>
-                </div>
-                <div class="status-update-timestamp">2hours ago</div>
-            <div class="clear"></div>
-            </div>
-   <!--activity header stops-->
-   <!--Photo in post-->
-   			<div class="photo-in-post-wrapper">
-   				<div class="photo-in-status-update embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QjUqjxSTv3A" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="text-content">
-            The project "Women For Change Initiative" was established in 2010 to sensitise, empower and mobilise women to participate actively in governance.
-			</div>
-            <!--content stats-->
-            <div class="content-stats-wrapper">
-            	<div class="content-stats">82 Likes <span style="margin:0 5px" class="glyphicon glyphicon-asterisk"></span>14 Comments</div>
-                <div class="more-content"><img src="/static/images/icons/more.png" width="40" ></div>
-            	<div class="clear"></div>
-            </div>
-            <!--interactin bar-->
-            <div class="interaction-bar">
-            	<ul class="list-inline">
-                    <li><span><img src="/static/images/icons/like.png" width="18" ></span> Like</li>
-                    <li><span><img src="/static/images/icons/comment.png" width="18" ></span> Comment</li>
-                    <li><span><img src="/static/images/icons/share.png" width="18" ></span> Share</li>
-            	</ul>
-            </div>
-            <!--comment section-->
-            <!--comment card1-->
-            <div class="comment-wrapper">
-            	<div class="comment-card">
-                	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
-                    <div class="comment-details">
-                    	<div class="comment-owner-name">Paul Imisi</div>
-                        <div class="comment-text">She has struggled relentlessly to awaken and empower the Nigerian woman through her various summits,</div>
-                    </div>
-                <div class="clear"></div>
-                </div>
-                <div class="comment-socials"><span><img src="/static/images/icons/like.png" width="18" ><br>15</span></div>
-            <div class="clear"></div>
-            </div>
-            <!--post comment-->
-            <div class="post-comment-wrapper">
-            	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
-                <div class="post-comment-form-wrap">
-               	<div class="post-comment-card">
-                	 <div class="post-comment-form">
-                      <textarea rows="1" placeholder="Add a comment"></textarea>
-                	</div>
-                     <div class="add-comment-socials">
-                    <img src="/static/images/icons/location.png" width="18" ><img src="/static/images/icons/photo-grey.png" width="18" >
-                    </div>
-                <div style="clear:left;"></div>
-                </div>
-                <div class="press-enter">Press enter to post comment</div>
-              </div>
-            <div class="clear"></div>
-            </div>
-            <!--post comment ends-->
-            <div class="more-comments">See 25 more</div>
-            </div>
-        </div>
-<!--activity card0 ends-->
-<!--activity card1 starts-->
-     	<div class="activity-stream-wrapper">
-        	<div class="activity-card">
-    <!--activity header starts-->
-            <div class="activity-header">
-            	<div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
-                <div class="content-owner-wrapper">
-                	<div class="content-owner-name">Paul Imisi</div>
-                    <div class="activity-verb">An audio blog post</div>
-                </div>
-                <div class="status-update-timestamp">2hours ago</div>
-            <div class="clear"></div>
-            </div>
-   <!--activity header stops-->
-   <!--Photo in post-->
-   			<div class="photo-in-post-wrapper">
-   				<div class="photo-in-status-update">
-                <audio controls>
-                    <source src="mp3/open_your_eyes.mp3" type="audio/mpeg" />
-                    <a href="#">Open Your Eyes</a>
-                </audio>
-            <!--<img src="/static/images/uploads/hazard.png" class="img-responsive" alt="Photo">
-               <!-- <img src="/static/images/uploads/port.jpg" class="img-responsive" alt="Photo">-->
-                </div>
-            </div>
-           <!-- <div class="text-content">
-            The project "Women For Change Initiative" was established in 2010 to sensitise, empower and mobilise women to participate actively in governance.
-			</div>
-            <!--content stats-->
-            <div class="content-stats-wrapper">
-            	<div class="content-stats">82 Likes <span style="margin:0 5px" class="glyphicon glyphicon-asterisk"></span>14 Comments</div>
-                <div class="more-content"><img src="/static/images/icons/more.png" width="40" ></div>
-            	<div class="clear"></div>
-            </div>
-            <!--interactin bar-->
-            <div class="interaction-bar">
-            	<ul class="list-inline">
-                    <li><span><img src="/static/images/icons/like.png" width="18" ></span> Like</li>
-                    <li><span><img src="/static/images/icons/comment.png" width="18" ></span> Comment</li>
-                    <li><span><img src="/static/images/icons/share.png" width="18" ></span> Share</li>
-            	</ul>
-            </div>
-            <!--comment section-->
-            <!--comment card1-->
-            <div class="comment-wrapper">
-            	<div class="comment-card">
-                	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
-                    <div class="comment-details">
-                    	<div class="comment-owner-name">Paul Imisi</div>
-                        <div class="comment-text">She has struggled relentlessly to awaken and empower the Nigerian woman through her various summits,</div>
-                    </div>
-                <div class="clear"></div>
-                </div>
-                <div class="comment-socials"><span><img src="/static/images/icons/like.png" width="18" ><br>15</span></div>
-            <div class="clear"></div>
-            </div>
-            <!--post comment-->
-            <div class="post-comment-wrapper">
-            	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
-                <div class="post-comment-form-wrap">
-               	<div class="post-comment-card">
-                	 <div class="post-comment-form">
-                      <textarea rows="1" placeholder="Add a comment"></textarea>
-                	</div>
-                     <div class="add-comment-socials">
-                    <img src="/static/images/icons/location.png" width="18" ><img src="/static/images/icons/photo-grey.png" width="18" >
-                    </div>
-                <div style="clear:left;"></div>
-                </div>
-                <div class="press-enter">Press enter to post comment</div>
-              </div>
-            <div class="clear"></div>
-            </div>
-            <!--post comment ends-->
-            <div class="more-comments">See 25 more</div>
-            </div>
-        </div>
-<!--activity card1 ends-->
-<!--activity card2 starts-->
-     	<div class="activity-stream-wrapper">
-        	<div class="activity-card">
-    <!--activity header starts-->
-            <div class="activity-header">
-            	<div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
-                <div class="content-owner-wrapper">
-                	<div class="content-owner-name">Paul Imisi</div>
-                    <div class="activity-verb">updated his status</div>
-                </div>
-                <div class="status-update-timestamp">2hours ago</div>
-            <div class="clear"></div>
-            </div>
-   <!--activity header stops-->
-            <div class="text-content">
-            The project "Women For Change Initiative" was established in 2010 to sensitise, empower and mobilise women to participate actively in governance.<br><br>
-Dame Patience Jonathan is fighting to make Life better for women in the country and totally restore the dignity of womanhood.
-			</div>
-            <!--content stats-->
-            <div class="content-stats-wrapper">
-            	<div class="content-stats">82 Likes <span style="margin:0 5px" class="glyphicon glyphicon-asterisk"></span>14 Comments</div>
-                <div class="more-content"><img src="/static/images/icons/more.png" width="40" ></div>
-            	<div class="clear"></div>
-            </div>
-            <!--interactin bar-->
-            <div class="interaction-bar">
-            	<ul class="list-inline">
-                    <li><span><img src="/static/images/icons/like.png" width="18" ></span> Like</li>
-                    <li><span><img src="/static/images/icons/comment.png" width="18" ></span> Comment</li>
-                    <li><span><img src="/static/images/icons/share.png" width="18" ></span> Share</li>
-            	</ul>
-            </div>
-            <!--comment section-->
-            <!--comment card1-->
-            <div class="comment-wrapper">
-            	<div class="comment-card">
-                	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
-                    <div class="comment-details">
-                    	<div class="comment-owner-name">Paul Imisi</div>
-                        <div class="comment-text">She has struggled relentlessly to awaken and empower the Nigerian woman through her various summits,</div>
-                    </div>
-                <div class="clear"></div>
-                </div>
-                <div class="comment-socials"><span><img src="/static/images/icons/like.png" width="18" ><br>15</span></div>
-            <div class="clear"></div>
-            </div>
-            <!--comment card2-->
-            <div class="comment-wrapper">
-            	<div class="comment-card">
-                	<div class="comment-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
-                    <div class="comment-details">
-                    	<div class="comment-owner-name">Paul Imisi</div>
-                        <div class="comment-text">She has struggled relentlessly to awaken.</div>
-                    </div>
-                <div class="clear"></div>
-                </div>
-                <div class="comment-socials"><span><img src="/static/images/icons/like.png" width="18" ><br>15</span></div>
-            <div class="clear"></div>
-            </div>
-            <!--comment card2 ends-->
-            <!--post comment-->
-            <div class="post-comment-wrapper">
-            	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
-                <div class="post-comment-form-wrap">
-               	<div class="post-comment-card">
-                	 <div class="post-comment-form">
-                      <textarea rows="1" placeholder="Add a comment"></textarea>
-                	</div>
-                     <div class="add-comment-socials">
-                    <img src="/static/images/icons/location.png" width="18" ><img src="/static/images/icons/photo-grey.png" width="18" >
-                    </div>
-                <div class="clear"></div>
-                </div>
-                <div class="press-enter">Press enter to post comment</div>
-              </div>
-            <div class="clear"></div>
-            </div>
-            <!--post comment ends-->
-            <div class="more-comments">See 25 more</div>
-            </div>
-        </div>
-<!--activity card2 ends-->
-     </div>
-<!--middle column ends-->
-<!--right column starts-->
-     <div class="col-lg-3 col-md-3 col-sm-3 right-col">
-     	<div class="advert-wrapper">
-        	<div class="ad-section-header">
-            	<div class="sponsored-title">sponsored</div>
-                <div class="create-ad-link">Create Ad</div>
-            	<div class="clear"></div>
-            </div>
-            <!--ad card begins-->
-            <div class="ad-card">
-            	<div class="ad-image"><img src="/static/images/uploads/rado.png" width="100%" ></div>
-                <div class="ad-title">Timeless pieces from $120!</div>
-                <div class="ad-link">www.buyright.co.za</div>
-                <div class="ad-description">Loafers are arguable the best quality footwear that makes your feet stand out! Shop our wi...</div>
-            </div>
-            <!--ad card ends-->
-             <!--ad card begins-->
-            <div class="ad-card">
-            	<div class="ad-image"><img src="/static/images/uploads/watches5.png" width="100%" ></div>
-                <div class="ad-title">Timeless pieces from $120!</div>
-                <div class="ad-link">www.buyright.co.za</div>
-                <div class="ad-description">Loafers are arguable the best quality footwear that makes your feet stand out! Shop our wi...</div>
-            </div>
-            <!--ad card ends-->
-        </div>
-     </div>
-<!--right column ends-->
-<div class="clear"></div>
-</div>
-</div>
- <script>
-  function __log(e, data) {
-    log.innerHTML += "\n" + e + " " + (data || '');
-  }
-
-  var audio_context;
-  var recorder;
-
-  function startUserMedia(stream) {
-    var input = audio_context.createMediaStreamSource(stream);
-    //__log('Media stream created.' );
-	//__log("input sample rate " +input.context.sampleRate);
-
-    input.connect(audio_context.destination);
-    //__log('Input connected to audio context destination.');
-
-    recorder = new Recorder(input);
-    __log('Recorder initialised.');
-  }
-
-  function startRecording(button) {
-    recorder && recorder.record();
-    button.disabled = true;
-    button.nextElementSibling.disabled = false;
-    __log('Recording...');
-  }
-
-  function stopRecording(button) {
-    recorder && recorder.stop();
-    button.disabled = true;
-    button.previousElementSibling.disabled = false;
-    __log('Stopped recording.');
-
-    // create WAV download link using audio data blob
-    createDownloadLink();
-
-    recorder.clear();
-  }
-
-  function createDownloadLink() {
-    recorder && recorder.exportWAV(function(blob) {
-      /*var url = URL.createObjectURL(blob);
-      var li = document.createElement('li');
-      var au = document.createElement('audio');
-      var hf = document.createElement('a');
-
-      au.controls = true;
-      au.src = url;
-      hf.href = url;
-      hf.download = new Date().toISOString() + '.wav';
-      hf.innerHTML = hf.download;
-      li.appendChild(au);
-      li.appendChild(hf);
-      recordingslist.appendChild(li);*/
-    });
-  }
-
-  window.onload = function init() {
-    try {
-      // webkit shim
-      window.AudioContext = window.AudioContext || window.webkitAudioContext;
-      navigator.getUserMedia = ( navigator.getUserMedia ||
-                       navigator.webkitGetUserMedia ||
-                       navigator.mozGetUserMedia ||
-                       navigator.msGetUserMedia);
-      window.URL = window.URL || window.webkitURL;
-
-      audio_context = new AudioContext;
-      //__log('Audio context set up.');
-     // __log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
-    } catch (e) {
-      alert('No web audio support found in this browser! You will not be able to use the audio blog feature.');
-    }
-
-    navigator.getUserMedia({audio: true}, startUserMedia, function(e) {
-      __log('No live audio input: ' + e);
-    });
-  };
-  </script>
-<script type="text/javascript">
-var resizeTextarea = function() {
-    this.style.height = "";
-
-    var
-        $this = $(this),
-        outerHeight = $this.outerHeight(),
-        scrollHeight = this.scrollHeight,
-        innerHeight = $this.innerHeight(),
-        magic = outerHeight - innerHeight;
-    this.style.height = scrollHeight + magic + "px";
-};
-$('textarea')
-    .keydown(resizeTextarea)
-    .keyup(resizeTextarea)
-    .change(resizeTextarea)
-    .focus(resizeTextarea);
-</script>
-
-<script>$('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').focus()
-  })</script>
-
-
-</body>
 {% endblock %}

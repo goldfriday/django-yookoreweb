@@ -1,41 +1,39 @@
 <div class="top-header-bar navbar-fixed-top">
-<!-- <div class="top-header-bar navbar-fixed-top" ng-app="yookoreApp" > -->
-<div class="container" style="min-height:50px;">
-      <div class="logo-menu">
-        <a href="."><img class="hide-div" src="/static/images/icons/logo.png" width="108" height="30"></a>
-        <a href="#" ng-click="openAside('left')" ng-hide= "!isAuthenticated()">
-        <img class="show-div" src="/static/images/icons/menu.png" width="27" height="22" />
-        </a>
+    <div class="container">
+        <div class="logo-menu">
+            <img width="108" height="30" src="/static/images/icons/logo.png" class="hide-div">
+            <a ng-click="openAside('left')" href="#">
+                <img width="27" height="22" src="/static/images/icons/menu.png" class="show-div">
+            </a>
         </div>
-      <div style="float:right; display:inline-block; border-left:0px solid #ddd; padding:15px 0 6px 0; text-align:right; position:relative;" ng-hide= "!isAuthenticated()" >
-            <span class="top-icons"><a ui-sref="#/"><img src="/static/images/icons/noti.png" width="100%" ></a></span>
-            <span class="top-icons"><a ui-sref="#/"><img src="/static/images/icons/friendsx.png" width="100%" ></a></span>
-            <span class="top-icons"><a ui-sref="#/"><img src="/static/images/icons/mess.png" width="100%" ></a></span>
+        <div style="float:right; display:inline-block; border-left:0px solid #ddd; padding:15px 0 6px 0; text-align:right; position:relative;">
+            <span class="top-icons"><a href="#"><img width="100%" src="/static/images/icons/noti.png"></a></span>
+            <span class="top-icons"><a href="#"><img width="100%" src="/static/images/icons/friendsx.png"></a></span>
+            <span class="top-icons"><a href="#"><img width="100%" src="/static/images/icons/mess.png"></a></span>
             <span class="top-drop hide-div">
                 <div class="dropdown navbar-right">
-                <span class="nav-profile-pix-img hide-div"><img src="/static/images/people/guy-4.jpg" width="100%"></span>
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:#fff; display:inline-block; vertical-align:top;">{{username}}<span class="caret-top"></span></a>
-                          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li><a ui-sref="userprofile">Profile</a></li>
-                            <li><a href="#">Messages</a></li>
-                            <li><a href="#">Settings</a></li>
-                            <li class="divider"></li>
-                            <li ng-hide= "!isAuthenticated()" ><a ui-sref="main" ng-controller="LogoutCtrl" ng-click="logout()">Logout</a></li>
-                            <!-- <li ng-hide= "!isAuthenticated()" ><a ng-controller="LogoutCtrl">Logout</a></li> -->
-                          </ul>
+                    <span class="nav-profile-pix-img hide-div"><img width="100%" src="/static/images/people/guy-4.jpg"></span>
+                    <a style="color:#fff; display:inline-block; vertical-align:top;" aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">Jome Akpoduado<span class="caret-top"></span></a>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu">
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Messages</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
                 </div>
              </span>
 
-       </div>
+        </div>
         <!--search starts-->
-      <div class="search-icon-xs" ng-hide= "!isAuthenticated()">
-          <div id="searchtext">
-            <form>
-                <input type="search" placeholder="Search for people">
-            </form>
+        <div class="search-icon-xs">
+            <div id="searchtext">
+                <form>
+                    <input type="search" placeholder="Search for people">
+                </form>
             </div>
         </div>
-     <!--search form ends-->
-     <div style="clear:both;"></div>
-</div>
+        <!--search form ends-->
+    </div>
+    <div style="clear:both;"></div>
 </div>

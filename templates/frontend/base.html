@@ -1,46 +1,180 @@
 <!DOCTYPE html>
-
-<html>
 {% load staticfiles %}
-
-<head lang="en">
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <!--  <meta name="viewport" content="width=device-width,initial-scale=1" > -->
-
-    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=.0,user-scalable=no"
-          name="viewport"/>
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="{% static  "scripts/components/bootstrap/dist/css/bootstrap.css" %}"/>
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="/static/styles/main.css">
-    <!-- endbuild -->
-    <!--- Custom Css Files -->
-
-    <link href="/static/styles/style.css" rel="stylesheet" type="text/css">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/onboard.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/profile2.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
     <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-    <link rel="stylesheet" href="/static/styles/jquery.fileupload.css">
-    <link rel="stylesheet" href="/static/styles/jquery.fileupload-ui.css">
-    <link rel="stylesheet" href="/static/styles/bootstrap3_player.css">
+    <link rel="stylesheet" href="/static/css/jquery.fileupload.css">
+    <link rel="stylesheet" href="/static/css/jquery.fileupload-ui.css">
+    <link rel="stylesheet" href="/static/css/bootstrap3_player.css">
     <!-- CSS adjustments for browsers with JavaScript disabled -->
+    <title>Activity Stream</title>
+    <noscript>
+        <link rel="stylesheet" href="/static/css/jquery.fileupload-noscript.css">
+    </noscript>
+    <noscript>
+        <link rel="stylesheet" href="/static/css/jquery.fileupload-ui-noscript.css">
+    </noscript>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="/static/js/recordmp3.js"></script>
+    <!--new scripts-->
+    <link rel="stylesheet" href="https://rawgit.com/dbtek/angular-aside/master/dist/css/angular-aside.min.css"/>
+    <script src="https://code.angularjs.org/1.2.21/angular.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-0.11.0.min.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="https://rawgit.com/dbtek/angular-aside/master/dist/js/angular-aside.js"></script>
 
-    <noscript>
-        <link rel="stylesheet" href="/static/styles/jquery.fileupload-noscript.css">
-    </noscript>
-    <noscript>
-        <link rel="stylesheet" href="/static/styles/jquery.fileupload-ui-noscript.css">
-    </noscript>
+    <!--new scritp ends-->
+    <!--newer scripts---->
+    <link href="/static/css/pix-modal.css" rel="stylesheet" type="text/css">
+    <script src="/static/js/mikes-modal.min.js" type="text/javascript"></script>
+    <script src="/static/js/photo-modal.js" type="text/javascript"></script>
+    <!---newer scripts ends-->
+    <script>
+        $().ready(function () {
+            var $scrollingDiv = $(".advert-wrapper");
+            $(window).scroll(function () {
+
+                if ($(window).scrollTop() > 320) { // Start scrolling after this distance from the top – adjust it for what you need (trial and error or a ruler on the screen graduated in pixels ;) )
+                    $scrollingDiv
+                            .stop()
+                            .animate({"marginTop": ($(window).scrollTop() - 30) + "px"}, "slow");	 // How many pixels to add to the distance
+                }
+                if ($(window).scrollTop() <= 320) { // Less than this distance = RESET to original margin – set to 0 here but you can reset to your own original margin – this stops the element raising up too high up the page
+                    $scrollingDiv
+                            .stop()
+                            .animate({"marginTop": "0px"}, "slower");
+                }
+                var mql = window.matchMedia("screen and (max-width: 1139px)")
+                if (mql.matches) { // if media query matches
+                    $scrollingDiv
+                            .stop()
+                            .animate({"marginTop": "0px"}, "fast");
+                }
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+    </script>
 </head>
-<body>
-{% include 'frontend/_header.html' %}
-{% block body %}
 
-{% endblock %}
+<body><!--please take not of the name-->
+{% include 'frontend/_header.html' %}
+<!--header ends-->
+<div class="container" style="margin-top:62px;"><!--add the margin set off the fixed header-->
+    <div class="row xtra-pad">
+        <!--left column-->
+        <div class="col-lg-3 col-md-3 col-sm-3 left-col">
+            <!--profile section-->
+            <div class="profile-info-wrapper">
+                <div class="profile-pix-card">
+                    <div class="profile-pix-img"><img src="/static/images/pix.jpg" width="100%"></div>
+                </div>
+                <div class="profile-name">Paul Imisi</div>
+                <div class="edit-profile">Edit Profile</div>
+                <div class="profile-stats-wrapper">
+                    <div class="profile-stats-info">
+                        <div class="ps-friends">4k</div>
+                        <span>Friends</span>
+                    </div>
+                    <div class="profile-stats-info">
+                        <div class="ps-pages">15</div>
+                        <span>Pages</span>
+                    </div>
+                    <div class="profile-stats-info">
+                        <div class="ps-groups">9</div>
+                        <span>Groups</span>
+                    </div>
+                </div>
+            </div>
+            <!--side menu-->
+            <div class="side-menu-wrapper">
+                <div class="list-group">
+                    <a href="#" class="list-group-item">
+                        <span class="list-group-icons"><img src="/static/images/icons/profile.png" width="18"></span>
+                        Profile</a>
+                    <a href="#" class="list-group-item">
+                        <span class="list-group-icons"><img src="/static/images/icons/photo.png" width="18"></span>
+                        Photos <span class="badge">15</span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <span class="list-group-icons"><img src="/static/images/icons/blogs.png" width="18"></span>
+                        Blogs <span class="badge">5</span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <span class="list-group-icons"><img src="/static/images/icons/video.png" width="18"></span>
+                        Videos <span class="badge">8</span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <span class="list-group-icons"><img src="/static/images/icons/friends.png" width="18"></span>
+                        Friends <span class="badge">48</span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <span class="list-group-icons"><img src="/static/images/icons/pgs.png" width="18"></span> Pages</a>
+                    <a href="#" class="list-group-item">
+                        <span class="list-group-icons"><img src="/static/images/icons/grp.png" width="18"></span> Groups
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <span class="list-group-icons"><img src="/static/images/icons/msg.png" width="18"></span>
+                        Messages <span class="badge">8</span>
+                    </a>
+                    <a href="#" class="list-group-item"><span class="list-group-icons"><img
+                            src="/static/images/icons/settings.png" width="18"></span> Settings</a>
+                </div>
+            </div>
+        </div>
+        <!--left column ends-->
+        <!--middle column starts-->
+        {% block middle-content %}
+            Placeholder
+        {% endblock %}
+        <!--middle column ends-->
+        <!--right column starts-->
+        <div class="col-lg-3 col-md-3 col-sm-3 right-col">
+            <div class="advert-wrapper">
+                <div class="ad-section-header">
+                    <div class="sponsored-title">sponsored</div>
+                    <div class="create-ad-link">Create Ad</div>
+                    <div class="clear"></div>
+                </div>
+                <!--ad card begins-->
+                <div class="ad-card">
+                    <div class="ad-image"><img src="/static/images/uploads/rado.png" width="100%"></div>
+                    <div class="ad-title">Timeless pieces from $120!</div>
+                    <div class="ad-link">www.buyright.co.za</div>
+                    <div class="ad-description">Loafers are arguable the best quality footwear that makes your feet
+                        stand out! Shop our wi...
+                    </div>
+                </div>
+                <!--ad card ends-->
+                <!--ad card begins-->
+                <div class="ad-card">
+                    <div class="ad-image"><img src="/static/images/uploads/watches5.png" width="100%"></div>
+                    <div class="ad-title">Timeless pieces from $120!</div>
+                    <div class="ad-link">www.buyright.co.za</div>
+                    <div class="ad-description">Loafers are arguable the best quality footwear that makes your feet
+                        stand out! Shop our wi...
+                    </div>
+                </div>
+                <!--ad card ends-->
+            </div>
+        </div>
+        <!--right column ends-->
+        <div class="clear"></div>
+    </div>
+    <div class="footer"></div>
+</div>
+
+{% include 'frontend/_scripts.html' %}
 </body>
 </html>
