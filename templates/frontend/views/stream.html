@@ -25,9 +25,9 @@
             </div>
                 <div class="profile-name">
                     {% if fullname %}
-                    {{ fullname }}
+                        {{ fullname }}
                     {% else %}
-                    {{ username}}
+                        {{ username}}
                     {% endif %}
 
                 </div>
@@ -98,16 +98,60 @@
 </div>
 <!--status update card ends-->
 <!--activity card001 starts-->
+{% load dictionary_extras %}
+
+
+
         {% if activities %}
-            {% for activity in activities %}
-                activity
 
+            <br/><br/>
+            Number of item in the payload {{ activities.list|length }}<br/>
+
+            
+            {% for key, values in activities.list %}
+
+                <!--get one activity-->
+                {# We are writing out a comment here #}
+                {% ifequal key 'object' %}
+                    
+                {% endifequal %}
+
+               
             {% endfor %}
 
-            {% for key, value in activities.list %}
-                {{ key }}: {{ value }}
-            {% endfor %}
 
+            <script type="text/javascript">
+                document.writeln("Hello World!");
+
+                var list = activities.list
+
+                var data = jQuery.parseJSON('{{ activities.list|safe }}');
+                alert(data.length);
+                console.log(list);
+                console.log(results);
+                document.write('From javascript \n' + data)
+            </script>
+            
+            
+
+            Verb: {{ activities.list|access:0 }}<br/><br/>
+
+            Verb: {{ activities.list.object }}<br/><br/>
+
+            Object: {{ activities.list|access:1 }}<br/>
+            
+            
+            {% for key, values in list %}
+                {{ key }}=={{ values }}<br/>
+
+               
+            {% endfor%}
+
+            {% for key, values in activities.items.list %}
+                {{ key }}<br/>{{ values }}
+
+               
+            {% endfor%}
 
         {% else %}
             No activities found for {{ username }}
@@ -116,6 +160,11 @@
         	<div class="activity-card">
     <!--activity header starts-->
             <div class="activity-header">
+                {{ activities.list|access:0 }}<br/><br/>
+                <!--get user profile pic, content-type, user fullname, time of post, link to like and comment -->
+                {% for x in activities.list.items %}
+                    {{ x }}
+                {% endfor %}
             	<div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
                 <div class="content-owner-wrapper">
                 	<div class="content-owner-name">Paul Imisi</div>
@@ -542,69 +591,11 @@ $('textarea')
     .change(resizeTextarea)
     .focus(resizeTextarea);
 </script>
-<script>
 
-angular.module('TabsApp', [])
-.controller('TabsCtrl', ['$scope', function ($scope) {
-    $scope.tabs = [{
-            title: 'Status',
-            url: 'status.tpl.html'
-        }, {
-            title: 'Photo/Video',
-            url: 'photo.tpl.html'
-        }, {
-            title: 'Blog',
-            url: 'blog.tpl.html'
-    }];
-
-    $scope.currentTab = 'status.tpl.html';
-
-    $scope.onClickTab = function (tab) {
-        $scope.currentTab = tab.url;
-    }
-
-    $scope.isActiveTab = function(tabUrl) {
-        return tabUrl == $scope.currentTab;
-    }
-}]);
-</script>
 <script>$('#myModal').on('shown.bs.modal', function () {
     $('#myInput').focus()
   })</script>
-<!-- The template to display files available for upload -->
 
-<script src="js/bootstrap3_player.js"></script>
-<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-<script src="js/vendor/jquery.ui.widget.js"></script>
-<!-- The Templates plugin is included to render the upload/download listings -->
-<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
-<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-<!-- The Canvas to Blob plugin is included for image resizing functionality -->
-<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-<!-- blueimp Gallery script -->
-<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<script src="js/jquery.iframe-transport.js"></script>
-<!-- The basic File Upload plugin -->
-<script src="js/jquery.fileupload.js"></script>
-<!-- The File Upload processing plugin -->
-<script src="js/jquery.fileupload-process.js"></script>
-<!-- The File Upload image preview & resize plugin -->
-<script src="js/jquery.fileupload-image.js"></script>
-<!-- The File Upload audio preview plugin -->
-<script src="js/jquery.fileupload-audio.js"></script>
-<!-- The File Upload video preview plugin -->
-<script src="js/jquery.fileupload-video.js"></script>
-<!-- The File Upload validation plugin -->
-<script src="js/jquery.fileupload-validate.js"></script>
-<!-- The File Upload user interface plugin -->
-<script src="js/jquery.fileupload-ui.js"></script>
-<!-- The main application script -->
-<script src="js/main.js"></script>
-<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
-<!--[if (gte IE 8)&(lt IE 10)]>
-<script src="js/cors/jquery.xdr-transport.js"></script>
-<![endif]-->
+
 </body>
 {% endblock %}
