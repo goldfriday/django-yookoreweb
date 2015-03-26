@@ -192,14 +192,17 @@
 
         </div>
         <div class="text-content">
-            The project "Women For Change Initiative" was established in 2010 to sensitise, empower and
-            mobilise women to participate actively in governance.
+            {# Putting the content in the card #}
+
+            {{ activity.object.text }}
         </div>
         <!--content stats-->
         <div class="content-stats-wrapper">
-            <div class="content-stats">82 Likes <span style="margin:0 5px"
-                                                      class="glyphicon glyphicon-asterisk"></span>14
-                Comments
+            {# Like count #}
+            <div class="content-stats">
+                {{ activity.object.likes }} Likes 
+                <span style="margin:0 5px" class="glyphicon glyphicon-asterisk"></span>
+                {{ activity.object.commentcount }} Comments
             </div>
             <div class="more-content"><img src="/static/images/icons/more.png" width="40"></div>
             <div class="clear"></div>

@@ -7,6 +7,17 @@
         {% include 'frontend/_content-input-pane.html' %}
         {% for activity in activities.list %}
             <p>{{ activity.object }}</p>
+            {% ifequal activity.object.type 'statusupdate' %}
+
+                {% include 'frontend/activity-items/statusupdate.html' %}
+
+            {% endifequal %}
+            
+            {% ifequal activity.object.type 'audio' %}
+
+                {% include 'frontend/activity-items/audio.html' %}
+
+            {% endifequal %}
 
 
         {% endfor %}
@@ -18,7 +29,7 @@
         {% include 'frontend/activity-items/video.html' %}
         <!--activity card0 ends-->
         <!--activity card1 starts-->
-        {% include 'frontend/activity-items/audio.html' %}
+        
 
     </div>
 {% endblock %}
