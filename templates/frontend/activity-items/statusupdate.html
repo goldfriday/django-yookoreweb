@@ -1,3 +1,4 @@
+{% load dictionary_extras %}
 <div class="activity-stream-wrapper">
     <div class="activity-card">
         <!--activity header starts-->
@@ -7,7 +8,10 @@
                 <div class="content-owner-name">Paul Imisi Akpoduado</div>
                 <div class="activity-verb">updated his status</div>
 
-                <div class="status-update-timestamp">2 hours ago </div>
+                <div class="status-update-timestamp">
+                    {{ activity.object.publishdate}} <br/>
+                    {# {{ activity.object.publishdate|timediff }}#}
+                </div>
             </div>
             <div class="clear"></div>
         </div>
