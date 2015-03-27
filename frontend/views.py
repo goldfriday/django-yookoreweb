@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
+from django.core.urlresolvers import reverse
+
 import json
 import requests
 
@@ -159,6 +161,28 @@ def post_blogpost(request):
 	else:
 		print 'bad parameters'
 
+def content_like(request, id, username):
+	print 'Liking the content:', id, username
+	print request.GET.get(id)
+	print request.POST.get(id)
+	if id:
+		url = URL_CONTENT + "/content/" + id + "/likes/"
+		print url 
+		try:
+			payload = {
+				"author": username,
+				"object_id" : id
+			}
 
+			headers = {'content-type': 'application/json'}
+			response = requests.post(url, data=json.dumps(payload), headers=headers)
+		except BaseException, e:
+			print e
+
+	return HttpResponseRedirect('/activity')
+	#return HttpResponseRedirect(reverse('activitystream'))
+
+def content_comment(id):
+	pass
 
 
