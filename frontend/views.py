@@ -20,9 +20,19 @@ def home(request):
 	return render(request, 'frontend/views/home.html', context)
 
 def activitystream(request):
-    context = {}
-    context['activities'] = get_activities('ptchankue')
-    return render(request, 'frontend/views/stream.html', context)
+
+	if request.method == "POST":
+
+		if request.POST.get('request_type') == 'status_update':
+			# call status update upload
+			post_status_update(request)
+		elif request.POST.get('request_type') == 'blogpost':
+			post_blogpost(request)
+		
+
+	context = {}
+	context['activities'] = get_activities('ptchankue')
+	return render(request, 'frontend/views/stream.html', context)
 
 def userprofile(request):
     context = {}
@@ -55,7 +65,7 @@ def yookore_login(request):
 			return render(request, '.')
 		if not error:
 			data = response.json()
-			print data
+			#print data
 			context = {
 			"username": data['username'],
 			"sessionid": data['sessionid'],
@@ -82,7 +92,6 @@ def get_activities(username):
 	response = requests.get(url, headers=headers)
 	if response:
 		data = response.json()
-		print data
 		return data
 
 	return 'error'
@@ -97,5 +106,59 @@ def get_user_profile(username):
 			return data
 	except:
 		pass
+
+def post_status_update(request):
+	print 'posting a status update'
+	headers = {'content-type': 'application/json'}
+
+	body 		= request.POST.get('body')
+	username 	= request.POST.get('username')
+
+	payload = {
+		"author": username,
+		"body": body
+	}
+	if len(body) > 0 and username:
+		url = URL_CONTENT + "/status_updates/post/" + username + "/"
+		print url
+		error = False
+		try: 
+
+			response = requests.post(url, data=json.dumps(payload), headers=headers)
+		except:
+			print 'error when attempting to post'
+			error = True
+			
+	else:
+		print 'bad parameters'
+
+def post_blogpost(request):
+	print 'posting a blog post'
+	headers = {'content-type': 'application/json'}
+
+	title 		= request.POST.get('title')
+	body 		= request.POST.get('body')
+	username 	= request.POST.get('username')
+
+	payload = {
+		"author": username,
+		"title" : title,
+		"body": body
+	}
+	if len(body) > 0 and len(title) > 0 and username:
+		url = URL_CONTENT + "/blogposts/post/" + username + "/"
+		print url
+		error = False
+		try: 
+
+			response = requests.post(url, data=json.dumps(payload), headers=headers)
+		except BaseException, e:
+			print 'error when attempting to create a blogpost: ', e
+			error = True
+			
+	else:
+		print 'bad parameters'
+
+
 
 
