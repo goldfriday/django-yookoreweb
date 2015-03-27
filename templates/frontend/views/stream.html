@@ -16,7 +16,8 @@
             {% endifequal %}
 
             {% ifequal activity.object.type 'blogpost' %}
-                <p>blogpost</p>
+                <!-- <p>blogpost</p> -->
+                {% include 'frontend/activity-items/blogpost.html' %}
             {% endifequal %}
 
             {% ifequal activity.object.type 'photo' %}
