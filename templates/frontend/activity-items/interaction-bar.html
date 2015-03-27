@@ -5,7 +5,7 @@
 	{% endcomment %}
     <ul class="list-inline">
         {% with "like/"|add:activity.object.id|add:"/"|add:activity.actor.id as link %}
-        	<li><span><a href= {{ link }}> <img src="/static/images/icons/like.png" width="18"></span> Like</a></li>
+        	<li><span><a href= {{ link }}> <img src="/static/images/icons/like.png" width="18"></span></a> Like</li>
 		{% endwith %}
 	        <li><span><img src="/static/images/icons/comment.png" width="18"></span> Comment</li>
 	        <li><span><img src="/static/images/icons/share.png" width="18"></span> Share</li>
