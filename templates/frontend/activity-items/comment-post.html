@@ -1,11 +1,7 @@
 {% if activity.actor.imageurl %}
-
-<div class="comment-owner-pix"><img src= {{ activity.actor.imageurl }}  width="100%"></div>
-
+    <div class="comment-owner-pix"><img src= {{ activity.actor.imageurl }}  width="100%"></div>
 {% else %}
-
     <div class="comment-owner-pix"><img src= "/static/images/ico_placeholder_60.png" width="100%"></div>
-
 {% endif %}
 
 <div class="post-comment-form-wrap">
@@ -13,7 +9,7 @@
         {% csrf_token %}
     <div class="post-comment-card">
         <div class="post-comment-form">
-            <textarea rows="1" placeholder="Add a comment" id = "id-body" name = "comment-body" ></textarea>
+            <textarea rows="1" placeholder="Add a comment" id = "comment-body" name = "comment-body" ></textarea>
         </div>
         <div class="add-comment-socials">
             <img src="/static/images/icons/location.png" width="18"><img
@@ -29,9 +25,10 @@
 
 <script type="text/javascript" >
 
-$( "#comment-post-{{activity.object.id}}" ).submit(function( event ) {
- 
+$( "#comment-post-{{activity.object.id}}" ).submit(
 
+    function( event ) {
+ 
     var $form = $( this );
     body_text = $form.find( "textarea[name='comment-body']" ).val();
 
@@ -42,18 +39,21 @@ $( "#comment-post-{{activity.object.id}}" ).submit(function( event ) {
         body: body_text,
         object_id: '{{ activity.object.id }}'
     } 
+    console.log('payload: ');
     console.log(payload);
 
     // Stop form from submitting normally
     event.preventDefault();
- 
-  
 
     var posting = $.post( url, payload );
      
       // Put the results in a div
     posting.done(function( data ) {
         console.log('done!');
+        //$('#comment-body').val('');
+        
+        $('#comment-body').val('');
+        window.location.reload(true);
     });
 });
 

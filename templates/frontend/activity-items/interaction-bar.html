@@ -4,17 +4,19 @@
 		{{ activity.actor.id }}
 	{% endcomment %}
     <ul class="list-inline">
-        {% with "like/"|add:activity.object.id|add:"/"|add:activity.actor.id as link_like %}
-        	<li><span><a href= {{ link_like }}> <img src="/static/images/icons/like.png" width="18"></span></a> Like</li>
-		{% endwith %}
+    	{% if activity.object.liked %}
+	        <li><span> <img src="/static/images/icons/like.png" width="18"></span> Like</li>
+		{% else %}
+			{% with "like/"|add:activity.object.id|add:"/"|add:activity.actor.id as link_like %}
+	        	<li><span><a href= {{ link_like }}> <img src="/static/images/icons/like.png" width="18"></span></a> Like</li>
+			{% endwith %}
+		{% endif %}
 
 		{% with "comment/"|add:activity.object.id|add:"/"|add:activity.actor.id as link_comment %}
-			{% comment %}
-	        	<li><span><a href= {{ link_comment }}> <img src="/static/images/icons/comment.png" width="18"></span></a> Comment</li>
-	        {% endcomment %}
+			
+	        	<li><span><img src="/static/images/icons/comment.png" width="18"></span> Comment</li>
+	        
 		{% endwith %}
-
-			<li><span><img src="/static/images/icons/comment.png" width="18"></span> Comment</li>
 
 	        <li><span><img src="/static/images/icons/share.png" width="18"></span> Share</li>
 
@@ -24,6 +26,34 @@
 </div>
 
 <script type="text/javascript">
-// handling the likeing here
+// handling the liking here
+
+$(function(){
+   $("#like-click-{{activity.object.id}}").click(function(){
+
+        //notice the use of the `var` keyword to keep variables local
+        var original_url = this.href,
+            log_url      = "http://domain.com/ajax-controller/" + this.id;
+
+        //do the AJAX request to your server-side script
+        $.ajax({
+            url     : log_url,
+            type    : 'get',
+            success : function (serverResponse) {
+                //successfull callback, forward user to original_url
+                window.location = original_url;
+            },
+            error   : function () {
+                //an error occured, you probably just want to forward the user to their destination
+                window.location = original_url;
+            }
+        });
+
+        //returning false inside a jQuery Event Handler is the same as calling `event.preventDefault()` and `event.stopPropagation()`
+        return false;
+   });
+});
+
+
 
 </script>
