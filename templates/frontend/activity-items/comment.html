@@ -13,11 +13,26 @@
 {#    <div class="clear"></div>#}
 {#</div>#}
 
+<!-- Get the latest comment -->
+{% if activity.object.latestcomment  %}
+
 <div class="comment-card">
-    <div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+    <div class="comment-owner-pix">
+    	{% if activity.object.latestcomment.imageurl %}
+    		<img src="{{ activity.object.latestcomment.imageurl }}" width="100%"></div>
+    	{% else %}
+    		<img src= "/static/images/ico_placeholder_60.png" width="100%"></div>
+    	{% endif %}
     <div class="comment-details">
-        <div class="comment-owner-name">Paul Imisi</div>
-        <div class="comment-text">This is the default comment view that we need to see
+        <div class="comment-owner-name">
+        	{% if activity.object.latestcomment.authorname %}
+        		{{ activity.object.latestcomment.authorname }}
+        	{% else %}
+        		{{ activity.object.latestcomment.username }}
+        	{% endif %}
+
+        </div>
+        <div class="comment-text">{{ activity.object.latestcomment.body }}
         </div>
     </div>
     <div class="clear"></div>
@@ -25,3 +40,7 @@
 <div class="comment-socials"><span><img src="/static/images/icons/like.png"
                                         width="18"><br>15</span></div>
 <div class="clear"></div>
+{% endif %}
+<script type="text/javascript">
+
+</script>
