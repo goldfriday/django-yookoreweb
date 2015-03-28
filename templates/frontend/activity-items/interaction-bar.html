@@ -4,14 +4,26 @@
 		{{ activity.actor.id }}
 	{% endcomment %}
     <ul class="list-inline">
-        {% with "like/"|add:activity.object.id|add:"/"|add:activity.actor.id as link %}
-        	<li><span><a href= {{ link }}> <img src="/static/images/icons/like.png" width="18"></span></a> Like</li>
+        {% with "like/"|add:activity.object.id|add:"/"|add:activity.actor.id as link_like %}
+        	<li><span><a href= {{ link_like }}> <img src="/static/images/icons/like.png" width="18"></span></a> Like</li>
 		{% endwith %}
-	        <li><span><img src="/static/images/icons/comment.png" width="18"></span> Comment</li>
+
+		{% with "comment/"|add:activity.object.id|add:"/"|add:activity.actor.id as link_comment %}
+			{% comment %}
+	        	<li><span><a href= {{ link_comment }}> <img src="/static/images/icons/comment.png" width="18"></span></a> Comment</li>
+	        {% endcomment %}
+		{% endwith %}
+
+			<li><span><img src="/static/images/icons/comment.png" width="18"></span> Comment</li>
+
 	        <li><span><img src="/static/images/icons/share.png" width="18"></span> Share</li>
 
-        
-
+     
         
     </ul>
 </div>
+
+<script type="text/javascript">
+// handling the likeing here
+
+</script>

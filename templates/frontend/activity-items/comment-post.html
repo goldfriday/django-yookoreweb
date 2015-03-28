@@ -1,8 +1,19 @@
-<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
+{% if activity.actor.imageurl %}
+
+<div class="comment-owner-pix"><img src= {{ activity.actor.imageurl }}  width="100%"></div>
+
+{% else %}
+
+    <div class="comment-owner-pix"><img src= "/static/images/ico_placeholder_60.png" width="100%"></div>
+
+{% endif %}
+
 <div class="post-comment-form-wrap">
+    <form id="comment-post-{{activity.object.id}}" action = "/comment" method = "POST">
+        {% csrf_token %}
     <div class="post-comment-card">
         <div class="post-comment-form">
-            <textarea rows="1" placeholder="Add a comment"></textarea>
+            <textarea rows="1" placeholder="Add a comment" id = "id-body" name = "comment-body" ></textarea>
         </div>
         <div class="add-comment-socials">
             <img src="/static/images/icons/location.png" width="18"><img
@@ -11,5 +22,73 @@
         <div style="clear:left;"></div>
     </div>
     <div class="press-enter">Press enter to post comment</div>
+    <input type="submit" class="post-update-button" value="Post" id="id-comment"></input>
+    </form>
 </div>
 <div class="clear"></div>
+
+<script type="text/javascript" >
+
+$( "#comment-post-{{activity.object.id}}" ).submit(function( event ) {
+ 
+
+    var $form = $( this );
+    body_text = $form.find( "textarea[name='comment-body']" ).val();
+
+    var url = 'http://192.168.10.123:8000/api/content/{{ activity.object.id }}/comments/';
+    console.log(url);
+    var payload = {
+        author: '{{ username }}',
+        body: body_text,
+        object_id: '{{ activity.object.id }}'
+    } 
+    console.log(payload);
+
+    // Stop form from submitting normally
+    event.preventDefault();
+ 
+  
+
+    var posting = $.post( url, payload );
+     
+      // Put the results in a div
+    posting.done(function( data ) {
+        console.log('done!');
+    });
+});
+
+
+/*
+$( "#comment-post-{{activity.object.id}}" ).submit(function( event ) {
+ 
+  // alert('In ajax');
+    //console.log('percentage --->');
+    // Get some values from elements on the page:
+    var $form = $( this );
+    body_text = $form.find( "textarea[name='comment-body']" ).val();
+
+    var url = 'http://192.168.10.123:8000/api/content/{{ activity.object.id }}/comments/';
+    console.log(url);
+    var payload = {
+        author: '{{ activity.actor.id }}',
+        body: body_text,
+        object_id: '{{ activity.object.id }}'
+    } 
+    console.log(payload);
+
+  // Stop form from submitting normally
+  event.preventDefault();
+ 
+  
+    //url = $form.attr( "action" );
+  // Send the data using post
+  var posting = $.post( url, payload );
+ 
+  // Put the results in a div
+  posting.done(function( data ) {
+    console.log('done!');
+  });
+});
+*/
+
+</script>

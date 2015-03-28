@@ -124,9 +124,11 @@
         {% include 'frontend/activity-items/interaction-bar.html' %}
         <!--comment section-->
         <!--comment card00-->
+        {% if activity.object.commentcount > 0 %}
         <div class="comment-wrapper">
             {% include 'frontend/activity-items/comment.html' %}
         </div>
+        {% endif %}
         <!--post comment-->
         <div class="post-comment-wrapper">
             {% include 'frontend/activity-items/comment-post.html' %}

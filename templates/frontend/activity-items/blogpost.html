@@ -7,7 +7,10 @@
                 <div class="content-owner-wrapper">
                 	<div class="content-owner-name">Paul Imisi</div>
                     <div class="activity-verb">created a new blog post</div>
-                <div class="status-update-timestamp"> {{ activity.object.publishdate }} </div>
+                <div class="status-update-timestamp"> 
+                	{{ activity.object.publishdate }} 
+                </div>
+                
                 </div>
             <div class="clear"></div>
             </div>
@@ -30,9 +33,11 @@
             {% include 'frontend/activity-items/interaction-bar.html' %}
             <!--comment section-->
             <!--comment card1-->
-            <div class="comment-wrapper">
-            	{% include 'frontend/activity-items/comment.html' %}
-            </div>
+            {% if activity.object.commentcount > 0 %}
+	        <div class="comment-wrapper">
+	            {% include 'frontend/activity-items/comment.html' %}
+	        </div>
+	        {% endif %}
             
             <!--post comment-->
             <div class="post-comment-wrapper">
