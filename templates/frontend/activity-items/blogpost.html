@@ -3,15 +3,22 @@
         	<div class="activity-card">
     <!--activity header starts-->
             <div class="activity-header">
-            	<div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
-                <div class="content-owner-wrapper">
-                	<div class="content-owner-name">Paul Imisi</div>
+            	 <div class="content-owner-pix">
+	                {% if activity.actor.imageurl %}
+	                    <img src="{{ activity.object.actor.imageurl }}" width="100%">
+	                {% else %}
+	                    <img src= "/static/images/ico_placeholder_60.png" width="100%">
+	                {% endif %}
+
+	            </div>
+            <div class="content-owner-wrapper">
+                <div class="content-owner-name">{{ activity.actor.displayname }}</div>
                     <div class="activity-verb">created a new blog post</div>
                 <div class="status-update-timestamp"> 
                 	{{ activity.object.publishdate }} 
                 </div>
-                
-                </div>
+
+            </div>
             <div class="clear"></div>
             </div>
    <!--activity header stops-->
