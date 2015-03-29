@@ -33,7 +33,11 @@ def activitystream(request):
 		
 
 	context = {}
-	context['activities'] = get_activities('ptchankue')
+	username = 'ptchankue'
+	context['username']   = username
+	context['activities'] = get_activities(username)
+	#context['activities'] = get_activities('borna2exl')
+
 	return render(request, 'frontend/views/stream.html', context)
 
 def userprofile(request):
@@ -115,11 +119,14 @@ def post_status_update(request):
 
 	body 		= request.POST.get('body')
 	username 	= request.POST.get('username')
+	print username
 
 	payload = {
 		"author": username,
 		"body": body
 	}
+	print payload
+
 	if len(body) > 0 and username:
 		url = URL_CONTENT + "/status_updates/post/" + username + "/"
 		print url
@@ -183,6 +190,23 @@ def content_like(request, id, username):
 	#return HttpResponseRedirect(reverse('activitystream'))
 
 def content_comment(id):
-	pass
+	print 'Commenting the content:', id, username
+	print request.GET.get(id)
+	print request.POST.get(id)
+	if id:
+		url = URL_CONTENT + "/content/" + id + "/comments/"
+		print url 
+		try:
+			payload = {
+				"author": username,
+				"object_id" : id
+			}
+
+			headers = {'content-type': 'application/json'}
+			response = requests.post(url, data=json.dumps(payload), headers=headers)
+		except BaseException, e:
+			print e
+
+	return HttpResponseRedirect('/activity')
 
 
