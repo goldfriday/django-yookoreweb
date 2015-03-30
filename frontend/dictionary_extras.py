@@ -5,6 +5,8 @@ from django.db.models.query import QuerySet
 from django.utils import simplejson
 
 from datetime import date, timedelta
+import random
+
 register = template.Library()
 
 # arg needs to be an integer
@@ -30,6 +32,14 @@ def jsonify(object):
     if isinstance(object, QuerySet):
         return serialize('json', object)
     return simplejson.dumps(object)
+
+@register.filter(name='get_random')
+def get_random():
+	try:
+		res = str(random.random()* 100)
+	except TemplateSyntaxError, e:
+		print e
+	return res
 
 @register.simple_tag
 def geturl(url, timeout=None):
