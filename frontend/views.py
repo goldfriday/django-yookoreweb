@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
+from django.template import Context, loader
 
 from django.core.urlresolvers import reverse
 
@@ -25,18 +26,17 @@ def activitystream(request):
 
 	if request.method == "POST":
 
-		if request.POST.get('request_type') == 'status_update':
+		'''if request.POST.get('request_type') == 'status_update':
 			# call status update upload
 			post_status_update(request)
 		elif request.POST.get('request_type') == 'blogpost':
-			post_blogpost(request)
+			post_blogpost(request)'''
 		
 
 	context = {}
 	username = 'ptchankue'
 	context['username']   = username
 	context['activities'] = get_activities(username)
-	#context['activities'] = get_activities('borna2exl')
 
 	return render(request, 'frontend/views/stream.html', context)
 
@@ -47,6 +47,7 @@ def userprofile(request):
 def yookore_login(request):
 	if request.method == 'GET':
 		print 'GET'
+		return render_to_response('frontend/views/home.html')
 
 	if request.method == 'POST':
 
@@ -73,9 +74,9 @@ def yookore_login(request):
 			data = response.json()
 			#print data
 			context = {
-			"username": data['username'],
-			"sessionid": data['sessionid'],
-			"fullname": data['fullname']
+				"username": data['username'],
+				"sessionid": data['sessionid'],
+				"fullname": data['fullname']
 			}
 			# get activity stream
 			activities = get_activities(data['username'])
@@ -209,4 +210,50 @@ def content_comment(id):
 
 	return HttpResponseRedirect('/activity')
 
+def search(request, q):
+	print 'in search'
+	context 				= {}
+	context['nb_result'] 	= 10
+	context['results'] 		= get_search_result(q)
+	print context #, request
+	print 'Rendering template '
+	return render(request, 'frontend/views/stream.html', context)
+	#return HttpResponseRedirect('/search/'+q, context)
 
+def search2(request, q):
+	print 'in search 2'
+	print 'Get: ' + q
+	return render(request, 'frontend/views/search.html')
+	context = {}
+	return HttpResponseRedirect('/search/'+q, context)
+	return render(request, 'frontend/views/search.html', context)
+
+def get_search_result(query):
+	print 'Get search result '
+	url = "http://192.168.10.20:9200/info/users/_search?q=firstname:" + query
+	print url
+	headers = {'content-type': 'application/json'}
+
+	response = requests.get(url, headers=headers)
+	if response:
+		data 		= response.json()
+		nb 			= data['hits']['total']
+		result_list = data['hits']['hits']
+		# Constructing the results
+		results 	= []
+		for r in result_list:
+			results.append(r['_source'])
+		
+		return results
+
+	else:
+		print 'Error occured when searching'
+		return 'error'
+
+def test(request):
+	print 'in test'
+	context = {}
+	t = loader.get_template('frontend/views/search.html')
+	c = Context(context)
+	return HttpResponse(t.render(c))
+	return render(request, 'frontend/views/search.html', context)
