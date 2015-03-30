@@ -1,0 +1,27 @@
+{% extends 'frontend/base.html' %}
+
+{% block middle-content %}
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 center-col">
+
+        
+        <div class="search-count">{{ n_result }} results found...</div>
+        
+        {% for result in results %}
+            
+        <!--search user1 starts-->
+            <div class="search-user-card">
+                <div class="search-user-pix">
+                    <img src="/static/images/pix.png" width="100%">
+                </div>
+                <div class="search-user-wrapper">
+                    <div class="search-user-name">
+                        {{ result.firstname }} {{ result.lastname }}
+                    <span></span>
+                  </div>
+                </div>
+            <div class="clear"></div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

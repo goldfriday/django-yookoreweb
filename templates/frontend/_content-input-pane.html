@@ -15,9 +15,11 @@
         </li>
     </ul>
 
-    <!-- STATUS UPDATE -->
+    
 
     <div class="tab-content">
+        <!-- STATUS UPDATE -->
+        
         <!--status update text-->
         <div role="tabpanel" class="tab-pane active" id="main" ng-controller="StatusupdateCtrl">
             <div class="status-update-form-wrapper">
@@ -52,11 +54,11 @@
                 <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
                 <div class="drag-drop-photo">Drag and drop files to upload<br>OR<br>
                     <!-- The fileinput-button span is used to style the file input field as button -->
-    <span class="btn add-photo-button fileinput-button">
-        <span class="add-photo-button-icon">Add Photos...</span>
-        <!-- The file input field used as target for the file upload widget -->
-        <input id="fileupload" type="file" name="files[]" multiple>
-    </span>
+                <span class="btn add-photo-button fileinput-button">
+                    <span class="add-photo-button-icon">Add Photos...</span>
+                    <!-- The file input field used as target for the file upload widget -->
+                    <input id="fileupload" type="file" name="files[]" multiple>
+                </span>
                 </div>
                 <!-- The table listing the files available for upload/download -->
                 <div role="presentation" style="padding:0 5px 0px; text-align:center;">
@@ -170,11 +172,12 @@ $('#post-update-button').click(function() {
     } 
 
     $.ajax({
-        url: 'http://192.168.10.123:8000/api/status_updates/{{username}}/',
+        url: 'http://192.168.10.123:8000/api/status_updates/post/{{username}}/',
         type: 'POST',
         data: payload,
         success: function (result) {
-          
+            console.log('Status update created :)');
+
            window.location.reload(true);
         }
     });  
@@ -200,8 +203,8 @@ $('#create-blogpost').click(function() {
         type: 'POST',
         data: payload,
         success: function (result) {
-          console.log('Blogpost created :)');
-           window.location.reload(true);
+            console.log('Blogpost created :)');
+            window.location.reload(true);
         }
     });  
 

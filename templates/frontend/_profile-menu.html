@@ -2,21 +2,29 @@
     <!--profile section-->
     <div class="profile-info-wrapper">
         <div class="profile-pix-card">
-            <div class="profile-pix-img"><img src="/static/images/pix.jpg" width="100%"></div>
+            <div class="profile-pix-img">
+                {% if activity.actor.imageurl %}
+                    <img src="{{ activity.object.actor.imageurl }}" width="100%">
+                {% else %}
+                    <img src= "/static/images/ico_placeholder_60.png" width="100%">
+                {% endif %}
+            </div>
         </div>
-        <div class="profile-name">Paul Imisi</div>
+        <div class="profile-name">
+            Firstname Surname
+        </div>
         <div class="edit-profile">Edit Profile</div>
         <div class="profile-stats-wrapper">
             <div class="profile-stats-info">
-                <div class="ps-friends">4k</div>
+                <div class="ps-friends">0</div>
                 <span>Friends</span>
             </div>
             <div class="profile-stats-info">
-                <div class="ps-pages">15</div>
+                <div class="ps-pages">0</div>
                 <span>Pages</span>
             </div>
             <div class="profile-stats-info">
-                <div class="ps-groups">9</div>
+                <div class="ps-groups">0</div>
                 <span>Groups</span>
             </div>
         </div>
@@ -29,19 +37,19 @@
                 Profile</a>
             <a href="#" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/photo.png" width="18"></span>
-                Photos <span class="badge">15</span>
+                Photos <span class="badge">0</span>
             </a>
             <a href="#" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/blogs.png" width="18"></span>
-                Blogs <span class="badge">5</span>
+                Blogs <span class="badge">0</span>
             </a>
             <a href="#" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/video.png" width="18"></span>
-                Videos <span class="badge">8</span>
+                Videos <span class="badge">0</span>
             </a>
             <a href="#" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/friends.png" width="18"></span>
-                Friends <span class="badge">48</span>
+                Friends <span class="badge">0</span>
             </a>
             <a href="#" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/pgs.png" width="18"></span> Pages</a>
@@ -50,7 +58,7 @@
             </a>
             <a href="#" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/msg.png" width="18"></span>
-                Messages <span class="badge">8</span>
+                Messages <span class="badge">0</span>
             </a>
             <a href="#" class="list-group-item"><span class="list-group-icons"><img
                     src="/static/images/icons/settings.png" width="18"></span> Settings</a>

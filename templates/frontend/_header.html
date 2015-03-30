@@ -32,12 +32,135 @@
         <!--search starts-->
         <div class="search-icon-xs">
             <div id="searchtext">
-                <form>
-                    <input type="search" placeholder="Search for people">
-                </form>
+                
+                    <input type="search" placeholder="Search for people" id="id-search-text">
+                
             </div>
         </div>
         <!--search form ends-->
     </div>
     <div style="clear:both;"></div>
 </div>
+
+<!-- Implementation of search -->
+<script type="text/javascript">
+    var search_text = $('#id-search-text').val();
+    console.log(search_text);
+    /*$('#id-search-text').keypress(function (e) {
+        e.preventDefault();
+    if (e.which == 13) {
+        $('form#id-search-text').submit();
+            
+        }
+    });
+
+    $(function (){
+        $('#id-search-text').change(function (){
+          console.log($('#id-search-text').val());
+
+        });       
+
+    });*/
+
+    //works
+
+    // search for first name for now
+    var uri = "http://192.168.10.20:9200/info/users/_search?q=firstname:";
+/*
+    $("#id-search-text").keypress(function(e){
+        var query = $('#id-search-text').val();
+
+        if (e.which == 13) {
+            console.log('The text changed ' + $('#id-search-text').val());
+             $.ajax({
+                url: "/search/"+ query,
+                type: 'GET',
+                success: function (result) {
+                    console.log(result); 
+                    
+                }
+            });  
+        }
+    });
+*/
+
+    /*$("#id-search-text").keypress(function(e){
+        var query = $('#id-search-text').val();
+        //console.log('The text typed ' + uri+ query);
+
+        if (query.length > 5) {
+            $.ajax({
+                url: uri + query,
+                type: 'GET',
+                success: function (result) {
+                    console.log(result);
+                    
+                }
+            });  
+
+        }
+        
+
+        if (e.which == 13) {
+            console.log('The text changed ' + $('#id-search-text').val());
+             $.ajax({
+                url: uri + query,
+                type: 'GET',
+                success: function (result) {
+                    console.log(result); 
+                    console.log('Hits object: ')
+                    console.log(result['hits']['hits']);
+                    var hits = result['hits']['hits'];
+                    for (i=0; i < hits.length; i++ ) {
+                        var person = hits[i]['_source'];
+                        console.log(person['username'], person['firstname'], person['lastname']);
+                        
+
+                    }
+                    
+                }
+            });  
+        }
+    });
+*/
+    $("#id-search-text").keypress(function(e){
+        var query = $('#id-search-text').val();
+        uri = 'search/' + query;
+        //console.log('The text typed ' + uri+ query);
+
+        if (query.length >= 3) {
+            console.log('search-->');
+            $.ajax({
+                url: uri ,
+                type: 'GET',
+                success: function (result) {
+                    console.log('Calling search from keypress');
+                    
+                }
+            });  
+
+        }
+    });
+    // works
+    $("#id-search-text").change(function(){
+        var query = $('#id-search-text').val();
+        uri = 'search/' + query;
+        //uri = 'test';
+        console.log('The text changed ** ' + query);
+         $.ajax({
+                //url: 'search/'+ query,
+                url: uri,
+                type: 'GET',
+                success: function (result) {
+                    console.log('Calling search method from change...');
+                    
+                },
+                error: function() {
+                    console.log('An error occurred');
+                }
+            });  
+
+    });
+
+
+</script>
