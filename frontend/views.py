@@ -221,15 +221,17 @@ def search(request, q):
 	#return HttpResponseRedirect('/search/'+q, context)
 
 def search2(request, q):
+	if request.is_ajax:
+		print 'From ajax'
 	print 'in search 2'
 	print 'Get: ' + q
-	return render(request, 'frontend/views/search.html')
 	context = {}
-	return HttpResponseRedirect('/search/'+q, context)
+	context['results'] 		= get_search_result(q)
+	print context
 	return render(request, 'frontend/views/search.html', context)
 
 def get_search_result(query):
-	print 'Get search result '
+	print 'In search result '
 	url = "http://192.168.10.20:9200/info/users/_search?q=firstname:" + query
 	print url
 	headers = {'content-type': 'application/json'}
@@ -253,7 +255,12 @@ def get_search_result(query):
 def test(request):
 	print 'in test'
 	context = {}
-	t = loader.get_template('frontend/views/search.html')
-	c = Context(context)
-	return HttpResponse(t.render(c))
+	context['results'] = get_search_result('Patr')
+	print context
 	return render(request, 'frontend/views/search.html', context)
+
+def photo(request):
+	print 'in photophotot'
+	context = {}
+	return render(request, 'frontend/views/photo.html', context)
+

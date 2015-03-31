@@ -133,9 +133,14 @@
             $.ajax({
                 url: uri ,
                 type: 'GET',
-                success: function (result) {
-                    console.log('Calling search from keypress');
+                success: function (data, status, xhr) {
+                    console.log('Search from keypress called');
+                    console.log(data);
+                    //window.location = uri;
                     
+                },
+                error: function () {
+                    console.log('Ajax error occurred');
                 }
             });  
 
@@ -152,7 +157,8 @@
                 url: uri,
                 type: 'GET',
                 success: function (result) {
-                    console.log('Calling search method from change...');
+                    console.log('Search method from change called...');
+                     window.location = uri;
                     
                 },
                 error: function() {
