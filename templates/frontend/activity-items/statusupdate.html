@@ -25,82 +25,7 @@
         <!--activity header stops-->
         <!--Photo in post-->
         <div class="photo-in-post-wrapper">
-            <div class="photo-in-status-update">
-                <!----******************Modal Quick View of Photo Starts-------************---->
-                <!--modal content starts-->
-                <div class="mikes-modal" id="pixModal">
-                    <div class="mike-modal-photo">
-                        <img class="img-responsive" style="vertical-align:middle"
-                             src="/static/images/cricket.jpg">
-                    </div>
-                    <div class="description">
-                        <div class='title-area'>
-                            <!--activity header starts-->
-                            <div class="activity-header">
-                                <div class="content-owner-pix"><img src="/static/images/pix.png"
-                                                                    width="100%"></div>
-                                <div class="content-owner-wrapper">
-                                    <div class="content-owner-name">Paul Imisi Akpoduado</div>
-                                    <div class="activity-verb">updated his status</div>
-                                    <div class="status-update-timestamp">2hours ago</div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                            <!--activity header stops-->
-                            <!--content stats-->
-                            <div class="content-stats-wrapper">
-                                <div class="content-stats">82 Likes <span style="margin:0 5px"
-                                                                          class="glyphicon glyphicon-asterisk"></span>14
-                                    Comments
-                                </div>
-                                <div class="more-content"><img src="/static/images/icons/more.png"
-                                                               width="40"></div>
-                                <div class="clear"></div>
-                            </div>
-                            <!--interactin bar-->
-                            <div class="interaction-bar-xs">
-                                <ul class="list-inline">
-                                    <li><span><img src="/static/images/icons/like.png" width="18"></span>
-                                        Like
-                                    </li>
-                                    <li><a href="#co3"><span><img style="margin-right:5px;"
-                                                                  src="/static/images/icons/comment.png"
-                                                                  width="18"></span>Comment</a></li>
-                                    <li><span><img src="/static/images/icons/share.png" width="18"></span>
-                                        Share
-                                    </li>
-                                </ul>
-                            </div>
-                            <!--comment section-->
-                            <!--comment card00-->
-
-                            {% include 'frontend/activity-items/comment.html' %}
-                            <!--post comment-->
-                            <div class="post-comment-wrapper-xs" id="co3">
-                                <div class="comment-owner-pix-xs"><img
-                                        src="/static/images/people/woman-9.jpg" width="100%"></div>
-                                <div class="post-comment-form-wrap-xs">
-                                    <div class="post-comment-card">
-                                        <div class="post-comment-form">
-                                            <textarea rows="1" placeholder="Add a comment"></textarea>
-                                        </div>
-                                        <div class="add-comment-socials"><img
-                                                src="/static/images/icons/photo-grey.png" width="18">
-                                        </div>
-                                        <div style="clear:left;"></div>
-                                    </div>
-                                    <div class="press-enter">Press enter to post comment</div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                            <!--post comment ends--->
-                        </div>
-                    </div>
-
-                    <!--modal content ends-->
-                </div>
-            </div>
-            <!----******************Modal Quick View Ends-----------**********---->
+            <!--******************Modal Quick View Ends-**********-->
             <p class="allow-modal">
                 <a id="open-mikes-modal" href="picture_full_view.php" style="cursor:pointer;">
                     {% if activity.object.image_url %}
@@ -111,12 +36,6 @@
                          
                     {% endif %}
                     
-                </a>
-            </p>
-
-            <p class="deny-modal">
-                <a href="picture_full_view.php" style="cursor:pointer;">
-                    <img class="img-responsive" src="/static/images/cricket.jpg">
                 </a>
             </p>
 
@@ -140,6 +59,6 @@
         <div class="post-comment-wrapper">
             {% include 'frontend/activity-items/comment-post.html' %}
         </div>
-        <!--post comment ends--->
+        <!--post comment ends-->
     </div>
 </div>
