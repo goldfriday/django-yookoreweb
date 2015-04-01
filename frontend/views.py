@@ -228,6 +228,7 @@ def search2(request, q):
 	context = {}
 	context['results'] 		= get_search_result(q)
 	print context
+	return HttpResponse(json.dumps(context, indent=4))
 	return render(request, 'frontend/views/search.html', context)
 
 def get_search_result(query):
