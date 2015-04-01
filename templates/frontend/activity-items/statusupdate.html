@@ -1,4 +1,5 @@
 {% load dictionary_extras %}
+{% load humanize %}
 <div class="activity-stream-wrapper">
     <div class="activity-card">
         <!--activity header starts-->
@@ -16,8 +17,9 @@
                 <div class="activity-verb">updated his status</div>
 
                 <div class="status-update-timestamp">
-                    {{ activity.object.publishdate}} <br/>
-                    {# {{ activity.object.publishdate|timediff }}#}
+                    {{ activity.object.publishdate|timedelta }} <br/>
+
+                    {# {{ activity.object.publishdate|timedelta }}#}
                 </div>
             </div>
             <div class="clear"></div>
