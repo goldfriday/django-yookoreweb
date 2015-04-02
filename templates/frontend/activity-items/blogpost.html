@@ -16,7 +16,7 @@
         <div class="content-owner-name">{{ activity.actor.displayname }}</div>
         <div class="activity-verb">created a new blog post</div>
         <div class="status-update-timestamp"> 
-        	{{ activity.object.publishdate }} 
+        	{{ activity.object.publishdate|timedelta }} 
         </div>
 
     </div>

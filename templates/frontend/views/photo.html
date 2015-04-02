@@ -1,0 +1,102 @@
+{% extends 'frontend/site-base.html' %}
+
+{% block body %}
+<div class="container">
+<div class="row">
+<?php require("includes/cover-profile.php") ?>
+</div>
+<div class="row xtra-pad">
+<!--left column-->
+     <div class="mp-left-col">
+     <!--user details-->
+       <!--side menu-->
+        <div class="side-menu-wrapper" style="background:none !important;">
+        <div class="list-group">
+            <a href="my_photos.php" class="list-group-item"><span class="list-group-icons"><img src="/static/images/icons/blogs.png" width="18"></span>Albums</a>
+            <a href="my_photos_pu.php" class="list-group-item"><span class="list-group-icons"><img src="/static/images/icons/profile.png" width="18"></span> Photos of You</a>
+            <a href="my_photos_in.php" class="list-group-item active"><span class="list-group-icons"><img src="/static/images/icons/photo.png" width="18"></span>Your Photos</a>
+        </div>
+        </div> 
+        <div class="col-sm-cards">
+        </div>
+        <div class="advert-wrapper">
+            <div class="ad-section-header">
+                <div class="sponsored-title">sponsored</div>
+                <div class="create-ad-link">Create Ad</div>
+                <div class="clear"></div>
+            </div>
+            <!--ad card begins-->
+            <div class="ad-card">
+                <div class="ad-image"><img src="img/uploads/rado.png" width="100%" ></div>
+                <div class="ad-title">Timeless pieces from $120!</div>
+                <div class="ad-link">www.buyright.co.za</div>
+                <div class="ad-description">Loafers are arguable the best quality footwear that makes your feet stand out! Shop our wi...</div>
+            </div>
+            <!--ad card ends-->
+        </div>    
+     <!--blogs-->
+     </div>
+<!--left column ends-->
+<!--right column starts-->
+<div class="mp-right-col">
+<div class="mp-view-header">
+    <div style="padding:0px 0px;">
+        <span style="font-size:22px; font-weight:700;"><span><img style="margin-right:7px;" src="/static/images/icons/photox.png" width="30"></span>My Photos</span>
+        <div style="padding:10px 0 0 0;">
+            <a href="create-album.php"><span><img style="margin-right:4px;" src="/static/images/icons/photo.png" width="12"></span>Create Album</a> · <a href="add_photos.php" style="text-decoration:underline;"><span><img style="margin-right:4px;" src="/static/images/icons/photo-grey.png" width="14"></span>Add Photos</a> · <a href="#"><span><img style="margin-right:4px;" src="/static/images/icons/video.png" width="14"></span>Add Video</a>
+        </div>
+    </div>
+</div>
+<!--mp-view-header ends-->
+
+    <div style="padding:15px;">
+<div class="row">
+ 
+        <div class="status-update-wrapper">
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="photo">
+          <div class="status-update-form-wrapper">
+                <textarea rows="1" class="update-status" placeholder="Write something..."></textarea>
+          </div>
+    <!-- The file upload form used as target for the file upload widget -->
+    <form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
+        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
+        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+        <div class="drag-drop-photo">Drag and drop files to upload<br>OR<br>
+    <!-- The fileinput-button span is used to style the file input field as button -->
+    <span class="btn add-photo-button fileinput-button">
+        <span class="add-photo-button-icon">Add Photos...</span>
+        <!-- The file input field used as target for the file upload widget -->
+        <input id="fileupload" type="file" name="files[]" multiple>
+    </span>
+    </div>
+        <!-- The table listing the files available for upload/download -->
+        <div role="presentation" style="padding:0 5px 0px; text-align:center;">
+        <div class="files">
+        </div>
+        <div class="clear"></div>
+        <div class="row fileupload-buttonbar">
+        <div class="post-photo-bottom">
+            <button type="submit" class="post-update-button start">Upload</button>
+            <div class="clear"></div> 
+        </div>
+        </div>
+        </div>
+    </form>
+          </div>
+           
+
+        </div> 
+        </div>
+
+</div>
+</div>
+</div>
+<!--right column ends-->
+<div class="clear"></div>
+</div>
+<div class="footer"></div>
+</div>
+    </div>
+{% endblock %}

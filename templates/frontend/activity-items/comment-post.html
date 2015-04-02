@@ -1,10 +1,10 @@
+{% load dictionary_extras %}
+
 {% if activity.actor.imageurl %}
     <div class="comment-owner-pix"><img src= {{ activity.actor.imageurl }}  width="100%"></div>
 {% else %}
     <div class="comment-owner-pix"><img src= "/static/images/ico_placeholder_60.png" width="100%"></div>
 {% endif %}
-
-{% load dictionary_extras %}
 
 
 <div class="post-comment-form-wrap">
@@ -19,8 +19,8 @@
         </div>
         <div style="clear:left;"></div>
     </div>
-    <div class="press-enter">Press enter to post comment</div>
-    <button class="post-update-button" value="Post" id="id-comment-{{activity.object.id}}">Post</button>
+    <!-- <div class="press-enter">Press enter to post comment</div> -->
+    <button class="post-update-button" value="Post" id="id-comment-{{activity.object.id}}">Comment</button>
 </div>
 <div class="clear"></div>
 
