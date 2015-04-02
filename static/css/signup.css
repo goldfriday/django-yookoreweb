@@ -1,0 +1,94 @@
+@charset "utf-8";
+/* CSS Document */
+a:focus, a:active, a:hover{text-transform:none; text-decoration:none;}
+.full {
+  background:url(../img/afri.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color:#000;
+}
+.margin-overide{margin-top:110px;}
+.social-identity{padding:15px 0 0 0; text-align:left; font-size:18px;}
+.social-identity-icons{width:30px; display:inline-block; margin-left:10px;}
+.col-login-right {
+    float: right;
+    min-height: 1px;
+    padding-left: 20px;
+    padding-right: 80px;
+    padding-top: 10px;
+    width: 35%;
+}
+.col-login-left {
+    float: left;
+    min-height: 1px;
+    padding-left: 80px;
+    padding-right: 20px;
+    width: 65%;
+}
+.col-login-left h1 {
+    color: #FFFFFF;
+    font-size: 38px;
+    line-height: 44px;
+    margin-bottom: 30px;
+    text-shadow: none;
+	margin:0px;
+}
+.col-login-left h1 {
+    color: #FFFFFF;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+.col-login-left  p {
+    color: #FFFFFF;
+    font-size: 21px;
+    line-height: 31px;
+    text-shadow: none;
+}
+@media (min-width: 220px) and (max-width: 479px) {
+.margin-overide{margin-top:60px;}
+.col-login-right {
+    float: right;
+    min-height: 1px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    width: 100%;
+}
+.col-login-left {
+display:none;
+}
+}
+@media (min-width: 480px) and (max-width: 859px) {
+.margin-overide{margin-top:60px;}
+.col-login-right {
+    float: right;
+    min-height: 1px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    width: 100%;
+}
+.col-login-left {
+display:none;
+}
+}
+@media (min-width: 860px) and (max-width: 1139px) {
+.margin-overide{margin-top:90px;}
+.col-login-right {
+    float: right;
+    min-height: 1px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    width: 40%;
+}
+.col-login-left {
+    float: left;
+    min-height: 1px;
+    padding-left: 20px;
+    padding-right: 40px;
+    width: 60%;
+}
+}
