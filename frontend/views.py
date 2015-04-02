@@ -217,6 +217,7 @@ def search(request, q):
 	context['results'] 		= get_search_result(q)
 	print context #, request
 	print 'Rendering template '
+	return HttpResponse(json.dumps(context, indent=4))
 	return render(request, 'frontend/views/stream.html', context)
 	#return HttpResponseRedirect('/search/'+q, context)
 
@@ -261,7 +262,10 @@ def test(request):
 	return render(request, 'frontend/views/search.html', context)
 
 def photo(request):
-	print 'in photophotot'
+	print 'In photophoto'
 	context = {}
 	return render(request, 'frontend/views/photo.html', context)
 
+def friends(request):
+    context = {}
+    return render(request, 'frontend/views/friends.html', context)
