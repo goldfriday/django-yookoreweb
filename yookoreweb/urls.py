@@ -20,5 +20,7 @@ urlpatterns = patterns('',
 
     url(r'^photo$', 'frontend.views.photo'),
 
+    url(r'^friends$', 'frontend.views.friends'),
+
 
 )
