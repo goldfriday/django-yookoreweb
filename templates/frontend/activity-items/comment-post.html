@@ -23,31 +23,3 @@
     <button class="post-update-button" value="Post" id="id-comment-{{activity.object.id}}">Post</button>
 </div>
 <div class="clear"></div>
-
-<script type="text/javascript" >
-
-$('#id-comment-{{activity.object.id}}').click(function() { 
-    console.log('comment to be posted ');
-    body_text = $('textarea#comment-body').val();
-
-    var payload = {
-        author: '{{ username }}',
-        object_id: '{{ activity.object.id }}',
-        body: body_text
-    } 
-
-    $.ajax({
-        url: 'http://192.168.10.123:8000/api/content/{{ activity.object.id }}/comments/',
-        type: 'POST',
-        data: payload,
-        success: function (result) {
-            console.log("Your comment has been posted");
-            $('textarea#comment-body').val('');
-
-            window.location.reload(true);
-        }
-    });  
-
-});
-
-</script>
