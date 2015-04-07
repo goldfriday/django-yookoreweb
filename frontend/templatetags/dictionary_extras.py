@@ -18,21 +18,21 @@ def access(value, arg):
     return value[arg]
 
 @register.filter(name='getitem')
-def getitem ( item, arg ):
-  	return item[arg]
+def getitem(item, arg):
+    return item[arg]
 
 
-@register.filter(name='get_random')
-def get_random():
-	try:
-		res = str(random.random()* 100)
-	except TemplateSyntaxError, e:
-		raise e
-	return res
+# @register.filter(name='get_random')
+# def get_random():
+# 	try:
+# 		res = str(random.random()* 100)
+# 	except TemplateSyntaxError, e:
+# 		raise e
+# 	return res
 
 @register.filter(name='test_filter')
 def test_filter(value):
-	return 'Test-Test'
+    return 'Test-Test'
 
 
 @register.filter(name='timedelta')
@@ -41,7 +41,7 @@ def timedelta(value, arg=None):
 	try:
 		if not value:
 			return ''
-			# converting unicode to datetime
+		# converting unicode to datetime
 		value  = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
 		if arg:
 			cmp = arg
@@ -54,7 +54,6 @@ def timedelta(value, arg=None):
 	except Exception, e:
 		raise e
 	
-#register.filter('timedelta',timedelta)
 @register.filter(name='timesince_human')
 def humanize_timesince(date):
     delta = datetime.now() - datetime.strptime(date, '%Y-%m-%dT%H:%M:%S.%f')
