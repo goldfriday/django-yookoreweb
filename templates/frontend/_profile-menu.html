@@ -6,14 +6,16 @@
                 {% if activity.actor.imageurl %}
                     <img src="{{ activity.object.actor.imageurl }}" width="100%">
                 {% else %}
-                    <img src= "/static/images/ico_placeholder_60.png" width="100%">
+                    <img src="/static/images/ico_placeholder_60.png" width="100%">
                 {% endif %}
             </div>
         </div>
         <div class="profile-name">
-            Firstname Surname
+            {% if fullname %}
+                {{ fullname }}
+            {% endif %}
         </div>
-        <div class="edit-profile">Edit Profile</div>
+        <div class="edit-profile"><a href="{% url 'userprofile' %}"> Edit Profile</a></div>
         <div class="profile-stats-wrapper">
             <div class="profile-stats-info">
                 <div class="ps-friends">0</div>
