@@ -39,6 +39,8 @@ INSTALLED_APPS = (
 
     'frontend',
     'userprofile_app',
+    'photo_app',
+    'search_app',
 )
 
 MIDDLEWARE_CLASSES = (
