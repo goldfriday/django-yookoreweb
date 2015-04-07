@@ -53,125 +53,37 @@
       </div>
       <!--mp-view-header ends-->
       <!-- MIDDLE PART OF TEH UI -->
+      {% comment %}
+        {{ friend_list }}
+      {% endcomment %}
 
       <div style="padding:15px;">
+        {% for friend in friend_list %}
       <div class="row">
          <div class="col-xs-4 col-sm-3 col-md-2 mp-less-pad-xs">
-         <a href="userprofile_pub.php">
+          <a href="userprofile_pub.php">
             <div class="thumbnail">
             	<div class="caption">
-                       <h4 style="padding:5px 0; font-weight:700;">Abayomi Mandla</h4>
+                       <h4 style="padding:5px 0; font-weight:700;">{{ friend.firstname }} {{ friend.lastname }} </h4>
                        <!--interactin bar-->
                   <div class="thumbnail-socials">
                           <span style="display:block; margin-right:10px;"> Unfriend</span>
                   </div>
                   </div>
-               <img src="/static/images/people/guy-1.jpg">
+                {% if friend.imageurl %}
+                    <img src=" {{ friend.imageurl }}">
+                {% else %}
+                    <img src="/static/images/people/guy-1.jpg">
+                {% endif %}
             </div>
             </a>
          </div>
-         <div class="col-xs-4 col-sm-3 col-md-2 mp-less-pad-xs">
-         <a href="userprofile_pub.php">
-            <div class="thumbnail">
-            <div class="caption">
-                       <h4 style="padding:5px 0; font-weight:700;">Akpoduado Benjamin Makwena</h4>
-                       <!--interactin bar-->
-                        <div class="thumbnail-socials">
-                          <span style="display:inline-block; margin-right:10px;"> Unfriend</span>
-                  </div>
-                  </div>
-               <img src="/static/images/people/guy-2.jpg">
-            </div>
-            </a>
-         </div>
-         <div class="col-xs-4 col-sm-3 col-md-2 mp-less-pad-xs">
-         <a href="userprofile_pub.php">
-            <div class="thumbnail">
-            <div class="caption">
-                       <h4 style="padding:5px 0; font-weight:700;">Ben Alpha</h4>
-                       <!--interactin bar-->
-                        <div class="thumbnail-socials">
-                          <span style="display:inline-block; margin-right:10px;"> Unfriend</span>
-                  </div>
-                  </div>
-               <img src="/static/images/people/guy-4.jpg">
-            </div> 
-            </a>
-         </div>
-         <div class="col-xs-4 col-sm-3 col-md-2 mp-less-pad-xs">
-         <a href="userprofile_pub.php">
-            <div class="thumbnail">
-            <div class="caption">
-            	<h4 style="padding:5px 0; font-weight:700;">Jimmy Pascal</h4>
-              <!--interactin bar-->
-             <div class="thumbnail-socials">
-                          <span style="display:inline-block; margin-right:10px;"> Unfriend</span>
-                  </div>
-            </div>
-               <img src="/static/images/people/woman-3.jpg">
-            </div>
-            </a>
-         </div>
-         <div class="col-xs-4 col-sm-3 col-md-2 mp-less-pad-xs">
-         <a href="userprofile_pub.php">
-            <div class="thumbnail">
-            <div class="caption">
-            <h4 style="padding:5px 0; font-weight:700;">Name</h4>
-            <!--interactin bar-->
-            			 <div class="thumbnail-socials">
-                          <span style="display:inline-block; margin-right:10px;"> Unfriend</span>
-                  </div>
-                       
-                  </div>
-               <img src="/static/images/people/guy-1.jpg">
-            </div>
-            </a>
-         </div>
-         <div class="col-xs-4 col-sm-3 col-md-2 mp-less-pad-xs">
-         <a href="userprofile_pub.php">
-            <div class="thumbnail">
-            <div class="caption">
-            <h4 style="padding:5px 0; font-weight:700;">Name</h4>
-            <!--interactin bar-->
-            			 <div class="thumbnail-socials">
-                          <span style="display:inline-block; margin-right:10px;"> Unfriend</span>
-                  </div>
-                  </div>
-               <img src="/static/images/people/guy-4.jpg">
-            </div>
-            </a>
-         </div>
-         <div class="col-xs-4 col-sm-3 col-md-2 mp-less-pad-xs">
-         <a href="userprofile_pub.php">
-            <div class="thumbnail">
-            <div class="caption">
-            			<h4 style="padding:5px 0; font-weight:700;">Name</h4>
-                      <!--interactin bar-->
-            			 <div class="thumbnail-socials">
-                          <span style="display:inline-block; margin-right:10px;"> Unfriend</span>
-                  </div>
-                  </div>
-               <img src="/static/images/people/guy-9.jpg">
-            </div> 
-            </a>
-         </div>
+         
          <!-- A friend -->
-         <div class="col-xs-4 col-sm-3 col-md-2 mp-less-pad-xs">
-            <a href="userprofile_pub.php">
-            <div class="thumbnail">
-            <div class="caption" style="text-align:center;">
-            		<h4 style="padding:5px 0; font-weight:700;">Name</h4>
-                  <!--interactin bar-->
-            		 <div class="thumbnail-socials">
-                          <span style="display:inline-block; margin-right:10px;"> Unfriend</span>
-                  </div>
-                  </div>
-               <img src="/static/images/people/woman-9.jpg">
-            </div>
-            </a>
-         </div>
+         
 
       </div>
+      {% endfor %}
     </div>
 
   <!--right column ends-->
