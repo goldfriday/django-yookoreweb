@@ -44,7 +44,15 @@ def activitystream(request):
 
 
 def userprofile(request):
+
+    username = request.session.get('username')
+    userdata = get_user_profile(username)
+
+    raise Exception(username)
     context = {}
+    context['userdata'] = userdata
+    context['activities'] = get_activities(username)
+
     return render(request, 'frontend/views/profile.html', context)
 
 
