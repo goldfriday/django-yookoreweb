@@ -32,15 +32,28 @@
         <!--status update text-->
         <div role="tabpanel" class="tab-pane active" id="main" ng-controller="StatusupdateCtrl">
             <div class="status-update-form-wrapper">
-                            <textarea rows="3" class="update-status" ng-model="body"
-                                      placeholder="What's on your mind?" id="body-id"></textarea>
-            </div>
+                            <textarea rows="3" class="update-status" ng-model="body" placeholder="What's on your mind?" id="body-id"></textarea>
+                            <form id="fileupload" action="/test" method="POST"
+                                  enctype="multipart/form-data">
+                                  {% csrf_token %} 
+                                <!-- Redirect browsers with JavaScript disabled to the origin page -->
+                                <noscript>
+                                    <input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/">
+                                </noscript>
+                                <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                                
+                                <!-- The table listing the files available for upload/download -->
+                                <div role="presentation" style="padding:0 5px 0px; text-align:center;">
+                                    <div class="files">
+                                    </div>
+                                    <div class="row fileupload-buttonbar"></div>
+                                    <div class="clear"></div>
+                                </div>
             <div class="status-update-bottom">
                 <div class="status-update-bottom-icons">
                     <ul class="list-inline">
-                        <li role="presentation"><span><a href="#photo" aria-controls="photo" role="tab"
-                                                         data-toggle="tab"><img
-                                src="/static/images/icons/photo.png" width="18"></a></span></li>
+                        <li role="presentation"><span class="fileinput-button"><input id="fileupload" type="file" name="files[]" multiple><img
+                                src="/static/images/icons/photo.png" width="18"></span></li>
                         <li><span><img src="/static/images/icons/tag.png" width="18"></span></li>
                         <li><span><img src="/static/images/icons/location.png" width="18"></span></li>
                     </ul>
@@ -48,11 +61,13 @@
                 <div class="post-update-button" id = "post-update-button">Post</div>
                 <div class="clear"></div>
             </div>
+             </form>
+                         </div>
         </div>
         <!--status update photo/video-->
         <div role="tabpanel" class="tab-pane" id="photo">
             <div class="status-update-form-wrapper">
-                <textarea rows="1" class="update-status" placeholder="Write something..."></textarea>
+                <textarea rows="1" class="update-status" placeholder="Add Caption"></textarea>
             </div>
             <!-- The file upload form used as target for the file upload widget -->
 
@@ -79,7 +94,7 @@
                     <div class="clear"></div>
                     <div class="row fileupload-buttonbar">
                         <div class="post-photo-bottom">
-                            <button type="submit" class="post-update-button start" id="id-upload-photo">Upload</button>
+                            <button type="submit" class="post-update-button start" id="id-upload-photo">Post</button>
                             <div class="clear"></div>
                         </div>
                     </div>
