@@ -1,9 +1,9 @@
 <div class="top-header-bar navbar-fixed-top">
     <div class="container">
         <div class="logo-menu">
-          <a href="/activity">
-            <img width="108" height="30" src="/static/images/icons/logo.png" class="hide-div">
-          </a>
+            <a href="/activity">
+                <img width="108" height="30" src="/static/images/icons/logo.png" class="hide-div">
+            </a>
             <a ng-click="openAside('left')" href="#">
                 <img width="27" height="22" src="/static/images/icons/menu.png" class="show-div">
             </a>
@@ -15,12 +15,13 @@
             <span class="top-drop hide-div">
                 <div class="dropdown navbar-right">
                     <span class="nav-profile-pix-img hide-div"><img width="100%" src="/static/images/people/guy-4.jpg"></span>
-                    <a style="color:#fff; display:inline-block; vertical-align:top;" aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">
-                      <!-- Put name here from context variable -->
-                      {% if fullname %}
-                        {{ fullname }}
-                      {% endif %}
-                      Jome Akpoduado  <span class="caret-top"></span>
+                    <a style="color:#fff; display:inline-block; vertical-align:top;" aria-expanded="false" role="button"
+                       data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <!-- Put name here from context variable -->
+                        {% if fullname %}
+                            {{ fullname }}
+                        {% endif %}
+                        <span class="caret-top"></span>
                     </a>
                     <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu">
                         <li><a href="#">Profile</a></li>
@@ -36,14 +37,14 @@
         <!--search starts-->
         <div class="search-icon-xs">
             <div id="searchtext">
-                
+
                 <input type="search" placeholder="Search for people" id="id-search-text">
-                
+
             </div>
 
         </div>
         <!--search form ends-->
-        
+
 
     </div>
     <div style="clear:both;"></div>
@@ -57,7 +58,7 @@
     // search for first name for now
     var uri = "http://192.168.10.20:9200/info/users/_search?q=firstname:";
 
-    $("#id-search-text").keypress(function(e){
+    $("#id-search-text").keypress(function (e) {
         var query = $('#id-search-text').val();
         uri = 'search/' + query;
         //console.log('The text typed ' + uri+ query);
@@ -65,41 +66,41 @@
         if (query.length >= 3) {
             console.log('search-->');
             $.ajax({
-                url: uri ,
+                url: uri,
                 type: 'GET',
                 success: function (data, status, xhr) {
                     console.log('Search from keypress called');
                     console.log(data);
                     //window.location = uri;
-                    
+
                 },
                 error: function () {
                     console.log('Ajax error occurred');
                 }
-            });  
+            });
 
         }
     });
     // works
-    $("#id-search-text").change(function(){
+    $("#id-search-text").change(function () {
         var query = $('#id-search-text').val();
         uri = 'search/' + query;
         //uri = 'test';
         console.log('The text changed ** ' + query);
-         $.ajax({
-                //url: 'search/'+ query,
-                url: uri,
-                type: 'GET',
-                success: function (data, status, xhr) {
-                    console.log('Search method from change called...');
-                    console.log(data);
-                    //window.location = uri;
-                    
-                },
-                error: function() {
-                    console.log('An error occurred');
-                }
-            });  
+        $.ajax({
+            //url: 'search/'+ query,
+            url: uri,
+            type: 'GET',
+            success: function (data, status, xhr) {
+                console.log('Search method from change called...');
+                console.log(data);
+                //window.location = uri;
+
+            },
+            error: function () {
+                console.log('An error occurred');
+            }
+        });
 
     });
 
