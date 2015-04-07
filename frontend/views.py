@@ -12,6 +12,7 @@ import requests
 URL_ACTIVITIES 		= 'http://192.168.10.15'
 URL_CONTENT 		= 'http://192.168.10.123:8000/api'
 URL_USERACCOUNT 	= 'http://192.168.10.144:3000/auth'
+URL_SEARCH		 	= 'http://192.168.10.20:9200/info/users'
 
 def home(request):
 
@@ -35,6 +36,7 @@ def activitystream(request):
 
 	context = {}
 	username = 'ptchankue'
+	request.session['username'] = username
 	context['username']   = username
 	context['activities'] = get_activities(username)
 
@@ -84,9 +86,18 @@ def yookore_login(request):
 				context['activities'] = activities
 			else:
 				context['activities'] = ''
+
+			# setting up the session
+			request.session['username'] = context['username']
+			request.session['sessionid'] = context['sessionid']
+			request.session['fullname'] = context['fullname']
+
 			# get user profile info
 
 			# get friends, pages and groups
+
+			# creating or updating cookies
+
 			return render(request, 'frontend/views/stream.html', context)
 		else:
 			return render(request, '.')
@@ -234,7 +245,7 @@ def search2(request, q):
 
 def get_search_result(query):
 	print 'In search result '
-	url = "http://192.168.10.20:9200/info/users/_search?q=firstname:" + query
+	url = URL_SEARCH + "/_search?q=firstname:" + query
 	print url
 	headers = {'content-type': 'application/json'}
 
@@ -262,31 +273,54 @@ def test(request):
 	return render(request, 'frontend/views/search.html', context)
 
 def photo(request):
-	print 'In photophoto'
+	# print 'In photophoto'
 	context = {}
 	return render(request, 'frontend/views/photo.html', context)
 
 def friends(request):
 	print 'In search friends '
-	url = "http://192.168.10.123:8000/info/users/_search?q=firstname:" + query
+	# Getting username from cookies or the session
+	
+	url = URL_CONTENT+ "/socialgraph/friends/" + request.session['username'] + "/"
 	print url
 	headers = {'content-type': 'application/json'}
 
 	response = requests.get(url, headers=headers)
+	context = {}
 	if response:
 		data 		= response.json()
-		nb 			= data['hits']['total']
-		result_list = data['hits']['hits']
-		# Constructing the results
-		results 	= []
-		for r in result_list:
-			results.append(r['_source'])
 		
-		return results
+		results = []
+		
+		if data :
+			# Parsing all friends to retrieve the imageurl
+			for f in data:
+				print f
+				results.append(get_user_profile(f['username']))
+
+		print results
+		context['friend_list'] = results
 
 	else:
 		print 'Error occured when searching'
-		return 'error'
 
-	context = {}
+	
 	return render(request, 'frontend/views/friends.html', context)
+
+def get_user_profile(username):
+	# firstname, lastname, imageurl
+	print 'Get user profile '
+	url = URL_USERACCOUNT + "/profile/" + username
+	
+	headers = {'content-type': 'application/json'}
+
+	try:
+		response = requests.get(url, headers=headers)
+		if response:
+			data = response.json()
+			return data
+		else:
+			return 'error'
+	except Exception, e:
+		raise e
+	
