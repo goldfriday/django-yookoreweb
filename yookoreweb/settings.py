@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.2.220']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -39,6 +39,8 @@ INSTALLED_APPS = (
 
     'frontend',
     'userprofile_app',
+    'photo_app',
+    'search_app',
 )
 
 MIDDLEWARE_CLASSES = (
