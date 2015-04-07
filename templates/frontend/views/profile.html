@@ -10,6 +10,10 @@
 {% include 'frontend/_cover-profile.html' %}
 </div>
 <div class="row xtra-pad">
+
+	{% ifequal profile_info 'error' %}
+
+	{% else %}
 <!--left column-->
 <!--announcement bar
 <div class="col-sm-cards">
@@ -36,14 +40,25 @@
         <div class="col-sm-cards-body">
         	<div class="list-group" style="margin-bottom:5px;">
               <a href="#" class="list-group-item active" style="padding:3px 35px; background-image:url(/static/images/icons/location.png); background-repeat:no-repeat; background-position: 3% 50%;">
-                <span class="list-group-item-heading" style="padding-bottom:3px; margin-bottom:3px; font-weight:700; line-height:normal; font-size:12px;">South Africa</span>
+                <span class="list-group-item-heading" style="padding-bottom:3px; margin-bottom:3px; font-weight:700; line-height:normal; font-size:12px;">
+
+									South Africa
+
+								</span>
                 <p class="list-group-item-text" style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">Lives in Randburg</p>
               </a>
             </div>
             <div class="list-group" style="margin-bottom:5px;">
                <a href="#" class="list-group-item" style="padding:3px 35px; background-image:url(/static/images/icons/friends.png); background-repeat:no-repeat; background-position: 3% 50%;">
                 <span class="list-group-item-heading" style="padding-bottom:3px; margin-bottom:3px; font-weight:700; line-height:normal; font-size:12px;">Gender</span>
-                <p class="list-group-item-text" style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">Male</p>
+                <p class="list-group-item-text" style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">
+									{% if profile_info.gender %}
+										{{ profile_info.gender }}
+									{% else %}
+										None
+									{% endif %}
+
+								</p>
               </a>
             </div>
             <div class="list-group" style="margin-bottom:5px;">
@@ -468,5 +483,7 @@ $('textarea')
 <script src="js/cors/jquery.xdr-transport.js"></script>
 <![endif]-->
 </body>
+
+{% endifequal %}
 
 {% endblock %}

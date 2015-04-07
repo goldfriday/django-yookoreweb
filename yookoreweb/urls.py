@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'frontend.views.home', name='home'),
     url(r'^activity$', 'frontend.views.activitystream', name='activity'),
-    url(r'^profile$', 'frontend.views.userprofile', name='profile'),
+    #url(r'^profile$', 'frontend.views.userprofile', name='profile'),
 
     url(r'^login$', 'frontend.views.yookore_login'),
     url(r'^like/(?P<id>[^/]+)/(?P<username>[\w\d]+)$', 'frontend.views.content_like'),
