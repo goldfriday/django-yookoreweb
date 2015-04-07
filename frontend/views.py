@@ -267,5 +267,26 @@ def photo(request):
 	return render(request, 'frontend/views/photo.html', context)
 
 def friends(request):
-    context = {}
-    return render(request, 'frontend/views/friends.html', context)
+	print 'In search friends '
+	url = "http://192.168.10.123:8000/info/users/_search?q=firstname:" + query
+	print url
+	headers = {'content-type': 'application/json'}
+
+	response = requests.get(url, headers=headers)
+	if response:
+		data 		= response.json()
+		nb 			= data['hits']['total']
+		result_list = data['hits']['hits']
+		# Constructing the results
+		results 	= []
+		for r in result_list:
+			results.append(r['_source'])
+		
+		return results
+
+	else:
+		print 'Error occured when searching'
+		return 'error'
+
+	context = {}
+	return render(request, 'frontend/views/friends.html', context)
