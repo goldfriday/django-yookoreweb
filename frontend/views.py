@@ -24,23 +24,18 @@ def home(request):
 	return render(request, 'frontend/views/home.html', context)
 
 def activitystream(request):
+	# validate session with user object
+	username = request.session.get('username')
+	if not username:
+		# go back to the logim page
+		return HttpResponseRedirect(reverse('login'))
+	else:
+		context = {}
+		context['username']   = username
+		context['activities'] = get_activities(username)
 
-	if request.method == "POST":
-
-		'''if request.POST.get('request_type') == 'status_update':
-			# call status update upload
-			post_status_update(request)
-		elif request.POST.get('request_type') == 'blogpost':
-			post_blogpost(request)'''
-		
-
-	context = {}
-	username = 'ptchankue'
-	request.session['username'] = username
-	context['username']   = username
-	context['activities'] = get_activities(username)
-
-	return render(request, 'frontend/views/stream.html', context)
+		return render(request, 'frontend/views/stream.html', context)
+	
 
 def userprofile(request):
     context = {}
@@ -97,8 +92,9 @@ def yookore_login(request):
 			# get friends, pages and groups
 
 			# creating or updating cookies
-
-			return render(request, 'frontend/views/stream.html', context)
+			url = reverse ('activity')
+			return HttpResponseRedirect (url)
+			# return render(request, 'frontend/views/stream.html', context)
 		else:
 			return render(request, '.')
 
