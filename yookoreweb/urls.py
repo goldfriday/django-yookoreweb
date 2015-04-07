@@ -22,7 +22,7 @@ urlpatterns = patterns('',
 
     url(r'^friends$', 'frontend.views.friends'),
 
-    url(r'^profile', 'userprofile_app.views.userprofile'),
+    url(r'^profile', 'userprofile_app.views.userprofile', name="userprofile"),
 
 
 )
