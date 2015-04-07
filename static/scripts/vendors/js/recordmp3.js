@@ -1,7 +1,7 @@
 (function(window){
 
   var WORKER_PATH = 'js/recorderWorker.js';
-  var encoderWorker = new Worker('scripts/vendors/js/mp3Worker.js');
+  var encoderWorker = new Worker('static/scripts/vendors/js/mp3Worker.js');
   var Recorder = function(source, cfg){
     var config = cfg || {};
     var bufferLen = config.bufferLen || 4096;
