@@ -26,12 +26,22 @@
    <div style="padding:0 0 7px 0; font-weight:bold; font-size:22px; color:#000;">
    		{{ activity.object.title }}
    </div>
-<!--remove comment tag only if blog has a photo in post
+
+         
+
 		<div class="photo-in-post-wrapper">
 			<div class="photo-in-status-update">
-        <img class="img-responsive" style="vertical-align:middle" src="/static/images/uploads/hazard.png">
+                {% if activity.object.image_url %}
+
+                        {% with "http://192.168.10.123:8000/"|add:activity.object.image_url as link %}
+                            
+                            <img class="img-responsive" style="vertical-align:middle" src={{link}}>
+                        {% endwith %}
+                         
+                    {% endif %}
+
         </div>
-    </div>-->
+    </div>
     <div class="text-content">
         {{ activity.object.text }}
 	</div>
