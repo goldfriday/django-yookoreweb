@@ -18,17 +18,17 @@
     </div>
     <div class="cover-info">
          <div class="avatar"> <img src="/static/images/people/guy-4.jpg" alt="people"></div>
-         <div class="name"><a href="#">Frank O'Neil</a><span>Edit Profile</span></div>       	
+         <div class="name"><a href="#">{{ fullname }}</a><span><a href="{% url 'userprofile' %}">Edit Profile</a></span></div>
    </div>
 </div>
 <div class="profile-nav-wrapper">
    		<ul class="cover-nav">
-            <li><a class="userprofile" href="userprofile.php"><img src="/static/images/icons/profile.png" width="20" style="margin:0 4px 0 0;"></span> Stream</a></li>
+            <li><a class="userprofile" href="{%  url 'userprofile' %}"><img src="/static/images/icons/profile.png" width="20" style="margin:0 4px 0 0;"></span> Stream</a></li>
             <li><a class="about_private" href="about_private.php"><img src="/static/images/icons/profile.png" width="20" style="margin:0 4px 0 0;"></span> About</a></li>
-            <li><a class="friends" href="friends.php"><img src="/static/images/icons/friends.png" width="20" style="margin:0 4px 0 0;"></span> Friends</a></li>
+            <li><a class="friends" href="{% url 'profile_friends' %}"><img src="/static/images/icons/friends.png" width="20" style="margin:0 4px 0 0;"></span> Friends</a></li>
        </ul>
        <ul class="cover-nav more-nav-show">
-       		<li><a class="my_photos_in" href="my_photos_in.php"><img src="/static/images/icons/photo.png" width="20" style="margin:0 4px 0 0;"></span> Photos</a></li>
+       		<li><a class="my_photos_in" href="{% url 'profile_photos' %}"><img src="/static/images/icons/photo.png" width="20" style="margin:0 4px 0 0;"></span> Photos</a></li>
             <li><a class="my_blog" href="my_blog.php"><img src="/static/images/icons/blogs.png" width="20" style="margin:0 4px 0 0;"></span> BlogPost</a></li>
        </ul>
        <ul class="cover-nav navbar-right caret-right">

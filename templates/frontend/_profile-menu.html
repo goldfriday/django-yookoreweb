@@ -4,9 +4,9 @@
         <div class="profile-pix-card">
             <div class="profile-pix-img">
                 {% if activity.actor.imageurl %}
-                    <img src="{{ activity.object.actor.imageurl }}" width="100%">
+                    <a href="{% url 'userprofile' %}" ><img src="{{ activity.object.actor.imageurl }}" width="100%"></a>
                 {% else %}
-                    <img src="/static/images/ico_placeholder_60.png" width="100%">
+                    <a href="{% url 'userprofile' %}" ><img src="/static/images/ico_placeholder_60.png" width="100%"></a>
                 {% endif %}
             </div>
         </div>
@@ -37,7 +37,7 @@
             <a href="/profile" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/profile.png" width="18"></span>
                 Profile</a>
-            <a href="#" class="list-group-item">
+            <a href="{% url 'profile_photos' %}" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/photo.png" width="18"></span>
                 Photos <span class="badge">0</span>
             </a>
@@ -49,7 +49,7 @@
                 <span class="list-group-icons"><img src="/static/images/icons/video.png" width="18"></span>
                 Videos <span class="badge">0</span>
             </a>
-            <a href="/friends" class="list-group-item">
+            <a href="{% url 'profile_friends' %}" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/friends.png" width="18"></span>
                 Friends <span class="badge">0</span>
             </a>

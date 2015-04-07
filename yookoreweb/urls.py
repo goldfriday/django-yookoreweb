@@ -21,8 +21,10 @@ urlpatterns = patterns('',
     url(r'^photo$', 'frontend.views.photo'),
 
     url(r'^friends$', 'frontend.views.friends'),
+    url(r'^profile_friends$', 'frontend.views.profile_friends', name="profile_friends"),
+    url(r'^profile_photos$', 'frontend.views.profile_photos', name="profile_photos"),
 
-    url(r'^profile', 'userprofile_app.views.userprofile', name="userprofile"),
+    url(r'^profile', 'frontend.views.userprofile', name="userprofile"),
 
 
 )
