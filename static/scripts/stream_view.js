@@ -3,5 +3,5 @@
  */ 
 require(['./common'], function(common) {
   console.log('loaded stream_view view');
-  require(['../scripts/main', './stream'])
+  require(['../scripts/main', '../scripts/stream'])
 })
