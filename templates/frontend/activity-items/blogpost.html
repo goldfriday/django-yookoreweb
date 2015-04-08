@@ -1,10 +1,10 @@
 {% load dictionary_extras %}
 <!--activity card3 starts-->
 <div class="activity-stream-wrapper">
-	<div class="activity-card">
+  <div class="activity-card">
 <!--activity header starts-->
     <div class="activity-header">
-    	 <div class="content-owner-pix">
+       <div class="content-owner-pix">
             {% if activity.actor.imageurl %}
                 <img src="{{ activity.object.actor.imageurl }}" width="100%">
             {% else %}
@@ -16,7 +16,7 @@
         <div class="content-owner-name">{{ activity.actor.displayname }}</div>
         <div class="activity-verb">created a new blog post</div>
         <div class="status-update-timestamp"> 
-        	{{ activity.object.publishdate }} 
+          {{ activity.object.publishdate|timedelta }} 
         </div>
 
     </div>
@@ -24,17 +24,27 @@
     </div>
    <!--activity header stops-->
    <div style="padding:0 0 7px 0; font-weight:bold; font-size:22px; color:#000;">
-   		{{ activity.object.title }}
+      {{ activity.object.title }}
    </div>
-<!--remove comment tag only if blog has a photo in post
-		<div class="photo-in-post-wrapper">
-			<div class="photo-in-status-update">
-        <img class="img-responsive" style="vertical-align:middle" src="/static/images/uploads/hazard.png">
+
+         
+
+    <div class="photo-in-post-wrapper">
+      <div class="photo-in-status-update">
+                {% if activity.object.image_url %}
+
+                        {% with "http://192.168.10.123:8000/"|add:activity.object.image_url as link %}
+                            
+                            <img class="img-responsive" style="vertical-align:middle" src={{link}}>
+                        {% endwith %}
+                         
+                    {% endif %}
+
         </div>
-    </div>-->
+    </div>
     <div class="text-content">
         {{ activity.object.text }}
-	</div>
+  </div>
     <!--content stats-->
     {% include 'frontend/activity-items/content-stats.html' %}
     <!--interactin bar-->
@@ -49,7 +59,7 @@
     
     <!--post comment-->
     <div class="post-comment-wrapper">
-    	{% include 'frontend/activity-items/comment-post.html' %}
+      {% include 'frontend/activity-items/comment-post.html' %}
     </div>
 
 </div>
