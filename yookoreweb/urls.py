@@ -25,4 +25,5 @@ urlpatterns = patterns('',
     url(r'^profile', 'userprofile_app.views.userprofile'),
 
 
+
 )
