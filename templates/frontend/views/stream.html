@@ -7,7 +7,6 @@
 
         {% include 'frontend/_content-input-pane.html' %}
         {% for activity in activities.list %}
-           
             {% ifequal activity.object.type 'statusupdate' %}
                 {% include 'frontend/activity-items/statusupdate.html' %}
             {% endifequal %}
@@ -29,7 +28,6 @@
             {% endifequal %}
 
         {% endfor %}
-
 
     </div>
 {% endblock %}
