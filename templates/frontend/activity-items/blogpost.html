@@ -6,9 +6,9 @@
     <div class="activity-header">
        <div class="content-owner-pix">
             {% if activity.actor.imageurl %}
-                <img src="{{ activity.object.actor.imageurl }}" width="100%">
+                <a href="{% url 'userprofile' %}"><img src="{{ activity.object.actor.imageurl }}" width="100%"></a>
             {% else %}
-                <img src= "/static/images/ico_placeholder_60.png" width="100%">
+                <a href="{% url 'userprofile' %}"> <img src= "/static/images/ico_placeholder_60.png" width="100%"></a>
             {% endif %}
 
         </div>

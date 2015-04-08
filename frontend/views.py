@@ -26,7 +26,7 @@ def activitystream(request):
     # validate session with user object
     username = request.session.get('username')
 
-    #Use the username to pull the profile data for the user
+    # Use the username to pull the profile data for the user
 
     if not username:
         # go back to the logim page
@@ -36,7 +36,7 @@ def activitystream(request):
         context = {}
         context['username'] = username
         context['activities'] = get_activities(username)
-        context['fullname'] = userdata['firstname'] + " "  + userdata['lastname']
+        context['fullname'] = userdata['firstname'] + " " + userdata['lastname']
         context['user'] = userdata
         # raise Exception(userdata)
 
@@ -44,12 +44,16 @@ def activitystream(request):
 
 
 def userprofile(request):
+
     username = request.session.get('username')
     userdata = get_user_profile(username)
-    raise Exception(username)
+
+    # raise Exception(userdata)
     context = {}
     context['userdata'] = userdata
     context['activities'] = get_activities(username)
+    context['fullname'] = userdata['firstname'] + " " + userdata['lastname']
+
     return render(request, 'frontend/views/profile.html', context)
 
 
@@ -242,13 +246,13 @@ def search(request, q):
     context = {}
     context['nb_result'] = 10
     context['results'] = get_search_result(q)
-    print context  #, request
+    print context  # , request
     print 'Rendering template '
     return HttpResponse(json.dumps(context, indent=4))
     return render(request, 'frontend/views/stream.html', context)
 
 
-#return HttpResponseRedirect('/search/'+q, context)
+# return HttpResponseRedirect('/search/'+q, context)
 
 def search2(request, q):
     if request.is_ajax:
@@ -298,6 +302,28 @@ def photo(request):
     context = {}
     return render(request, 'frontend/views/photo.html', context)
 
+
+def profile_friends(request):
+    username = request.session.get('username')
+    userdata = get_user_profile(username)
+
+    # raise Exception(userdata)
+    context = {}
+    context['userdata'] = userdata
+    context['activities'] = get_activities(username)
+    context['fullname'] = userdata['firstname'] + " " + userdata['lastname']
+    return render(request, 'frontend/views/friends.html', context)
+
+def profile_photos(request):
+    username = request.session.get('username')
+    userdata = get_user_profile(username)
+
+    # raise Exception(userdata)
+    context = {}
+    context['userdata'] = userdata
+    context['activities'] = get_activities(username)
+    context['fullname'] = userdata['firstname'] + " " + userdata['lastname']
+    return render(request, 'frontend/userprofile/photos.html', context)
 
 def friends(request):
     print 'In search friends '
