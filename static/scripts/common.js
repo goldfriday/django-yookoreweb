@@ -10,7 +10,9 @@ requirejs.config({
     "photo-modal": { "deps": ['jquery'] },
     "main": { "deps": ['jquery'] },
     "resize-textarea": { "deps": ['jquery'] },
-    "bootstrap3_player": { "deps": ['jquery'] }
+    "bootstrap3_player": { "deps": ['jquery'] },
+    "rest": { "deps": ['jive'] },
+    "jive.RestService": { "deps": ['jive'] }
   },
   "paths": {
     //"app": "../js",
@@ -56,8 +58,17 @@ requirejs.config({
     "jquery.fileupload-video": "jquery.fileupload-video",
     "jquery.fileupload-validate": "jquery.fileupload-validate",
     "jquery.fileupload-ui": "jquery.fileupload-ui",
+    "jquery.message": "jquery.message",
     "main": "main",
     "resize-textarea": "resize-textarea",
-    "bootstrap3_player": "bootstrap3_player"
+    "bootstrap3_player": "bootstrap3_player",
+    "jive": "lib/namespace",
+    "jive.oo.Class": "lib/jiverscripts/src/oo/class",
+    "rest": "lib/rest",
+    "jive.conc.Promise": "lib/jiverscripts/src/conc/promise",
+    "jive.conc.nextTick": "lib/jiverscripts/src/conc/next_tick",
+    "jive.conc.observable": "lib/jiverscripts/src/conc/observable",
+    "jquery.ba-bbq": "jquery.ba-bbq",
+    "jive.RestService": "lib/rest_service"
   }
 });

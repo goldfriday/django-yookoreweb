@@ -1,9 +1,13 @@
 // Load the main app module to start the app
 require(['./common'], function (common) {
-  //require(["../scripts/main"]);
   // load view based on url path
-  require(["../scripts/stream_view"]);
+  console.log(location)
+  switch(location.pathname) {
+    case "/activity":
+      require(["../scripts/stream_view"]);
+      break;
+    default:
+      require('../scripts/not_found_view')
+      break;
+  }
 });
-/*define(['./common'], function(require) {
-    require("../scripts/main");
-});*/
