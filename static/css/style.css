@@ -157,7 +157,7 @@ margin-left:5px;
 .verb-text{color:#999999;}
 .comment-text{color:#404040; font-size:14px;}
 
-/****headers***/  
+/****headers***/
 .top-header-bar{background:#0091d7;  margin-bottom:10px;}
 .top-header-bar-icons {height:22px; width:100px; margin:14px 10px; display:inline-block; background:#eee;}
 
@@ -174,7 +174,7 @@ margin-left:5px;
 .menu{color:#646464; font-size:14px; font-weight:regular;}
 
 .menu-label-tag{height:44px; border:0; background:transparent; padding-top:12px; margin-left:8px; text-overflow:ellipsis; overflow:hidden;}
-.menu-label-tag:hover{background:rgba(0,0,0.0.2); } 
+.menu-label-tag:hover{background:rgba(0,0,0.0.2); }
 
 /******other commons*******/
 .pts{padding-top:5px;}
@@ -309,7 +309,7 @@ margin-bottom:20px;
 .status-update-timestamp{display:inline-block; font-size:12px; color:#999; padding:0px 10px 2px 15px; line-height:14px; margin:0px 0 0 7px; background:url(../images/icons/status-xs.png) no-repeat;}
 
 /**status content types****/
-.text-content{padding:0; margin-bottom:15px;}
+.text-content{word-wrap: break-word; padding:0; margin-bottom:15px;}
 .photo-in-post-wrapper{margin:0px -15px 15px -15px;}
 .photo-in-status-update{width:100%; background:#fff; overflow:hidden; text-align:center; border-top:1px solid #f5f5f5; border-bottom:1px solid #f5f5f5;}
 .photo-in-status-update-auto{width:100%; background:#fff; overflow:hidden; text-align:center; border-top:1px solid #f5f5f5; border-bottom:1px solid #f5f5f5;}
@@ -372,7 +372,7 @@ resize: none;
 box-sizing: border-box;
 position:relative;
 border:0;
--webkit-appearance: none; -moz-appearance: none; 
+-webkit-appearance: none; -moz-appearance: none;
 white-space: pre-wrap;
 word-wrap: break-word;
 padding: 4px 6px 0px 6px;
