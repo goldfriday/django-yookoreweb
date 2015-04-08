@@ -7,7 +7,7 @@ from django.utils.timesince import timesince
 from django.utils.translation import ugettext, ungettext
 
 from datetime import date, timedelta, datetime
-import random
+from random import randint
 
 register = template.Library()
 
@@ -34,6 +34,9 @@ def getitem(item, arg):
 def test_filter(value):
     return 'Test-Test'
 
+@register.filter(name='get_random')
+def get_random(value):
+	return value +  '-' + str(randint(1000, 10000000))
 
 @register.filter(name='timedelta')
 def timedelta(value, arg=None):
@@ -79,4 +82,18 @@ def humanize_timesince(date):
         return ungettext(u"%d minute ago", u"%d minutes ago", num_minutes) % num_minutes
 
     return ugettext(u"just a few seconds ago")
+
+@register.filter(name='timestamp2year')
+def timestamp2year(value):
+	return datetime.fromtimestamp(int(value)).strftime('%Y')
+	#return randint(1000, 10000000)
+
+@register.filter(name='timestamp2month')
+def timestamp2month(value):
+	return datetime.fromtimestamp(int(value)).strftime('%m')
+
+@register.filter(name='timestamp2day')
+def timestamp2day(value):
+	return datetime.fromtimestamp(int(value)).strftime('%d')
+# datetime.fromtimestamp(int(value)).strftime('%Y-%m-%d %H:%M:%S')
 
