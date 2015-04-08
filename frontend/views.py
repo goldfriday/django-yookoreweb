@@ -1,7 +1,7 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context, loader
-from django.template import RequestContext
+
 from django.core.urlresolvers import reverse
 
 import json
@@ -16,38 +16,38 @@ URL_SEARCH = 'http://192.168.10.20:9200/info/users'
 
 
 def home(request):
-    # checking the session
-    if request.session.get('logged', False):
-        pass
+	# checking the session
+	if request.session.get('logged', False):
+		pass
 
-    context = {}
-    return render(request, 'frontend/views/home.html', context)
+	context = {}
+	return render(request, 'frontend/views/home.html', context)
 
 
 def activitystream(request):
-    # validate session with user object
-    username = request.session.get('username')
+	# validate session with user object
+	username = request.session.get('username')
 
-    # Use the username to pull the profile data for the user
+	# Use the username to pull the profile data for the user
 
-    if not username:
-        # go back to the login page
-        return HttpResponseRedirect(reverse('login'))
-    else:
-        userdata = get_user_profile(username)
-        context = {}
-        context['username'] = username
-        context['activities'] = get_activities(username)
-        context['fullname'] = userdata['firstname'] + " " + userdata['lastname']
-        context['user'] = userdata
-        # raise Exception(userdata)
+	if not username:
+		# go back to the logim page
+		return HttpResponseRedirect(reverse('login'))
+	else:
+		userdata = get_user_profile(username)
+		context = {}
+		context['username'] = username
+		context['activities'] = get_activities(username)
+		context['fullname'] = userdata['firstname'] + " " + userdata['lastname']
+		context['user'] = userdata
+		# raise Exception(userdata)
 
-        return render(request, 'frontend/views/stream.html', context)
+		return render(request, 'frontend/views/stream.html', context)
 
 
 def userprofile(request):
-    context = {}
-    return render(request, 'frontend/views/profile.html', context)
+	context = {}
+	return render(request, 'frontend/views/profile.html', context)
 
 
 def yookore_login(request):
@@ -72,13 +72,12 @@ def yookore_login(request):
         try:
 
             response = requests.post(url, data=json.dumps(params), headers=headers)
-        except Exception, e:
-            print 'error when attempting to login', e
+        except:
+            print 'error when attempting to login'
             error = True
             return render(request, '.')
         if not error:
             data = response.json()
-            context = RequestContext(request)
             # print data
             context = {
                 "username": data['username'],
@@ -106,243 +105,274 @@ def yookore_login(request):
             return HttpResponseRedirect(url)
         # return render(request, 'frontend/views/stream.html', context)
         else:
-            return render(request, '.', context_instance=RequestContext(request))
+            return render(request, '.')
 
 
 def get_activities(username):
-    url = URL_ACTIVITIES + "/" + username + "/activities"
-    print url
-    headers = {'content-type': 'application/json'}
+	url = URL_ACTIVITIES + "/" + username + "/activities"
+	print url
+	headers = {'content-type': 'application/json'}
 
-    response = requests.get(url, headers=headers)
-    if response:
-        data = response.json()
-        return data
+	response = requests.get(url, headers=headers)
+	if response:
+		data = response.json()
+		return data
 
-    return 'error'
+	return 'error'
 
 
 def get_user_profile(username):
-    url = "http://192.168.10.144:3000/auth/" + username
-    headers = {'content-type': 'application/json'}
-    try:
-        response = requests.get(url, headers=headers)
-        if response:
-            data = response.json()
-            return data
-    except Exception, e:
-        raise e
+	url = "http://192.168.10.144:3000/auth/" + username
+	headers = {'content-type': 'application/json'}
+	try:
+		response = requests.get(url, headers=headers)
+		if response:
+			data = response.json()
+			return data
+	except Exception, e:
+		raise e
 
 
 def post_status_update(request):
-    print 'posting a status update'
-    headers = {'content-type': 'application/json'}
+	print 'posting a status update'
+	headers = {'content-type': 'application/json'}
 
-    body = request.POST.get('body')
-    username = request.POST.get('username')
-    print username
+	body = request.POST.get('body')
+	username = request.POST.get('username')
+	print username
 
-    payload = {
-        "author": username,
-        "body": body
-    }
-    print payload
 
-    if len(body) > 0 and username:
-        url = URL_CONTENT + "/status_updates/post/" + username + "/"
-        print url
-        error = False
-        try:
+	payload = {
+		"author": username,
+		"body": body
+	}
+	print payload
 
-            response = requests.post(url, data=json.dumps(payload), headers=headers)
-        except Exception, e:
-            print 'error when attempting to post'
-            error = True
-
-    else:
-        print 'bad parameters'
+	if len(body) > 0 and username:
+		url = URL_CONTENT + "/status_updates/post/" + username + "/"
+		print url
+		error = False
+		try:
+			response = requests.post(url, data=json.dumps(payload), headers=headers)
+		except Exception, e:
+			print 'error when attempting to post'
+			error = True
 
 
 def post_blogpost(request):
-    print 'posting a blog post'
-    headers = {'content-type': 'application/json'}
+	print 'posting a blog post'
+	headers = {'content-type': 'application/json'}
 
-    title = request.POST.get('title')
-    body = request.POST.get('body')
-    username = request.POST.get('username')
+	title = request.POST.get('title')
+	body = request.POST.get('body')
+	username = request.POST.get('username')
 
-    payload = {
-        "author": username,
-        "title": title,
-        "body": body
-    }
-    if len(body) > 0 and len(title) > 0 and username:
-        url = URL_CONTENT + "/blogposts/post/" + username + "/"
-        print url
-        error = False
-        try:
+	payload = {
+		"author": username,
+		"title": title,
+		"body": body
+	}
+	if len(body) > 0 and len(title) > 0 and username:
+		url = URL_CONTENT + "/blogposts/post/" + username + "/"
+		print url
+		error = False
+		try:
 
-            response = requests.post(url, data=json.dumps(payload), headers=headers)
-        except BaseException, e:
-            print 'error when attempting to create a blogpost: ', e
-            error = True
+			response = requests.post(url, data=json.dumps(payload), headers=headers)
+		except BaseException, e:
+			print 'error when attempting to create a blogpost: ', e
+			error = True
 
-    else:
-        print 'bad parameters'
+	else:
+		print 'bad parameters'
 
 
 def content_like(request, id, username):
-    print 'Liking the content:', id, username
-    print request.GET.get(id)
-    print request.POST.get(id)
-    if id:
-        url = URL_CONTENT + "/content/" + id + "/likes/"
-        print url
-        try:
-            payload = {
-                "author": username,
-                "object_id": id
-            }
+	print 'Liking the content:', id, username
+	print request.GET.get(id)
+	print request.POST.get(id)
+	if id:
+		url = URL_CONTENT + "/content/" + id + "/likes/"
+		print url
+		try:
+			payload = {
+				"author": username,
+				"object_id": id
+			}
 
-            headers = {'content-type': 'application/json'}
-            response = requests.post(url, data=json.dumps(payload), headers=headers)
-        except BaseException, e:
-            print e
+			headers = {'content-type': 'application/json'}
+			response = requests.post(url, data=json.dumps(payload), headers=headers)
+		except BaseException, e:
+			print e
 
-    return HttpResponseRedirect('/activity')
+	return HttpResponseRedirect('/activity')
 
 
 # return HttpResponseRedirect(reverse('activitystream'))
 
+def content_comment(id):
+	print 'Commenting the content:', id, username
+	print request.GET.get(id)
+	print request.POST.get(id)
+	if id:
+		url = URL_CONTENT + "/content/" + id + "/comments/"
+		print url
+		try:
+			payload = {
+				"author": username,
+				"object_id": id
+			}
+
+			headers = {'content-type': 'application/json'}
+			response = requests.post(url, data=json.dumps(payload), headers=headers)
+		except BaseException, e:
+			print e
+		return HttpResponseRedirect('/actvity')
+
 def content_comment(request, username, id):
-    print 'Commenting the content:', id, username
-    print request.GET.get(id)
-    print request.POST.get(id)
-    if id:
-        url = URL_CONTENT + "/content/" + id + "/comments/"
-        print url
-        try:
-            payload = {
-                "author": username,
-                "object_id": id
-            }
+	print 'Commenting the content:', id, username
 
-            headers = {'content-type': 'application/json'}
-            response = requests.post(url, data=json.dumps(payload), headers=headers)
-        except BaseException, e:
-            print e
-
-    return HttpResponseRedirect('/activity')
-
+	if id:
+		url = URL_CONTENT + "/content/" + id + "/comments/"
+		print url
+		try:
+			payload = {
+				"author": username,
+				"object_id": id
+			}
+			headers = {'content-type': 'application/json'}
+			response = requests.post(url, data=json.dumps(payload), headers=headers)
+		except BaseException, e:
+			print e
+		return HttpResponseRedirect('/actvity')
 
 def search(request, q):
-    print 'in search'
-    context = {}
-    context['nb_result'] = 10
-    context['results'] = get_search_result(q)
-    print context  # , request
-    print 'Rendering template '
-    return HttpResponse(json.dumps(context, indent=4))
-    return render(request, 'frontend/views/stream.html', context)
-
-
-# return HttpResponseRedirect('/search/'+q, context)
+	print 'in search'
+	context = {}
+	context['nb_result'] = 10
+	context['results'] = get_search_result(q)
+	print context  #, request
+	print 'Rendering template '
+	return HttpResponse(json.dumps(context, indent=4))
+	#return render(request, 'frontend/views/stream.html', context)
 
 def search2(request, q):
-    if request.is_ajax:
-        print 'From ajax'
-    print 'in search 2'
-    print 'Get: ' + q
-    context = {}
-    context['results'] = get_search_result(q)
-    print context
-    return HttpResponse(json.dumps(context, indent=4))
-    return render(request, 'frontend/views/search.html', context)
+	if request.is_ajax:
+		print 'From ajax'
+	print 'in search 2'
+	print 'Get: ' + q
+	context = {}
+	context['results'] = get_search_result(q)
+	print context
+	return HttpResponse(json.dumps(context, indent=4))
+	#return render(request, 'frontend/views/search.html', context)
 
 
 def get_search_result(query):
-    print 'In search result '
-    url = URL_SEARCH + "/_search?q=firstname:" + query
-    print url
-    headers = {'content-type': 'application/json'}
+	print 'In search result '
+	url = URL_SEARCH + "/_search?q=firstname:" + query
+	print url
+	headers = {'content-type': 'application/json'}
 
-    response = requests.get(url, headers=headers)
-    if response:
-        data = response.json()
-        nb = data['hits']['total']
-        result_list = data['hits']['hits']
-        # Constructing the results
-        results = []
-        for r in result_list:
-            results.append(r['_source'])
+	response = requests.get(url, headers=headers)
+	if response:
+		data = response.json()
+		nb = data['hits']['total']
+		result_list = data['hits']['hits']
+		# Constructing the results
+		results = []
+		for r in result_list:
+			results.append(r['_source'])
 
-        return results
+		return results
 
-    else:
-        print 'Error occured when searching'
-        return 'error'
+	else:
+		print 'Error occured when searching'
+		return 'error'
 
 
 def test(request):
-    print 'in test'
-    context = {}
-    context['results'] = get_search_result('Patr')
-    print context
-    return render(request, 'frontend/views/search.html', context)
+	print 'in test'
+	context = {}
+	context['results'] = get_search_result('Patr')
+	print context
+	return render(request, 'frontend/views/search.html', context)
 
 
 def photo(request):
-    # print 'In photophoto'
-    context = {}
-    return render(request, 'frontend/views/photo.html', context)
+	# print 'In photophoto'
+	context = {}
+	return render(request, 'frontend/views/photo.html', context)
+
+
+def profile_friends(request):
+	username = request.session.get('username')
+	userdata = get_user_profile(username)
+
+	# raise Exception(userdata)
+	context = {}
+	context['userdata'] = userdata
+	context['activities'] = get_activities(username)
+	context['fullname'] = userdata['firstname'] + " " + userdata['lastname']
+	return render(request, 'frontend/views/friends.html', context)
+
+
+def profile_photos(request):
+	username = request.session.get('username')
+	userdata = get_user_profile(username)
+
+	# raise Exception(userdata)
+	context = {}
+	context['userdata'] = userdata
+	context['activities'] = get_activities(username)
+	context['fullname'] = userdata['firstname'] + " " + userdata['lastname']
+	return render(request, 'frontend/userprofile/photos.html', context)
 
 
 def friends(request):
-    print 'In search friends '
-    # Getting username from cookies or the session
+	print 'In search friends '
+	# Getting username from cookies or the session
 
-    url = URL_CONTENT + "/socialgraph/friends/" + request.session['username'] + "/"
-    print url
-    headers = {'content-type': 'application/json'}
+	url = URL_CONTENT + "/socialgraph/friends/" + request.session['username'] + "/"
+	print url
+	headers = {'content-type': 'application/json'}
 
-    response = requests.get(url, headers=headers)
-    context = {}
-    if response:
-        data = response.json()
+	response = requests.get(url, headers=headers)
+	context = {}
+	if response:
+		data = response.json()
 
-        results = []
+		results = []
 
-        if data:
-            # Parsing all friends to retrieve the imageurl
-            for f in data:
-                print f
-                results.append(get_user_profile(f['username']))
+		if data:
+			# Parsing all friends to retrieve the imageurl
+			for f in data:
+				print f
+				results.append(get_user_profile(f['username']))
 
-        print results
-        context['friend_list'] = results
+		print results
+		context['friend_list'] = results
 
-    else:
-        print 'Error occured when searching'
+	else:
+		print 'Error occured when searching'
 
-    return render(request, 'frontend/views/friends.html', context)
+	return render(request, 'frontend/views/friends.html', context)
 
 
 def get_user_profile(username):
-    # firstname, lastname, imageurl
-    print 'Get user profile '
-    url = URL_USERACCOUNT + "/profile/" + username
+	# firstname, lastname, imageurl
+	print 'Get user profile '
+	url = URL_USERACCOUNT + "/profile/" + username
 
-    headers = {'content-type': 'application/json'}
+	headers = {'content-type': 'application/json'}
 
-    headers = {'content-type': 'application/json'}
-
-    try:
-        response = requests.get(url, headers=headers)
-        if response:
-            data = response.json()
-            res =  data
-        else:
-            res =  'error'
-    except Exception, e:
-        raise e
-    return res
+	try:
+		response = requests.get(url, headers=headers)
+		if response:
+			data = response.json()
+			return data
+		else:
+			return 'error'
+	except Exception, e:
+		raise e
+	

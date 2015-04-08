@@ -33,7 +33,8 @@
         <div role="tabpanel" class="tab-pane active" id="main" ng-controller="StatusupdateCtrl">
             <div class="status-update-form-wrapper">
                 <textarea rows="3" class="update-status" ng-model="body" placeholder="What's on your mind?" id="body-id"></textarea>
-                <form id="fileupload" action="/test" method="POST"
+
+                <form id="fileupload" action="" method="POST"
                       enctype="multipart/form-data">
                       {% csrf_token %} 
                     <!-- Redirect browsers with JavaScript disabled to the origin page -->
@@ -49,27 +50,30 @@
                         <div class="row fileupload-buttonbar"></div>
                         <div class="clear"></div>
                     </div>
-            <div class="status-update-bottom" style="overflow: hidden">
-                <div class="status-update-bottom-icons">
-                    <ul class="list-inline">
-                        <li role="presentation">
-                            <span class="fileinput-button">
-                                <input id="status-photo-file" type="file" name="files[]" multiple>
-                                <img src="/static/images/icons/photo.png" width="18">
-                            </span>
-                        </li>
-                        <li><span><img src="/static/images/icons/tag.png" width="18"></span></li>
-                        <li><span><img src="/static/images/icons/location.png" width="18"></span></li>
-                    </ul>
+                <div class="status-update-bottom" style="overflow: hidden">
+                    <div class="status-update-bottom-icons">
+                        <ul class="list-inline">
+                            <li role="presentation">
+                                <span class="fileinput-button">
+                                    <input id="statusupdate-photo-file" type="file" name="files[]" multiple>
+                                    <!-- <input id="blogpost-photo-file" type="file" name="files[]" multiple> -->
+
+                                    <img src="/static/images/icons/photo.png" width="18">
+                                </span>
+                            </li>
+                            <li><span><img src="/static/images/icons/tag.png" width="18"></span></li>
+                            <li><span><img src="/static/images/icons/location.png" width="18"></span></li>
+                        </ul>
+                    </div>
+                    <div class="post-update-button" id = "post-update-button">Post</div>
+                    <div class="clear"></div>
                 </div>
-                <div class="post-update-button" id = "post-update-button">Post</div>
-                <div class="clear"></div>
-            </div>
-             </form>
+            </form>
+
          </div>
                          
         </div>
-        <!--status update photo/video-->
+        <!-- Photo/video-->
         <div role="tabpanel" class="tab-pane" id="photo">
             <div class="status-update-form-wrapper">
                 <textarea rows="1" class="update-status" placeholder="Add Caption"></textarea>
@@ -89,7 +93,9 @@
                 <span class="btn add-photo-button fileinput-button">
                     <span class="add-photo-button-icon">Add Photos...</span>
                     <!-- The file input field used as target for the file upload widget -->
-                    <input id="fileupload" type="file" name="files[]" multiple>
+
+                    <input id="photos-photo-file" type="file" name="files[]" multiple>
+
                 </span>
                 </div>
                 <!-- The table listing the files available for upload/download -->
@@ -115,14 +121,16 @@
                 <textarea rows="3" class="form-control" placeholder="Message" id="id-blogpost-body" ></textarea>
                 <span class="btn add-photo-button fileinput-button" style="margin-top:10px;">
                 <span class="add-photo-button-icon">Add Photos...</span>
+
                 <!-- The file input field used as target for the file upload widget -->
                 <input id="blogpost-photo-file" type="file" name="files[]" multiple>
+
                 </span>
                 </div>
                 <div class="status-update-bottom">
                     <div class="status-update-bottom-icons">
                         <ul class="list-inline">
-                            <li><span>Posting to Frank's Blog</span></li>
+                            <li><span>  </span></li>
                         </ul>
                     </div>
                     <div id="create-blogpost" class="post-update-button" >Post</div>
@@ -194,13 +202,10 @@
 <script type="text/javascript">
 
 // Monitoring status update photo
-
 var status_update_photo;
 
-var control = document.getElementById("status-photo-file");
+var control = document.getElementById("statusupdate-photo-file");
 control.addEventListener("change", function(event) {
-
-    // When the control has changed, there are new files
 
     var i = 0,
         files = control.files,
@@ -215,8 +220,6 @@ control.addEventListener("change", function(event) {
     }
 
 }, false);
-
-// Monitoring blog photo
 
 $('#post-update-button').click(function() { 
     console.log('Status update clicked');
@@ -288,7 +291,7 @@ $('#create-blogpost').click(function() {
     fd.append('author', '{{ username }}');
     
     if (blogpost_photo!= null && blogpost_photo.length > 0) {
-        console.log('Uploading status update with photo ' + blogpost_photo[0].name);
+        console.log('Uploading blogpost with photo ' + blogpost_photo[0].name);
         _url = 'http://192.168.10.123:8000/api/blogposts/post_with_photo/{{username}}/';
         fd.append('images', blogpost_photo[0]);
 
@@ -313,9 +316,30 @@ $('#create-blogpost').click(function() {
 
 });
 
+var photos_photo;
+
+var control = document.getElementById("photos-photo-file");
+control.addEventListener("change", function(event) {
+
+    var i = 0,
+        files = control.files,
+        len = files.length;
+
+    photos_photo = files;
+
+    for (; i < len; i++) {
+        console.log("Filename: " + files[i].name);
+        console.log("Type: " + files[i].type);
+        console.log("Size: " + files[i].size + " bytes");
+    }
+
+}, false);
+
+
 $('#id-upload-photo').click (function() {
     console.log($('#id-upload-photo').val());
-    console.log('Abstraction the upload button '); console.log($('#fileUpload'));
+    console.log('Abstraction the upload button '); 
+    console.log($('#fileUpload'));
     // Check if a status was typed
 
     $.ajax({
