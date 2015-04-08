@@ -6,14 +6,16 @@
                 {% if activity.actor.imageurl %}
                     <img src="{{ activity.object.actor.imageurl }}" width="100%">
                 {% else %}
-                    <img src= "/static/images/ico_placeholder_60.png" width="100%">
+                    <img src="/static/images/ico_placeholder_60.png" width="100%">
                 {% endif %}
             </div>
         </div>
         <div class="profile-name">
-            Firstname Surname
+            {% if fullname %}
+                {{ fullname }}
+            {% endif %}
         </div>
-        <div class="edit-profile">Edit Profile</div>
+        <div class="edit-profile"><a href="{% url 'userprofile' %}"> Edit Profile</a></div>
         <div class="profile-stats-wrapper">
             <div class="profile-stats-info">
                 <div class="ps-friends">0</div>
@@ -32,7 +34,7 @@
     <!--side menu-->
     <div class="side-menu-wrapper">
         <div class="list-group">
-            <a href="#" class="list-group-item">
+            <a href="/profile" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/profile.png" width="18"></span>
                 Profile</a>
             <a href="#" class="list-group-item">
@@ -41,13 +43,13 @@
             </a>
             <a href="#" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/blogs.png" width="18"></span>
-                Blogs <span class="badge">0</span>
+                BlogPosts <span class="badge">0</span>
             </a>
             <a href="#" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/video.png" width="18"></span>
                 Videos <span class="badge">0</span>
             </a>
-            <a href="#" class="list-group-item">
+            <a href="/friends" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/friends.png" width="18"></span>
                 Friends <span class="badge">0</span>
             </a>

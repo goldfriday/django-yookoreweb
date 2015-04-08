@@ -1,21 +1,19 @@
+import json
+
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from django.template import Context, loader
-
 from django.core.urlresolvers import reverse
-
-import json
 import requests
 
 # Create your views here.
 
-URL_ACTIVITIES      = 'http://192.168.10.15'
-URL_CONTENT         = 'http://192.168.10.123:8000/api'
-URL_USERACCOUNT     = 'http://192.168.10.144:3000/auth'
-URL_SEARCH          = 'http://192.168.10.20:9200/info/users'
+URL_ACTIVITIES = 'http://192.168.10.15'
+URL_CONTENT = 'http://192.168.10.123:8000/api'
+URL_USERACCOUNT = 'http://192.168.10.144:3000/auth'
+URL_SEARCH = 'http://192.168.10.20:9200/info/users'
+
 
 def home(request):
-
     # checking the session
     if request.session.get('logged', False):
         pass
@@ -23,16 +21,24 @@ def home(request):
     context = {}
     return render(request, 'frontend/views/home.html', context)
 
+
 def activitystream(request):
     # validate session with user object
     username = request.session.get('username')
+
+    #Use the username to pull the profile data for the user
+
     if not username:
         # go back to the logim page
         return HttpResponseRedirect(reverse('login'))
     else:
+        userdata = get_user_profile(username)
         context = {}
-        context['username']   = username
+        context['username'] = username
         context['activities'] = get_activities(username)
+        context['fullname'] = userdata['firstname'] + " "  + userdata['lastname']
+        context['user'] = userdata
+        # raise Exception(userdata)
 
         return render(request, 'frontend/views/stream.html', context)
 
@@ -40,6 +46,7 @@ def activitystream(request):
 def userprofile(request):
     context = {}
     return render(request, 'frontend/views/profile.html', context)
+
 
 def yookore_login(request):
     if request.method == 'GET':
@@ -56,9 +63,9 @@ def yookore_login(request):
 
         params = {
             "username": username,
-            "password":password
+            "password": password
         }
-        #print params
+        # print params
         error = False
         try:
 
@@ -69,7 +76,7 @@ def yookore_login(request):
             return render(request, '.')
         if not error:
             data = response.json()
-            #print data
+            # print data
             context = {
                 "username": data['username'],
                 "sessionid": data['sessionid'],
@@ -77,7 +84,7 @@ def yookore_login(request):
             }
             # get activity stream
             activities = get_activities(data['username'])
-            if activities!='error':
+            if activities != 'error':
                 context['activities'] = activities
             else:
                 context['activities'] = ''
@@ -92,14 +99,15 @@ def yookore_login(request):
             # get friends, pages and groups
 
             # creating or updating cookies
-            url = reverse ('activity')
-            return HttpResponseRedirect (url)
-            # return render(request, 'frontend/views/stream.html', context)
+            url = reverse('activity')
+            return HttpResponseRedirect(url)
+        # return render(request, 'frontend/views/stream.html', context)
         else:
             return render(request, '.')
 
+
 def get_activities(username):
-    url = URL_ACTIVITIES+ "/" + username + "/activities"
+    url = URL_ACTIVITIES + "/" + username + "/activities"
     print url
     headers = {'content-type': 'application/json'}
 
@@ -109,6 +117,7 @@ def get_activities(username):
         return data
 
     return 'error'
+
 
 def get_user_profile(username):
     url = "http://192.168.10.144:3000/auth/" + username
@@ -121,12 +130,13 @@ def get_user_profile(username):
     except:
         pass
 
+
 def post_status_update(request):
     print 'posting a status update'
     headers = {'content-type': 'application/json'}
 
-    body        = request.POST.get('body')
-    username    = request.POST.get('username')
+    body = request.POST.get('body')
+    username = request.POST.get('username')
     print username
 
     payload = {
@@ -149,17 +159,18 @@ def post_status_update(request):
     else:
         print 'bad parameters'
 
+
 def post_blogpost(request):
     print 'posting a blog post'
     headers = {'content-type': 'application/json'}
 
-    title       = request.POST.get('title')
-    body        = request.POST.get('body')
-    username    = request.POST.get('username')
+    title = request.POST.get('title')
+    body = request.POST.get('body')
+    username = request.POST.get('username')
 
     payload = {
         "author": username,
-        "title" : title,
+        "title": title,
         "body": body
     }
     if len(body) > 0 and len(title) > 0 and username:
@@ -176,6 +187,7 @@ def post_blogpost(request):
     else:
         print 'bad parameters'
 
+
 def content_like(request, id, username):
     print 'Liking the content:', id, username
     print request.GET.get(id)
@@ -186,7 +198,7 @@ def content_like(request, id, username):
         try:
             payload = {
                 "author": username,
-                "object_id" : id
+                "object_id": id
             }
 
             headers = {'content-type': 'application/json'}
@@ -195,9 +207,11 @@ def content_like(request, id, username):
             print e
 
     return HttpResponseRedirect('/activity')
-    #return HttpResponseRedirect(reverse('activitystream'))
 
-def content_comment(id):
+
+# return HttpResponseRedirect(reverse('activitystream'))
+
+def content_comment(request, username, id):
     print 'Commenting the content:', id, username
     print request.GET.get(id)
     print request.POST.get(id)
@@ -206,8 +220,8 @@ def content_comment(id):
         print url
         try:
             payload = {
-                "author": username,
-                "object_id" : id
+            "author": username,
+            "object_id": id
             }
 
             headers = {'content-type': 'application/json'}
@@ -217,16 +231,19 @@ def content_comment(id):
 
     return HttpResponseRedirect('/activity')
 
+
 def search(request, q):
     print 'in search'
-    context                 = {}
-    context['nb_result']    = 10
-    context['results']      = get_search_result(q)
-    print context #, request
+    context = {}
+    context['nb_result'] = 10
+    context['results'] = get_search_result(q)
+    print context  #, request
     print 'Rendering template '
     return HttpResponse(json.dumps(context, indent=4))
     return render(request, 'frontend/views/stream.html', context)
-    #return HttpResponseRedirect('/search/'+q, context)
+
+
+#return HttpResponseRedirect('/search/'+q, context)
 
 def search2(request, q):
     if request.is_ajax:
@@ -234,10 +251,11 @@ def search2(request, q):
     print 'in search 2'
     print 'Get: ' + q
     context = {}
-    context['results']      = get_search_result(q)
+    context['results'] = get_search_result(q)
     print context
     return HttpResponse(json.dumps(context, indent=4))
     return render(request, 'frontend/views/search.html', context)
+
 
 def get_search_result(query):
     print 'In search result '
@@ -247,11 +265,11 @@ def get_search_result(query):
 
     response = requests.get(url, headers=headers)
     if response:
-        data        = response.json()
-        nb          = data['hits']['total']
+        data = response.json()
+        nb = data['hits']['total']
         result_list = data['hits']['hits']
         # Constructing the results
-        results     = []
+        results = []
         for r in result_list:
             results.append(r['_source'])
 
@@ -261,6 +279,7 @@ def get_search_result(query):
         print 'Error occured when searching'
         return 'error'
 
+
 def test(request):
     print 'in test'
     context = {}
@@ -268,27 +287,29 @@ def test(request):
     print context
     return render(request, 'frontend/views/search.html', context)
 
+
 def photo(request):
     # print 'In photophoto'
     context = {}
     return render(request, 'frontend/views/photo.html', context)
 
+
 def friends(request):
     print 'In search friends '
     # Getting username from cookies or the session
 
-    url = URL_CONTENT+ "/socialgraph/friends/" + request.session['username'] + "/"
+    url = URL_CONTENT + "/socialgraph/friends/" + request.session['username'] + "/"
     print url
     headers = {'content-type': 'application/json'}
 
     response = requests.get(url, headers=headers)
     context = {}
     if response:
-        data        = response.json()
+        data = response.json()
 
         results = []
 
-        if data :
+        if data:
             # Parsing all friends to retrieve the imageurl
             for f in data:
                 print f
@@ -300,8 +321,8 @@ def friends(request):
     else:
         print 'Error occured when searching'
 
-
     return render(request, 'frontend/views/friends.html', context)
+
 
 def get_user_profile(username):
     # firstname, lastname, imageurl
