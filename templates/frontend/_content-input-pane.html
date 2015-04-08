@@ -1,37 +1,59 @@
 <div class="status-update-wrapper">
     <ul class="nav nav-tabs" role="tablist" id="myTab">
-        <li role="presentation"><a href="#main" aria-controls="main" role="tab" data-toggle="tab"><span
-                class="status-update-icon-active"><img src="/static/images/icons/status-blue.png"
-                                                       width="12"></span>Status</a></li>
-        <li role="presentation"><a href="#photo" aria-controls="photo" role="tab" data-toggle="tab"><span
-                class="status-update-icon"><img src="/static/images/icons/pv-white.png"
-                                                width="12"></span>Photo<span
-                class="hide-div">/Video</span></a></li>
-        <li role="presentation"><a href="#blog" aria-controls="blog" role="tab" data-toggle="tab"><span
-                class="status-update-icon"><img src="/static/images/icons/blog-white.png" width="12"></span>Blog</a>
+        <li role="presentation">
+            <a href="#main" aria-controls="main" role="tab" data-toggle="tab">
+                <span class="status-update-icon-active">
+                <img src="/static/images/icons/status-blue.png" width="12"></span>Status
+            </a>
         </li>
-        <li role="presentation"><a href="#audio" aria-controls="audio" role="tab" data-toggle="tab"><span
-                class="status-update-icon"><img src="/static/images/icons/audio.png" width="12"></span>Audio</a>
+        <li role="presentation">
+            <a href="#photo" aria-controls="photo" role="tab" data-toggle="tab">
+                <span class="status-update-icon">
+                <img src="/static/images/icons/pv-white.png" width="12"></span>Photo<span
+                class="hide-div">/Video</span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#blog" aria-controls="blog" role="tab" data-toggle="tab">
+                <span class="status-update-icon">
+                    <img src="/static/images/icons/blog-white.png" width="12"></span>BlogPost
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#audio" aria-controls="audio" role="tab" data-toggle="tab">
+                <span class="status-update-icon">
+                <img src="/static/images/icons/audio.png" width="12"></span>Audio</a>
         </li>
     </ul>
 
-    
-
     <div class="tab-content">
         <!-- STATUS UPDATE -->
-        
+
         <!--status update text-->
         <div role="tabpanel" class="tab-pane active" id="main" ng-controller="StatusupdateCtrl">
             <div class="status-update-form-wrapper">
-                            <textarea rows="3" class="update-status" ng-model="body"
-                                      placeholder="What's on your mind?" id="body-id"></textarea>
-            </div>
+                            <textarea rows="3" class="update-status" ng-model="body" placeholder="What's on your mind?" id="body-id"></textarea>
+                            <form id="fileupload" action="/test" method="POST"
+                                  enctype="multipart/form-data">
+                                  {% csrf_token %} 
+                                <!-- Redirect browsers with JavaScript disabled to the origin page -->
+                                <noscript>
+                                    <input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/">
+                                </noscript>
+                                <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                                
+                                <!-- The table listing the files available for upload/download -->
+                                <div role="presentation" style="padding:0 5px 0px; text-align:center;">
+                                    <div class="files">
+                                    </div>
+                                    <div class="row fileupload-buttonbar"></div>
+                                    <div class="clear"></div>
+                                </div>
             <div class="status-update-bottom">
                 <div class="status-update-bottom-icons">
                     <ul class="list-inline">
-                        <li role="presentation"><span><a href="#photo" aria-controls="photo" role="tab"
-                                                         data-toggle="tab"><img
-                                src="/static/images/icons/photo.png" width="18"></a></span></li>
+                        <li role="presentation"><span class="fileinput-button"><input id="fileupload" type="file" name="files[]" multiple><img
+                                src="/static/images/icons/photo.png" width="18"></span></li>
                         <li><span><img src="/static/images/icons/tag.png" width="18"></span></li>
                         <li><span><img src="/static/images/icons/location.png" width="18"></span></li>
                     </ul>
@@ -39,18 +61,23 @@
                 <div class="post-update-button" id = "post-update-button">Post</div>
                 <div class="clear"></div>
             </div>
+             </form>
+                         </div>
         </div>
         <!--status update photo/video-->
         <div role="tabpanel" class="tab-pane" id="photo">
             <div class="status-update-form-wrapper">
-                <textarea rows="1" class="update-status" placeholder="Write something..."></textarea>
+                <textarea rows="1" class="update-status" placeholder="Add Caption"></textarea>
             </div>
             <!-- The file upload form used as target for the file upload widget -->
-            <form id="fileupload" action="http://41.160.30.173:3002/api/photos/photoalbum/e1c5d682-c7ec-11e4-9a71-685b35b7fe48/photos/" method="POST"
+
+            <form id="fileupload" action="#" method="POST"
                   enctype="multipart/form-data">
+                  {% csrf_token %} 
                 <!-- Redirect browsers with JavaScript disabled to the origin page -->
-                <noscript><input type="hidden" name="redirect"
-                                 value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
+                <noscript>
+                    <input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/">
+                </noscript>
                 <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
                 <div class="drag-drop-photo">Drag and drop files to upload<br>OR<br>
                     <!-- The fileinput-button span is used to style the file input field as button -->
@@ -67,7 +94,7 @@
                     <div class="clear"></div>
                     <div class="row fileupload-buttonbar">
                         <div class="post-photo-bottom">
-                            <button type="submit" class="post-update-button start">Upload</button>
+                            <button type="submit" class="post-update-button start" id="id-upload-photo">Post</button>
                             <div class="clear"></div>
                         </div>
                     </div>
@@ -81,21 +108,21 @@
             <div class="blog-post-body">
                 <input type="text" class="form-control" placeholder="Title" id="id-blogpost-title" style="margin-bottom:10px;" >
                 <textarea rows="3" class="form-control" placeholder="Message" id="id-blogpost-body" ></textarea>
-            <span class="btn add-photo-button fileinput-button" style="margin-top:10px;">
-            <span class="add-photo-button-icon">Add Photos...</span>
-            <!-- The file input field used as target for the file upload widget -->
-            <input id="fileupload" type="file" name="files[]" multiple>
-            </span>
-            </div>
-            <div class="status-update-bottom">
-                <div class="status-update-bottom-icons">
-                    <ul class="list-inline">
-                        <li><span>Posting to Frank's Blog</span></li>
-                    </ul>
+                <span class="btn add-photo-button fileinput-button" style="margin-top:10px;">
+                <span class="add-photo-button-icon">Add Photos...</span>
+                <!-- The file input field used as target for the file upload widget -->
+                <input id="id-file-blogpost" type="file" name="files[]" multiple>
+                </span>
                 </div>
-                <div id="create-blogpost" class="post-update-button" >Post</div>
-                <div class="clear"></div>
-            </div>
+                <div class="status-update-bottom">
+                    <div class="status-update-bottom-icons">
+                        <ul class="list-inline">
+                            <li><span>Posting to Frank's Blog</span></li>
+                        </ul>
+                    </div>
+                    <div id="create-blogpost" class="post-update-button" >Post</div>
+                    <div class="clear"></div>
+                </div>
         </div>
         <!--blog post ends-->
         <!--audio blog starts-->
@@ -158,7 +185,7 @@
         <!--audio blog ends-->
     </div>
 </div>
-    <!-- The template to display files available for upload -->
+
 <script id="template-upload" type="text/x-tmpl">
 {% verbatim %}
     <div class="template-upload fade">
