@@ -93,24 +93,24 @@
         encoderWorker.postMessage({ cmd: 'finish'});
         encoderWorker.onmessage = function(e) {
             if (e.data.cmd == 'data') {
-
+			
 				console.log("Done converting to Mp3");
 				log.innerHTML += "\n" + "Done converting to Mp3";
 
 				/*var audio = new Audio();
 				audio.src = 'data:audio/mp3;base64,'+encode64(e.data.buf);
 				audio.play();*/
-
+                
 				//console.log ("The Mp3 data " + e.data.buf);
-
+				
 				var mp3Blob = new Blob([new Uint8Array(e.data.buf)], {type: 'audio/mp3'});
 				uploadAudio(mp3Blob);
-
+				
 				var url = 'data:audio/mp3;base64,'+encode64(e.data.buf);
 				var li = document.createElement('li');
 				var au = document.createElement('audio');
 				var hf = document.createElement('a');
-
+				  
 				au.controls = true;
 				au.src = url;
 				hf.href = url;
@@ -119,17 +119,17 @@
 				li.appendChild(au);
 				//li.appendChild(hf);
 				recordingslist.appendChild(li);
-
+				
             }
         };
 	  };
-
+	  
 	  fileReader.readAsArrayBuffer(blob);
-
+	  
       currCallback(blob);
     }
-
-
+	
+	
 	function encode64(buffer) {
 		var binary = '',
 			bytes = new Uint8Array( buffer ),
