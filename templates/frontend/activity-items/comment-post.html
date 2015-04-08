@@ -6,12 +6,16 @@
     <div class="comment-owner-pix"><img src= "/static/images/ico_placeholder_60.png" width="100%"></div>
 {% endif %}
 
+{% comment %} 
+    {{ 1284101485|timestamp2day }}/{{ 1284101485|timestamp2month }}
+    {{ activity.object.id|get_random }}
+{% endcomment %} 
 
 <div class="post-comment-form-wrap">
 
     <div class="post-comment-card">
         <div class="post-comment-form">
-            <textarea rows="1" placeholder="Add a comment" id = "comment-body" name = "comment-body" ></textarea>
+            <textarea rows="1" placeholder="Add a comment" id = "comment-body-{{activity.object.id}}" ></textarea>
         </div>
         <div class="add-comment-socials">
             <img src="/static/images/icons/location.png" width="18"><img
@@ -28,13 +32,14 @@
 
 $('#id-comment-{{activity.object.id}}').click(function() { 
     console.log('comment to be posted ');
-    body_text = $('textarea#comment-body').val();
+    body_text = $('#comment-body-{{activity.object.id}}').val();
 
     var payload = {
         author: '{{ username }}',
         object_id: '{{ activity.object.id }}',
         body: body_text
     } 
+    console.log(payload);
 
     $.ajax({
         url: 'http://192.168.10.123:8000/api/content/{{ activity.object.id }}/comments/',
