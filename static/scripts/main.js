@@ -31,16 +31,18 @@ define(["jquery", "bootstrap", "recordmp3", "mikes-modal", "photo-modal", "resiz
                   $.each(data.hits.hits, function(idx, person){
                       $results_panel.append(
                           "<div class='search-user-card'>" +
-                              "<div class='search-user-pix'><img src='static/images/pix.png' width='100%'></div>" +
-                              "<div class='search-user-wrapper'>" +
-                                  "<a class='search-user-name'>" + person._source.firstname + " " + person._source.lastname + "<span>" + person._source.username + "</span>" +
-                                  "</a>" +
-                              "</div>" +
+                              "<a href='/profile/" + person._source.username + "'>" +
+                                  "<div class='search-user-pix'><img src='static/images/pix.png' width='100%'></div>" +
+
+                                  "<div class='search-user-wrapper'>" +
+                                      "<a href='/profile/" + person._source.username + "' class='search-user-name'>" + person._source.firstname + " " + person._source.lastname + "<span>" + person._source.username + "</span>" +
+                                      "</a>" +
+                                  "</div>" +
+                              "</a>" +
                               "<div class='clear'></div>" +
                           "</div>"
                       );
                   });
-
                   $("#search-results-count").html(data.hits.total);
               },
               error: function () {
@@ -59,6 +61,7 @@ define(["jquery", "bootstrap", "recordmp3", "mikes-modal", "photo-modal", "resiz
       }
   });
 
+   //listener to close panel when user clicks anywhere on screen
   $(document).mouseup(function(){
       $('#search-box').hide();
       $('#id-search-text').val("");
