@@ -6,7 +6,6 @@ from django.utils.timesince import timesince
 
 from django.utils.translation import ugettext, ungettext
 
-
 from datetime import date, timedelta, datetime
 import random
 
@@ -17,6 +16,7 @@ register = template.Library()
 def access(value, arg):
     return value[arg]
 
+
 @register.filter(name='getitem')
 def getitem(item, arg):
     return item[arg]
@@ -24,7 +24,7 @@ def getitem(item, arg):
 
 # @register.filter(name='get_random')
 # def get_random():
-# 	try:
+# try:
 # 		res = str(random.random()* 100)
 # 	except TemplateSyntaxError, e:
 # 		raise e
@@ -37,23 +37,24 @@ def test_filter(value):
 
 @register.filter(name='timedelta')
 def timedelta(value, arg=None):
-	#print ' Run time delta >> '
-	try:
-		if not value:
-			return ''
-		# converting unicode to datetime
-		value  = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
-		if arg:
-			cmp = arg
-		else:
-			cmp = datetime.now()
-		if value > cmp:
-			return "in %s" % timesince(cmp,value)
-		else:
-			return "%s ago" % timesince(value,cmp)
-	except Exception, e:
-		raise e
-	
+    #print ' Run time delta >> '
+    try:
+        if not value:
+            return ''
+        # converting unicode to datetime
+        value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+        if arg:
+            cmp = arg
+        else:
+            cmp = datetime.now()
+        if value > cmp:
+            return "in %s" % timesince(cmp, value)
+        else:
+            return "%s ago" % timesince(value, cmp)
+    except Exception, e:
+        raise e
+
+
 @register.filter(name='timesince_human')
 def humanize_timesince(date):
     delta = datetime.now() - datetime.strptime(date, '%Y-%m-%dT%H:%M:%S.%f')
