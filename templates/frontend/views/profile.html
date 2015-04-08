@@ -1,489 +1,429 @@
 {% extends 'frontend/base.html' %}
 
 {% block body %}
-<body>
-{% include 'frontend/_header.html' %}
-<!--container ends-->
-</div>
-<div class="container">
-<div class="row">
-{% include 'frontend/_cover-profile.html' %}
-</div>
-<div class="row xtra-pad">
-
-	{% ifequal profile_info 'error' %}
-
-	{% else %}
-<!--left column-->
-<!--announcement bar
-<div class="col-sm-cards">
-        	<div class="col-sm-cards-header">
-            <div class="col-sm-padding">
-            	<div class="col-sm-cards-about-title"><span class="span-about"><img src="/static/images/icons/profile.png" width="18" height="18"></span>About</div>
-            	<div class="col-sm-label">X</div>
-                <div class="clear"></div>
-             </div>
+    <body>
+    {% include 'frontend/_header.html' %}
+    <!--container ends-->
+    </div>
+    <div class="container">
+        <div class="row">
+            {% include 'frontend/_cover-profile.html' %}
         </div>
-        <div class="col-sm-cards-body">here</div>
- </div>
-<!--about user ends-->
-	 <div class="col-lg-3 col-md-3 col-sm-3 left-col">
-<!--about user starts-->
-<div class="col-sm-cards">
-        	<div class="col-sm-cards-header">
-            <div class="col-sm-padding">
-            	<div class="col-sm-cards-about-title"><span class="span-about"><img src="/static/images/icons/profile.png" width="18" height="18"></span>About</div>
-            	<div class="col-sm-label">Edit</div>
-                <div class="clear"></div>
-             </div>
-        </div>
-        <div class="col-sm-cards-body">
-        	<div class="list-group" style="margin-bottom:5px;">
-              <a href="#" class="list-group-item active" style="padding:3px 35px; background-image:url(/static/images/icons/location.png); background-repeat:no-repeat; background-position: 3% 50%;">
-                <span class="list-group-item-heading" style="padding-bottom:3px; margin-bottom:3px; font-weight:700; line-height:normal; font-size:12px;">
+        <div class="row xtra-pad">
+
+            {% ifequal profile_info 'error' %}
+
+            {% else %}
+                <!--left column-->
+                <!--announcement bar
+                <div class="col-sm-cards">
+                            <div class="col-sm-cards-header">
+                            <div class="col-sm-padding">
+                                <div class="col-sm-cards-about-title"><span class="span-about"><img src="/static/images/icons/profile.png" width="18" height="18"></span>About</div>
+                                <div class="col-sm-label">X</div>
+                                <div class="clear"></div>
+                             </div>
+                        </div>
+                        <div class="col-sm-cards-body">here</div>
+                 </div>
+                <!--about user ends-->
+                <div class="col-lg-3 col-md-3 col-sm-3 left-col">
+                    <!--about user starts-->
+                    <div class="col-sm-cards">
+                        <div class="col-sm-cards-header">
+                            <div class="col-sm-padding">
+                                <div class="col-sm-cards-about-title"><span class="span-about"><img
+                                        src="/static/images/icons/profile.png" width="18" height="18"></span>About
+                                </div>
+                                <div class="col-sm-label">Edit</div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-cards-body">
+                            <div class="list-group" style="margin-bottom:5px;">
+                                <a href="#" class="list-group-item active"
+                                   style="padding:3px 35px; background-image:url(/static/images/icons/location.png); background-repeat:no-repeat; background-position: 3% 50%;">
+                <span class="list-group-item-heading"
+                      style="padding-bottom:3px; margin-bottom:3px; font-weight:700; line-height:normal; font-size:12px;">
 
 									South Africa
 
 								</span>
-                <p class="list-group-item-text" style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">Lives in Randburg</p>
-              </a>
-            </div>
-            <div class="list-group" style="margin-bottom:5px;">
-               <a href="#" class="list-group-item" style="padding:3px 35px; background-image:url(/static/images/icons/friends.png); background-repeat:no-repeat; background-position: 3% 50%;">
-                <span class="list-group-item-heading" style="padding-bottom:3px; margin-bottom:3px; font-weight:700; line-height:normal; font-size:12px;">Gender</span>
-                <p class="list-group-item-text" style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">
-									{% if profile_info.gender %}
-										{{ profile_info.gender }}
-									{% else %}
-										None
-									{% endif %}
 
-								</p>
-              </a>
-            </div>
-            <div class="list-group" style="margin-bottom:5px;">
-               <a href="#" class="list-group-item" style="padding:3px 35px; background-image:url(/static/images/icons/like.png); background-repeat:no-repeat; background-position: 3% 50%;">
-                <span class="list-group-item-heading" style="padding-bottom:3px; margin-bottom:3px; font-weight:700; line-height:normal; font-size:12px;">Relationship Status</span>
-                <p class="list-group-item-text" style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">Married</p>
-              </a>
-            </div>
-            <div class="list-group" style="margin-bottom:5px;">
-               <a href="#" class="list-group-item" style="padding:3px 35px; background-image:url(/static/images/icons/tag.png); background-repeat:no-repeat; background-position: 3% 50%;">
-                <span class="list-group-item-heading" style="padding-bottom:3px; margin-bottom:3px; font-weight:700; line-height:normal; font-size:12px;">Interest</span>
-                <p class="list-group-item-text" style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">Movies - Sports - Travel</p>
-              </a>
-            </div>
-<!--content body ends-->
-        </div>
- </div>
-<!--about user ends-->
-     <!--user details-->
-   	   <div class="col-sm-cards" id="myAlert">
-        	<div class="col-sm-cards-header">
-            <div class="col-sm-padding">
-            	<div class="col-sm-cards-about-title"><span class="span-about"><img src="/static/images/icons/profile.png" width="18" height="18"></span>Friends</div>
-            	<div class="col-sm-label"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button></div>
-                <div class="clear"></div>
-             </div>
-        </div>
-        <div class="col-sm-cards-body">
-        	 <!--friend1 starts-->
-            <div class="friends-wrapper">
-           	<div class="row">
-   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
-      <div class="thumbnail">
-      <div class="caption">
-                 <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
-                <a  href="" class="add-photo-button">View</a>
-            </div>
-         <img src="/static/images/people/guy-1.jpg">
-      </div>
-   </div>
-   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
-      <div class="thumbnail">
-      <div class="caption">
-                 <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
-                <a  href="" class="add-photo-button">View</a>
-            </div>
-         <img src="/static/images/people/guy-2.jpg">
-      </div>
-   </div>
-   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
-      <div class="thumbnail">
-      <div class="caption">
-                 <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
-                <a  href="" class="add-photo-button">View</a>
-            </div>
-         <img src="/static/images/people/guy-4.jpg">
-      </div>
-   </div>
-   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
-      <div class="thumbnail">
-      <div class="caption">
-                 <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
-                <a  href="" class="add-photo-button">View</a>
-            </div>
-         <img src="/static/images/people/woman-3.jpg">
-      </div>
-   </div>
-   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
-      <div class="thumbnail">
-      <div class="caption">
-                 <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
-                <a  href="" class="add-photo-button">View</a>
-            </div>
-         <img src="/static/images/people/guy-1.jpg">
-      </div>
-   </div>
-   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
-      <div class="thumbnail">
-      <div class="caption">
-                 <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
-                <a  href="" class="add-photo-button">View</a>
-            </div>
-         <img src="/static/images/people/guy-4.jpg">
-      </div>
-   </div>
-   <div style="padding:10px 0 0 0;">
-        	<a href="#"><span><img style="margin-right:4px;" src="/static/images/icons/friends.png" width="12"></span>View More</a>
-        </div>
-</div>
-            </div>
-        	<!--friend1 ends-->
-        </div>
-       </div>
-    <!--Photos starts-->
-   	   <div class="col-sm-cards" id="myAlert">
-        	<div class="col-sm-cards-header">
-            <div class="col-sm-padding">
-            	<div class="col-sm-cards-about-title"><span class="span-about"><img src="/static/images/icons/photo.png" width="18" height="18"></span>Photos</div>
-            	<div class="col-sm-label"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button></div>
-                <div class="clear"></div>
-             </div>
-        </div>
-        <div class="col-sm-cards-body">
-        	 <!--friend1 starts-->
-            <div class="friends-wrapper" style="border-bottom:0px; padding-bottom:0px;">
-           	<div class="row">
-   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
-      <div class="thumbnail">
-      <div class="caption">
-                 <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
-                <a  href="" class="add-photo-button">View</a>
-            </div>
-         <img src="/static/images/people/guy-1.jpg">
-      </div>
-   </div>
-   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
-      <div class="thumbnail">
-      <div class="caption">
-                 <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
-                <a  href="" class="add-photo-button">View</a>
-            </div>
-         <img src="/static/images/people/guy-2.jpg">
-      </div>
-   </div>
-   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
-      <div class="thumbnail">
-      <div class="caption">
-                 <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
-                <a  href="" class="add-photo-button">View</a>
-            </div>
-         <img src="/static/images/people/guy-4.jpg">
-      </div>
-   </div>
-   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
-      <div class="thumbnail">
-      <div class="caption">
-                 <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
-                <a  href="" class="add-photo-button">View</a>
-            </div>
-         <img src="/static/images/people/woman-3.jpg">
-      </div>
-   </div>
-   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
-      <div class="thumbnail">
-      <div class="caption">
-                 <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
-                <a  href="" class="add-photo-button">View</a>
-            </div>
-         <img src="/static/images/people/guy-4.jpg">
-      </div>
-   </div>
-   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
-      <div class="thumbnail">
-      	<div class="caption">
-                 <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
-                <a  href="" class="add-photo-button">View</a>
-            </div>
-         <img src="/static/images/people/woman-3.jpg">
-      </div>
-   </div>
-</div>
-            </div>
-        	<!--photos ends-->
-        </div>
-       </div>
-     </div>
-<!--left column ends-->
-<!--middle column starts-->
-     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 center-col">
-<!--status update card-->
-<?php require("includes/status-update.php") ?>
-<!--status update card ends-->
-<!--activity card0 starts-->
-     	<div class="activity-stream-wrapper">
-        	<div class="activity-card">
-    <!--activity header starts-->
-            <div class="activity-header">
-            	<div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
-                <div class="content-owner-wrapper">
-                	<div class="content-owner-name">Paul Imisi</div>
-                    <div class="activity-verb">uploaded a new video</div>
-                </div>
-                <div class="status-update-timestamp">2hours ago</div>
-            <div class="clear"></div>
-            </div>
-   <!--activity header stops-->
-   <!--Photo in post-->
-   			<div class="photo-in-post-wrapper">
-   				<div class="photo-in-status-update embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/UFYIsryxaSM?list=PL2cdIMMc473hMLjtxan9kuoLgiIILQfMW" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="text-content">
-            The project "Women For Change Initiative" was established in 2010 to sensitise, empower and mobilise women to participate actively in governance.
-			</div>
-            <!--content stats-->
-            <div class="content-stats-wrapper">
-            	<div class="content-stats">82 Likes <span style="margin:0 5px" class="glyphicon glyphicon-asterisk"></span>14 Comments</div>
-                <div class="more-content"><img src="/static/images/icons/more.png" width="40" ></span></div>
-            	<div class="clear"></div>
-            </div>
-            <!--interactin bar-->
-            <div class="interaction-bar">
-            	<ul class="list-inline">
-                    <li><span><img src="/static/images/icons/like.png" width="18" ></span> Like</li>
-                    <li><span><img src="/static/images/icons/comment.png" width="18" ></span> Comment</li>
-                    <li><span><img src="/static/images/icons/share.png" width="18" ></span> Share</li>
-            	</ul>
-            </div>
-            <!--comment section-->
-            <!--comment card1-->
-            <div class="comment-wrapper">
-            	<div class="comment-card">
-                	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
-                    <div class="comment-details">
-                    	<div class="comment-owner-name">Paul Imisi</div>
-                        <div class="comment-text">She has struggled relentlessly to awaken and empower the Nigerian woman through her various summits,</div>
+                                    <p class="list-group-item-text"
+                                       style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">Lives
+                                        in Randburg</p>
+                                </a>
+                            </div>
+                            <div class="list-group" style="margin-bottom:5px;">
+                                <a href="#" class="list-group-item"
+                                   style="padding:3px 35px; background-image:url(/static/images/icons/friends.png); background-repeat:no-repeat; background-position: 3% 50%;">
+                                    <span class="list-group-item-heading"
+                                          style="padding-bottom:3px; margin-bottom:3px; font-weight:700; line-height:normal; font-size:12px;">Gender</span>
+
+                                    <p class="list-group-item-text"
+                                       style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">
+                                        {% if profile_info.gender %}
+                                            {{ profile_info.gender }}
+                                        {% else %}
+                                            None
+                                        {% endif %}
+
+                                    </p>
+                                </a>
+                            </div>
+                            <div class="list-group" style="margin-bottom:5px;">
+                                <a href="#" class="list-group-item"
+                                   style="padding:3px 35px; background-image:url(/static/images/icons/like.png); background-repeat:no-repeat; background-position: 3% 50%;">
+                                    <span class="list-group-item-heading"
+                                          style="padding-bottom:3px; margin-bottom:3px; font-weight:700; line-height:normal; font-size:12px;">Relationship Status</span>
+
+                                    <p class="list-group-item-text"
+                                       style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">
+                                        Married</p>
+                                </a>
+                            </div>
+                            <div class="list-group" style="margin-bottom:5px;">
+                                <a href="#" class="list-group-item"
+                                   style="padding:3px 35px; background-image:url(/static/images/icons/tag.png); background-repeat:no-repeat; background-position: 3% 50%;">
+                                    <span class="list-group-item-heading"
+                                          style="padding-bottom:3px; margin-bottom:3px; font-weight:700; line-height:normal; font-size:12px;">Interest</span>
+
+                                    <p class="list-group-item-text"
+                                       style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">
+                                        Movies - Sports - Travel</p>
+                                </a>
+                            </div>
+                            <!--content body ends-->
+                        </div>
                     </div>
-                <div class="clear"></div>
-                </div>
-                <div class="comment-socials"><span><img src="/static/images/icons/like.png" width="18" ><br>15</span></div>
-            <div class="clear"></div>
-            </div>
-            <!--post comment-->
-            <div class="post-comment-wrapper">
-            	<div class="comment-owner-pix"><img src="/static/images/pix.jpg" width="100%"></div>
-                <div class="post-comment-form-wrap">
-               	<div class="post-comment-card">
-                	 <div class="post-comment-form">
-                      <textarea rows="1" placeholder="Add a comment"></textarea>
-                	</div>
-                     <div class="add-comment-socials">
-                    <img src="/static/images/icons/location.png" width="18" ><img src="/static/images/icons/photo-grey.png" width="18" >
+                    <!--about user ends-->
+                    <!--user details-->
+                    <div class="col-sm-cards" id="myAlert">
+                        <div class="col-sm-cards-header">
+                            <div class="col-sm-padding">
+                                <div class="col-sm-cards-about-title"><span class="span-about"><img
+                                        src="/static/images/icons/profile.png" width="18" height="18"></span>Friends
+                                </div>
+                                <div class="col-sm-label">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-cards-body">
+                            <!--friend1 starts-->
+                            <div class="friends-wrapper">
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
+                                                <a href="" class="add-photo-button">View</a>
+                                            </div>
+                                            <img src="/static/images/people/guy-1.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
+                                                <a href="" class="add-photo-button">View</a>
+                                            </div>
+                                            <img src="/static/images/people/guy-2.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
+                                                <a href="" class="add-photo-button">View</a>
+                                            </div>
+                                            <img src="/static/images/people/guy-4.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
+                                                <a href="" class="add-photo-button">View</a>
+                                            </div>
+                                            <img src="/static/images/people/woman-3.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
+                                                <a href="" class="add-photo-button">View</a>
+                                            </div>
+                                            <img src="/static/images/people/guy-1.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
+                                                <a href="" class="add-photo-button">View</a>
+                                            </div>
+                                            <img src="/static/images/people/guy-4.jpg">
+                                        </div>
+                                    </div>
+                                    <div style="padding:10px 0 0 0;">
+                                        <a href="#"><span><img style="margin-right:4px;"
+                                                               src="/static/images/icons/friends.png" width="12"></span>View
+                                            More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--friend1 ends-->
+                        </div>
                     </div>
-                <div style="clear:left;"></div>
+                    <!--Photos starts-->
+                    <div class="col-sm-cards" id="myAlert">
+                        <div class="col-sm-cards-header">
+                            <div class="col-sm-padding">
+                                <div class="col-sm-cards-about-title"><span class="span-about"><img
+                                        src="/static/images/icons/photo.png" width="18" height="18"></span>Photos
+                                </div>
+                                <div class="col-sm-label">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-cards-body">
+                            <!--friend1 starts-->
+                            <div class="friends-wrapper" style="border-bottom:0px; padding-bottom:0px;">
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
+                                                <a href="" class="add-photo-button">View</a>
+                                            </div>
+                                            <img src="/static/images/people/guy-1.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
+                                                <a href="" class="add-photo-button">View</a>
+                                            </div>
+                                            <img src="/static/images/people/guy-2.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
+                                                <a href="" class="add-photo-button">View</a>
+                                            </div>
+                                            <img src="/static/images/people/guy-4.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
+                                                <a href="" class="add-photo-button">View</a>
+                                            </div>
+                                            <img src="/static/images/people/woman-3.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
+                                                <a href="" class="add-photo-button">View</a>
+                                            </div>
+                                            <img src="/static/images/people/guy-4.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp-less-pad-xs">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h4 style="padding:10px 0; font-weight:700;">Abayomi Peter</h4>
+                                                <a href="" class="add-photo-button">View</a>
+                                            </div>
+                                            <img src="/static/images/people/woman-3.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--photos ends-->
+                        </div>
+                    </div>
                 </div>
-                <div class="press-enter">Press enter to post comment</div>
-              </div>
-            <div class="clear"></div>
-            </div>
-            <!--post comment ends-->
-            <div class="more-comments">See 25 more</div>
-            </div>
-        </div>
-<!--activity card0 ends-->
-<?php require("includes/blog_post.htm"); ?>
-     </div>
-<!--middle column ends-->
-<!--right column starts-->
-     <div class="col-lg-3 col-md-3 col-sm-3 right-col">
-      <!--suggested friends-->
-   	   <div class="col-sm-cards" id="myAlert">
-        	<div class="col-sm-cards-header">
-            <div class="col-sm-padding">
-            	<div class="col-sm-cards-about-title"><span class="span-about"><img src="/static/images/icons/blogs.png" width="18" height="18"></span>Blogs</div>
-            	<div class="col-sm-label"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button></div>
+                <!--left column ends-->
+                <!--middle column starts-->
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 center-col">
+                    <!--status update card-->
+                    {% include 'frontend/_content-input-pane.html' %}
+                    <!--status update card ends-->
+
+                    <!-- activity starts here -->
+
+                    {% for activity in activities.list %}
+                        {% ifequal activity.object.type 'statusupdate' %}
+                            {% include 'frontend/activity-items/statusupdate.html' %}
+                        {% endifequal %}
+
+                        {% ifequal activity.object.type 'audio' %}
+                            {% include 'frontend/activity-items/audio.html' %}
+                        {% endifequal %}
+
+                        {% ifequal activity.object.type 'blogpost' %}
+                            {% include 'frontend/activity-items/blogpost.html' %}
+                        {% endifequal %}
+
+                        {% ifequal activity.object.type 'photo' %}
+                            <p>photo</p>
+                        {% endifequal %}
+
+                        {% ifequal activity.object.type 'photoalbum' %}
+                            <p>photo album</p>
+                        {% endifequal %}
+
+                    {% endfor %}
+                    <!-- activity ends here -->
+
+
+                    <?php require("includes/blog_post.htm"); ?>
+                </div>
+                <!--middle column ends-->
+                <!--right column starts-->
+                <div class="col-lg-3 col-md-3 col-sm-3 right-col">
+                    <!--suggested friends-->
+                    <div class="col-sm-cards" id="myAlert">
+                        <div class="col-sm-cards-header">
+                            <div class="col-sm-padding">
+                                <div class="col-sm-cards-about-title"><span class="span-about"><img
+                                        src="/static/images/icons/blogs.png" width="18" height="18"></span>Blogs
+                                </div>
+                                <div class="col-sm-label">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-cards-body" style="padding-top:7px;">
+                            <!--friend1 starts-->
+                            <div class="friends-wrapper" style="border-bottom:0px; padding-bottom:0;">
+                                <div class="row">
+                                    <!--blog post card1-->
+                                    <a href="blog_full_view.php">
+                                        <div class="blog-card">
+                                            <div class="comment-card">
+                                                <div class="comment-owner-pix-xs"><img src="/static/images/pix.jpg"
+                                                                                       width="100%"></div>
+                                                <div class="comment-details-xs">
+                                                    <div class="comment-owner-name-xs">This is my blog title: what a
+                                                        day!!!
+                                                    </div>
+                                                    <div class="comment-text" style="font-size:12px;">She has struggled
+                                                        relent...
+                                                    </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                            <div class="comment-socials"><span><img
+                                                    src="/static/images/icons/delete.png" width="12"></span></div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </a>
+                                    <!--blog post card1 ends-->
+                                    <!--blog post card2-->
+                                    <a href="blog_full_view.php">
+                                        <div class="blog-card">
+                                            <div class="comment-card">
+                                                <div class="comment-owner-pix-xs"><img src="/static/images/pix.jpg"
+                                                                                       width="100%"></div>
+                                                <div class="comment-details-xs">
+                                                    <div class="comment-owner-name-xs">This is my blog title: what a
+                                                        day!!!
+                                                    </div>
+                                                    <div class="comment-text" style="font-size:12px;">She has struggled
+                                                        relent...
+                                                    </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                            <div class="comment-socials"><span><img
+                                                    src="/static/images/icons/delete.png" width="12"></span></div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </a>
+                                    <!--blog post card2 ends-->
+                                    <!--blog post card3-->
+                                    <a href="blog_full_view.php">
+                                        <div class="blog-card">
+                                            <div class="comment-card">
+                                                <div class="comment-owner-pix-xs"><img src="/static/images/pix.jpg"
+                                                                                       width="100%"></div>
+                                                <div class="comment-details-xs">
+                                                    <div class="comment-owner-name-xs">This is my blog title: what a
+                                                        day!!!
+                                                    </div>
+                                                    <div class="comment-text" style="font-size:12px;">She has struggled
+                                                        relent...
+                                                    </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                            <div class="comment-socials"><span><img
+                                                    src="/static/images/icons/delete.png" width="12"></span></div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </a>
+                                    <!--blog post card3 ends-->
+                                </div>
+                            </div>
+                            <!--friend1 ends-->
+                        </div>
+                    </div>
+                    <div class="advert-wrapper">
+                        <div class="ad-section-header">
+                            <div class="sponsored-title">sponsored</div>
+                            <div class="create-ad-link">Create Ad</div>
+                            <div class="clear"></div>
+                        </div>
+                        <!--ad card begins-->
+                        <div class="ad-card">
+                            <div class="ad-image"><img src="/static/images/uploads/rado.png" width="100%"></div>
+                            <div class="ad-title">Timeless pieces from $120!</div>
+                            <div class="ad-link">www.buyright.co.za</div>
+                            <div class="ad-description">Loafers are arguable the best quality footwear that makes your
+                                feet stand out! Shop our wi...
+                            </div>
+                        </div>
+                        <!--ad card begins-->
+                        <div class="ad-card">
+                            <div class="ad-image"><img src="/static/images/uploads/rado.png" width="100%"></div>
+                            <div class="ad-title">Timeless pieces from $120!</div>
+                            <div class="ad-link">www.buyright.co.za</div>
+                            <div class="ad-description">Loafers are arguable the best quality footwear that makes your
+                                feet stand out! Shop our wi...
+                            </div>
+                        </div>
+                        <!--ad card ends-->
+                    </div>
+                </div>
+                <!--right column ends-->
                 <div class="clear"></div>
-             </div>
-        </div>
-        <div class="col-sm-cards-body" style="padding-top:7px;">
-        	 <!--friend1 starts-->
-            <div class="friends-wrapper" style="border-bottom:0px; padding-bottom:0;">
-                <div class="row">
-                <!--blog post card1-->
-                <a href="blog_full_view.php">
-    				<div class="blog-card">
-                            <div class="comment-card">
-                                <div class="comment-owner-pix-xs"><img src="/static/images/pix.jpg" width="100%"></div>
-                                <div class="comment-details-xs">
-                                    <div class="comment-owner-name-xs">This is my blog title: what a day!!!</div>
-                                    <div class="comment-text" style="font-size:12px;">She has struggled relent...</div>
-                                </div>
-                            <div class="clear"></div>
-                            </div>
-                            <div class="comment-socials"><span><img src="/static/images/icons/delete.png" width="12" ></span></div>
-                        <div class="clear"></div>
-                   </div>
-                   </a>
-                    <!--blog post card1 ends-->
-                     <!--blog post card2-->
-                     <a href="blog_full_view.php">
-    				<div class="blog-card">
-                            <div class="comment-card">
-                                <div class="comment-owner-pix-xs"><img src="/static/images/pix.jpg" width="100%"></div>
-                                <div class="comment-details-xs">
-                                    <div class="comment-owner-name-xs">This is my blog title: what a day!!!</div>
-                                    <div class="comment-text" style="font-size:12px;">She has struggled relent...</div>
-                                </div>
-                            <div class="clear"></div>
-                            </div>
-                            <div class="comment-socials"><span><img src="/static/images/icons/delete.png" width="12" ></span></div>
-                        <div class="clear"></div>
-                   </div>
-                   </a>
-                    <!--blog post card2 ends-->
-                    <!--blog post card3-->
-                    <a href="blog_full_view.php">
-    				<div class="blog-card">
-                            <div class="comment-card">
-                                <div class="comment-owner-pix-xs"><img src="/static/images/pix.jpg" width="100%"></div>
-                                <div class="comment-details-xs">
-                                    <div class="comment-owner-name-xs">This is my blog title: what a day!!!</div>
-                                    <div class="comment-text" style="font-size:12px;">She has struggled relent...</div>
-                                </div>
-                            <div class="clear"></div>
-                            </div>
-                            <div class="comment-socials"><span><img src="/static/images/icons/delete.png" width="12" ></span></div>
-                        <div class="clear"></div>
-                   </div>
-                   </a>
-                    <!--blog post card3 ends-->
                 </div>
-            </div>
-        	<!--friend1 ends-->
-        </div>
-       </div>
-     	<div class="advert-wrapper">
-        	<div class="ad-section-header">
-            	<div class="sponsored-title">sponsored</div>
-                <div class="create-ad-link">Create Ad</div>
-            	<div class="clear"></div>
-            </div>
-            <!--ad card begins-->
-            <div class="ad-card">
-            	<div class="ad-image"><img src="/static/images/uploads/rado.png" width="100%" ></div>
-                <div class="ad-title">Timeless pieces from $120!</div>
-                <div class="ad-link">www.buyright.co.za</div>
-                <div class="ad-description">Loafers are arguable the best quality footwear that makes your feet stand out! Shop our wi...</div>
-            </div>
-            <!--ad card begins-->
-            <div class="ad-card">
-            	<div class="ad-image"><img src="/static/images/uploads/rado.png" width="100%" ></div>
-                <div class="ad-title">Timeless pieces from $120!</div>
-                <div class="ad-link">www.buyright.co.za</div>
-                <div class="ad-description">Loafers are arguable the best quality footwear that makes your feet stand out! Shop our wi...</div>
-            </div>
-            <!--ad card ends-->
-        </div>
-     </div>
-<!--right column ends-->
-<div class="clear"></div>
-</div>
-<div class="footer"></div>
-</div>
-<script type='text/javascript'>//<![CDATA[
+                <div class="footer"></div>
+                </div>
 
-var myApp = angular.module('myApp', ['ui.bootstrap']);
+                </body>
 
-//myApp.directive('myDirective', function() {});
-//myApp.factory('myService', function() {});
-
-function MyCtrl($scope) {
-    $scope.name = 'Superhero';
-}
-//]]>
-
-</script>
-<script type="text/javascript">
-var resizeTextarea = function() {
-    this.style.height = "";
-
-    var
-        $this = $(this),
-        outerHeight = $this.outerHeight(),
-        scrollHeight = this.scrollHeight,
-        innerHeight = $this.innerHeight(),
-        magic = outerHeight - innerHeight;
-    this.style.height = scrollHeight + magic + "px";
-};
-$('textarea')
-    .keydown(resizeTextarea)
-    .keyup(resizeTextarea)
-    .change(resizeTextarea)
-    .focus(resizeTextarea);
-</script>
-<script>
-  $(function () {
-    $('#myTab a:first').tab('show')
-  })
-</script>
-<!-- The template to display files available for upload -->
-
-<!-- The template to display files available for download -->
-
-<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-<script src="js/vendor/jquery.ui.widget.js"></script>
-<!-- The Templates plugin is included to render the upload/download listings -->
-<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
-<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-<!-- The Canvas to Blob plugin is included for image resizing functionality -->
-<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
-<!-- blueimp Gallery script -->
-<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<script src="js/jquery.iframe-transport.js"></script>
-<!-- The basic File Upload plugin -->
-<script src="js/jquery.fileupload.js"></script>
-<!-- The File Upload processing plugin -->
-<script src="js/jquery.fileupload-process.js"></script>
-<!-- The File Upload image preview & resize plugin -->
-<script src="js/jquery.fileupload-image.js"></script>
-<!-- The File Upload audio preview plugin -->
-<script src="js/jquery.fileupload-audio.js"></script>
-<!-- The File Upload video preview plugin -->
-<script src="js/jquery.fileupload-video.js"></script>
-<!-- The File Upload validation plugin -->
-<script src="js/jquery.fileupload-validate.js"></script>
-<!-- The File Upload user interface plugin -->
-<script src="js/jquery.fileupload-ui.js"></script>
-<!-- The main application script -->
-<script src="js/main.js"></script>
-<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
-<!--[if (gte IE 8)&(lt IE 10)]>
-<script src="js/cors/jquery.xdr-transport.js"></script>
-<![endif]-->
-</body>
-
-{% endifequal %}
+            {% endifequal %}
 
 {% endblock %}
