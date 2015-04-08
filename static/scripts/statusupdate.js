@@ -1,5 +1,7 @@
-define(['jquery'], function ($) {
+define('yookore.statusupdate', function (require) {
   console.log('loaded statusupdate module')
+
+  require('./audio')
 
   // Monitoring status update photo
 

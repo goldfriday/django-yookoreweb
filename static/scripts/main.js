@@ -1,8 +1,6 @@
 
 define(["jquery", "bootstrap", "recordmp3", "mikes-modal", "photo-modal", "resize-textarea", "bootstrap3_player", "jquery.ui.widget", "tmpl", "load-image", "load-image-orientation", "load-image-meta", "load-image-exif", "load-image-exif-map", "canvas-to-blob", "jquery.iframe-transport", "jquery.fileupload", "jquery.fileupload-process", "jquery.fileupload-image", "jquery.fileupload-audio", "jquery.fileupload-video", "jquery.fileupload-validate", "jquery.fileupload-ui", "jquery.message", "main", "jive", "jive.oo.Class", "rest", "jquery.ba-bbq", "jive.RestService"], function($, bootstrap, recordmp3, mikesModal, photoModal, resizeTextarea, bootstrapPlayer, uiwidget, tmpl, loadimage, loadimageOrient, loadimageMeta, loadImageExif, loadImageExifMap, canvasToBlob, $IFrameTransport, $Fileupload, $FileuploadProcess, $FileUploadImage, $FileuploadAudio, $FileuploadVideo, $FileuploadValidate, $FileuploadUI, $Message, main, namespace, Class, rest, $deparam, RestService) {
-  /*define(function(require) {
-      var mod = require("./relative/name");
-  });*/
+  
   $(function() {
     console.log('loading main app module');
   });
@@ -14,49 +12,56 @@ define(["jquery", "bootstrap", "recordmp3", "mikes-modal", "photo-modal", "resiz
   // search for first name for now
   var uri = "http://192.168.10.20:9200/info/users/_search?q=firstname:";
 
-  $("#id-search-text").keypress(function (e) {
+
+  $("#id-search-text").keyup(function(e){
       var query = $('#id-search-text').val();
-      uri = 'search/' + query;
-      //console.log('The text typed ' + uri+ query);
 
       if (query.length >= 3) {
-          console.log('search-->');
+          console.log('searching...');
+
+          $("#search-box").show();
+
           $.ajax({
-              url: uri,
+              url: uri + query + " ",
               type: 'GET',
               success: function (data, status, xhr) {
-                  console.log('Search from keypress called');
-                  console.log(data);
-                  //window.location = uri;
+                  var $results_panel = $("#search-results");
+                  $results_panel.html("");
 
+                  $.each(data.hits.hits, function(idx, person){
+                      $results_panel.append(
+                          "<div class='search-user-card'>" +
+                              "<div class='search-user-pix'><img src='static/images/pix.png' width='100%'></div>" +
+                              "<div class='search-user-wrapper'>" +
+                                  "<a class='search-user-name'>" + person._source.firstname + " " + person._source.lastname + "<span>" + person._source.username + "</span>" +
+                                  "</a>" +
+                              "</div>" +
+                              "<div class='clear'></div>" +
+                          "</div>"
+                      );
+                  });
+
+                  $("#search-results-count").html(data.hits.total);
               },
               error: function () {
-                  console.log('Ajax error occurred');
+                  console.log('could not retrieve search results.');
+                  $("#search-results").html("<h3>Could not retrieve search results.</h3>");
               }
-          });
-
+          });  
       }
   });
-  // works
-  $("#id-search-text").change(function () {
-      var query = $('#id-search-text').val();
-      uri = 'search/' + query;
-      //uri = 'test';
-      console.log('The text changed ** ' + query);
-      $.ajax({
-          //url: 'search/'+ query,
-          url: uri,
-          type: 'GET',
-          success: function (data, status, xhr) {
-              console.log('Search method from change called...');
-              console.log(data);
-              //window.location = uri;
 
-          },
-          error: function () {
-              console.log('An error occurred');
-          }
-    });
+  //close panel
+  $(document).keyup(function(event) {
+      if(event.which === 27) {
+          $('#search-box').hide();
+          $('#id-search-text').val();
+      }
+  });
+
+  $(document).mouseup(function(){
+      $('#search-box').hide();
+      $('#id-search-text').val("");
   });
 
   // Adverts

@@ -131,18 +131,20 @@
         <!--blog post ends-->
         <!--audio blog starts-->
         <div role="tabpanel" class="tab-pane" id="audio">
-            <div class="audio-post-body" style="text-align:center;">
-                <textarea rows="1" class="update-status" placeholder="Write something..."></textarea>
+          <div class="audio-post-body" data-username="{{ username }}" style="text-align:center;">
+                <textarea rows="1" id="audio-caption" class="update-status" placeholder="Write something..."></textarea>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn audio-blog-button" data-toggle="modal"
                         data-target="#myModal">
                     Record Your Message
                 </button>
+
                 <br>OR<br>
+
              <span class="btn add-photo-button fileinput-button" style="margin-top:10px;">
             <span class="add-photo-button-icon">Upload Audio Message</span>
             <!-- The file input field used as target for the file upload widget -->
-            <input id="fileupload" type="file" name="files[]" multiple>
+            <input id="audioFileUpload" type="file" name="file" multiple>
             </span>
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -160,7 +162,7 @@
                                 <div id="recorder-wrap">
                                     <div id="recorder">
                                         <button class="btn reg-audio-button"
-                                                onclick="startRecording(this);">start recording
+                                                onclick="startRecording(this);">record
                                         </button>
                                         <button class="btn reg-audio-button-stop"
                                                 onclick="stopRecording(this);" disabled>stop
@@ -182,7 +184,7 @@
                 </div>
             </div>
             <div class="status-update-bottom">
-                <div class="post-update-button">Post</div>
+                <div id="post-audio" class="post-update-button">Post</div>
                 <div class="clear"></div>
             </div>
         </div>
