@@ -29,12 +29,13 @@
     <div class="tab-content">
         <!-- STATUS UPDATE -->
 
-        <!--status update text-->
-        <div role="tabpanel" class="tab-pane active" id="main" ng-controller="StatusupdateCtrl">
-            <div class="status-update-form-wrapper">
-                <textarea rows="3" class="update-status" ng-model="body" placeholder="What's on your mind?" id="body-id"></textarea>
 
-                <form id="fileupload" action="" method="POST"
+        <!--status update text-->
+        <div role="tabpanel" class="tab-pane active" id="main">
+            <div class="status-update-form-wrapper">
+                <textarea rows="3" class="update-status" placeholder="What's on your mind?" id="body-id"></textarea>
+            </div>
+                <form class="fileupload" action="/test" method="POST"
                       enctype="multipart/form-data">
                       {% csrf_token %} 
                     <!-- Redirect browsers with JavaScript disabled to the origin page -->
@@ -42,35 +43,32 @@
                         <input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/">
                     </noscript>
                     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-                    
-                    <!-- The table listing the files available for upload/download -->
+                     <!-- The table listing the files available for upload/download -->
                     <div role="presentation" style="padding:0 5px 0px; text-align:center;">
                         <div class="files">
                         </div>
                         <div class="row fileupload-buttonbar"></div>
                         <div class="clear"></div>
                     </div>
-                <div class="status-update-bottom" style="overflow: hidden">
-                    <div class="status-update-bottom-icons">
-                        <ul class="list-inline">
-                            <li role="presentation">
-                                <span class="fileinput-button">
-                                    <input id="statusupdate-photo-file" type="file" name="files[]" multiple>
-                                    <!-- <input id="blogpost-photo-file" type="file" name="files[]" multiple> -->
+                    
+                    <div class="status-update-bottom" style="overflow: hidden">
+                        <div class="status-update-bottom-icons">
+                            <ul class="list-inline">
+                                <li role="presentation">
+                                    <span class="fileinput-button">
+                                        <img src="/static/images/icons/photo.png" width="18">
+                                        <input id="statusupdate-photo-file" type="file" name="files[]" multiple onchange="handleFiles(this.files)">
+                                    </span>
+                                </li>
+                                <li><span><img src="/static/images/icons/tag.png" width="18"></span></li>
+                                <li><span><img src="/static/images/icons/location.png" width="18"></span></li>
+                            </ul>
+                        </div>
 
-                                    <img src="/static/images/icons/photo.png" width="18">
-                                </span>
-                            </li>
-                            <li><span><img src="/static/images/icons/tag.png" width="18"></span></li>
-                            <li><span><img src="/static/images/icons/location.png" width="18"></span></li>
-                        </ul>
+                        <div class="post-update-button" id = "post-update-button">Post</div>
+                        <div class="clear"></div>
                     </div>
-                    <div class="post-update-button" id = "post-update-button">Post</div>
-                    <div class="clear"></div>
-                </div>
-            </form>
-
-         </div>
+                </form>
                          
         </div>
         <!-- Photo/video-->
@@ -80,7 +78,7 @@
             </div>
             <!-- The file upload form used as target for the file upload widget -->
 
-            <form id="fileupload" action="/test" method="POST"
+            <form class="fileupload" action="/test" method="POST"
                   enctype="multipart/form-data">
                   {% csrf_token %} 
                 <!-- Redirect browsers with JavaScript disabled to the origin page -->
@@ -90,13 +88,13 @@
                 <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
                 <div class="drag-drop-photo">Drag and drop files to upload<br>OR<br>
                     <!-- The fileinput-button span is used to style the file input field as button -->
-                <span class="btn add-photo-button fileinput-button">
-                    <span class="add-photo-button-icon">Add Photos...</span>
-                    <!-- The file input field used as target for the file upload widget -->
+                    <span class="btn add-photo-button fileinput-button">
+                        <span class="add-photo-button-icon">Add Photos...</span>
+                        <!-- The file input field used as target for the file upload widget -->
 
-                    <input id="photos-photo-file" type="file" name="files[]" multiple>
+                        <input id="photos-photo-file" type="file" name="files[]" multiple>
 
-                </span>
+                    </span>
                 </div>
                 <!-- The table listing the files available for upload/download -->
                 <div role="presentation" style="padding:0 5px 0px; text-align:center;">
@@ -119,14 +117,34 @@
             <div class="blog-post-body">
                 <input type="text" class="form-control" placeholder="Title" id="id-blogpost-title" style="margin-bottom:10px;" >
                 <textarea rows="3" class="form-control" placeholder="Message" id="id-blogpost-body" ></textarea>
-                <span class="btn add-photo-button fileinput-button" style="margin-top:10px;">
-                <span class="add-photo-button-icon">Add Photos...</span>
 
-                <!-- The file input field used as target for the file upload widget -->
-                <input id="blogpost-photo-file" type="file" name="files[]" multiple>
+<!-- The file upload form used as target for the file upload widget -->
+
+            <form class="fileupload" action="/test" method="POST"
+                  enctype="multipart/form-data">
+                  {% csrf_token %} 
+                <!-- Redirect browsers with JavaScript disabled to the origin page -->
+                <noscript>
+                    <input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/">
+                </noscript>
+            
+                    <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn add-photo-button fileinput-button" style="margin:10px 0;">
+                    <span class="add-photo-button-icon">Add Photos...</span>
+                    <!-- The file input field used as target for the file upload widget -->
+
+                    <input id="blogpost-photo-file" type="file" name="files[]" multiple onchange="handleFiles(this.files)">
 
                 </span>
+                <!-- The table listing the files available for upload/download -->
+                <div role="presentation" style="padding:0 5px 0px; text-align:center;">
+                    <div class="files">
+                    </div>
+                    <div class="clear"></div>
+                    <div class="row fileupload-buttonbar"></div>
+                    
                 </div>
+            </div>
                 <div class="status-update-bottom">
                     <div class="status-update-bottom-icons">
                         <ul class="list-inline">
@@ -136,6 +154,10 @@
                     <div id="create-blogpost" class="post-update-button" >Post</div>
                     <div class="clear"></div>
                 </div>
+                
+            </form>
+                
+                
         </div>
         <!--blog post ends-->
         <!--audio blog starts-->
@@ -201,14 +223,12 @@
 
 <script type="text/javascript">
 
-// Monitoring status update photo
-var status_update_photo;
-
-var control = document.getElementById("statusupdate-photo-file");
-control.addEventListener("change", function(event) {
-
+var inputElement = document.getElementById("statusupdate-photo-file");
+inputElement.addEventListener("change", handleFiles, false);
+function handleFiles() {
+    var fileList = this.files; /* now you can work with the file list */
     var i = 0,
-        files = control.files,
+        files = this.files,
         len = files.length;
 
     status_update_photo = files;
@@ -219,7 +239,8 @@ control.addEventListener("change", function(event) {
         console.log("Size: " + files[i].size + " bytes");
     }
 
-}, false);
+  console.log(fileList);
+}
 
 $('#post-update-button').click(function() { 
     console.log('Status update clicked');
@@ -258,14 +279,14 @@ $('#post-update-button').click(function() {
 
 
 // Monitoring blog photo
+var inputElement = document.getElementById("blogpost-photo-file");
+inputElement.addEventListener("change", handleFiles, false);
+function handleFiles() {
+    console.log('handle blogpost photo');
 
-var blogpost_photo;
-
-var control = document.getElementById("blogpost-photo-file");
-control.addEventListener("change", function(event) {
-
+    var fileList = this.files; /* now you can work with the file list */
     var i = 0,
-        files = control.files,
+        files = this.files,
         len = files.length;
 
     blogpost_photo = files;
@@ -276,8 +297,8 @@ control.addEventListener("change", function(event) {
         console.log("Size: " + files[i].size + " bytes");
     }
 
-}, false);
-
+  console.log(fileList);
+}
 
 $('#create-blogpost').click(function() { 
     console.log('Blogpost posting clicked');
@@ -351,5 +372,7 @@ $('#id-upload-photo').click (function() {
         }
     });
 });
+
+
 
 </script>
