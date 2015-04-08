@@ -197,8 +197,6 @@
                 var data = $.parseJSON(raw_data);
                 console.log("filename:" + data.filename);
                 console.log(data);
-                document.getElementById('hiddenTrackID').value = data.filename;
-                console.log('set value: ' + document.getElementById('hiddenTrackID').value);
                 log.innerHTML += "\n" + data;
             });
         };
