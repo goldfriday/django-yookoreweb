@@ -46,7 +46,7 @@
                                                    placeholder="Username" required>
 
                                             <div ng-messages="login.username.$error">
-                                                <div class="login-error-message" ng-message="required">Username is
+                                                <div class="login-error-message" id='id-username-required'>Username is
                                                     required
                                                 </div>
                                             </div>
@@ -250,3 +250,27 @@
     <!--content body starts-->
     </body>
 {% endblock %}
+
+<script type="text/javascript">
+   
+
+    $(document).ready(function(){
+
+        console.log("DOM is ready");
+        
+        // wait until window is loaded (images, links etc...)
+        window.onload = function() {
+            
+            console.log("window is loaded");
+
+            var headline = document.getElementById("headline"),
+                subhead = document.getElementById("subhead");
+     
+            TweenMax.staggerFrom([headline, subhead], 1,  {delay:1, scale:0, opacity:0.3}, 2);
+        };
+
+    });
+
+
+</script>
+

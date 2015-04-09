@@ -1,11 +1,12 @@
 <div class="interaction-bar">
+
 	{% comment %}
 		id of the object to interact with {{ activity.object.id }}
 		{{ activity.actor.id }}
 	{% endcomment %}
     <ul class="list-inline">
     	{% if activity.object.liked %}
-	        <li><span> <img src="/static/images/icons/like.png" width="18"></span> Like</li>
+	        <li><span style="color:#81BEF7;active:text-decoration:none"> <img src="/static/images/icons/like.png" width="18"></span> Like</li>
 		{% else %}
 			{% with "like/"|add:activity.object.id|add:"/"|add:activity.actor.id as link_like %}
 	        	<button id = 'like-click-{{activity.object.id}}' style = 'border:none; background:none; active:none' >
@@ -42,6 +43,7 @@ $('#like-click-{{activity.object.id}}').click(function() {
         data: payload,
         success: function (result) {
           //alert("Your like has been saved");
+          console.log('Like with success');
            window.location.reload(true);
         }
     });  
