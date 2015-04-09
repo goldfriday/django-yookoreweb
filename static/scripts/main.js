@@ -88,32 +88,32 @@ define(["jquery", "bootstrap", "recordmp3", "mikes-modal", "photo-modal", "resiz
   });
 
   // Adverts
-  $().ready(function () {
-      var $scrollingDiv = $(".advert-wrapper");
-      $(window).scroll(function () {
-
-          if ($(window).scrollTop() > 320) { // Start scrolling after this distance from the top – adjust it for what you need (trial and error or a ruler on the screen graduated in pixels ;) )
-              $scrollingDiv
-                      .stop()
-                      .animate({"marginTop": ($(window).scrollTop() - 30) + "px"}, "slow");	 // How many pixels to add to the distance
-          }
-          if ($(window).scrollTop() <= 320) { // Less than this distance = RESET to original margin – set to 0 here but you can reset to your own original margin – this stops the element raising up too high up the page
-              $scrollingDiv
-                      .stop()
-                      .animate({"marginTop": "0px"}, "slower");
-          }
-          var mql = window.matchMedia("screen and (max-width: 1139px)")
-          if (mql.matches) { // if media query matches
-              $scrollingDiv
-                      .stop()
-                      .animate({"marginTop": "0px"}, "fast");
-          }
-      });
-  });
-  
-  $(function () {
-      $('[data-toggle="popover"]').popover()
-  })
+//  $().ready(function () {
+//      var $scrollingDiv = $(".advert-wrapper");
+//      $(window).scroll(function () {
+//
+//          if ($(window).scrollTop() > 320) { // Start scrolling after this distance from the top – adjust it for what you need (trial and error or a ruler on the screen graduated in pixels ;) )
+//              $scrollingDiv
+//                      .stop()
+//                      .animate({"marginTop": ($(window).scrollTop() - 30) + "px"}, "slow");	 // How many pixels to add to the distance
+//          }
+//          if ($(window).scrollTop() <= 320) { // Less than this distance = RESET to original margin – set to 0 here but you can reset to your own original margin – this stops the element raising up too high up the page
+//              $scrollingDiv
+//                      .stop()
+//                      .animate({"marginTop": "0px"}, "slower");
+//          }
+//          var mql = window.matchMedia("screen and (max-width: 1139px)")
+//          if (mql.matches) { // if media query matches
+//              $scrollingDiv
+//                      .stop()
+//                      .animate({"marginTop": "0px"}, "fast");
+//          }
+//      });
+//  });
+//  
+//  $(function () {
+//      $('[data-toggle="popover"]').popover()
+//  })
 
   // Scripts in footer
   $(function () {

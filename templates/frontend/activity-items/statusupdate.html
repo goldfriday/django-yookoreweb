@@ -25,20 +25,15 @@
         <!--activity header stops-->
         <!--Photo in post-->
         <div class="photo-in-post-wrapper">
-            <!--******************Modal Quick View Ends-**********-->
-            <p class="allow-modal">
-                <a id="open-mikes-modal" href="picture_full_view.php" style="cursor:pointer;">
-                    {% if activity.object.image_url %}
+          <div class="photo-in-status-update">
+                  {% if activity.object.image_url %}
 
-                        {% with "http://192.168.10.123:8000/"|add:activity.object.image_url as link %}
-                            <img class="img-responsive" src={{link }}>
-                        {% endwith %}
-                         
-                    {% endif %}
-                    
-                </a>
-            </p>
-
+                      {% with "http://192.168.10.123:8000/"|add:activity.object.image_url as link %}
+                          <img class="img-responsive" src={{link }}>
+                      {% endwith %}
+                        
+                  {% endif %}
+          </div>
         </div>
         <div class="text-content">
             {# Putting the content in the card #}

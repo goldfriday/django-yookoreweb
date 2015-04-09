@@ -30,7 +30,7 @@ define(function (require) {
     console.log(list_of_photo);
   }
 
-  $('#post-update-button').click(function() { 
+  $('#main #post-update-button').click(function() { 
       console.log('Status update clicked');
       body_text = $('textarea#body-id').val();
       var fd = new FormData(); 
