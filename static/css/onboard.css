@@ -243,7 +243,7 @@ input[type=search]:focus {
 }
 .hide-div{display:none;}
 .show-div{display:inherit;}
-.search-icon-xs{float:right; width:55%; text-align:right; display:inline-block; margin-right:14px; padding:14px 0 10px 0;}
+.search-icon-xs{float:right; width:50%; text-align:right; display:inline-block; margin-right:14px; padding:14px 0 10px 0;}
 .logo-menu{float:left; width:27px; height:22px; border-right:0px solid #fff; width:10%; display:inline-block; margin-left:5px; padding:14px 0;}
 }
 @media (min-width: 480px) and (max-width: 869px) {
