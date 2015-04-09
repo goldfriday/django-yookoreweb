@@ -31,7 +31,7 @@
 
         <!--status update text-->
         <div role="tabpanel" class="tab-pane active" id="main" ng-controller="StatusupdateCtrl">
-            <div class="status-update-form-wrapper">
+          <div class="status-update-form-wrapper" data-username="{{username}}">
               <textarea rows="3" class="update-status" ng-model="body" placeholder="What's on your mind?" id="body-id"></textarea>
               <form id="fileupload" action="/test" method="POST"
                     enctype="multipart/form-data">
@@ -54,8 +54,8 @@
                     <ul class="list-inline">
                         <li role="presentation">
                           <span class="fileinput-button">
-                            <input id="fileupload" type="file" name="files[]" multiple>
                             <img src="/static/images/icons/photo.png" width="18">
+                            <input id="statusupdate-photo-file" type="file" name="files[]" multiple onchange="handleStatusFiles(this.files)">
                           </span>
                         </li>
                         <li><span><img src="/static/images/icons/tag.png" width="18"></span></li>
@@ -88,7 +88,7 @@
                 <span class="btn add-photo-button fileinput-button">
                     <span class="add-photo-button-icon">Add Photos...</span>
                     <!-- The file input field used as target for the file upload widget -->
-                    <input id="fileupload" type="file" name="images" multiple>
+                    <input id="fileupload2" type="file" name="images" multiple>
                 </span>
                 </div>
                 <!-- The table listing the files available for upload/download -->

@@ -91,12 +91,12 @@ define(function (require) {
   }
 });
 
-jive.namespace('photos')
-
-console.log(jive.photos)
-
-jive.photos.Photos = function() {
-  console.log('calling jive.photos namespace')
-}
+//jive.namespace('photos')
+//
+//console.log(jive.photos)
+//
+//jive.photos.Photos = function() {
+//  console.log('calling jive.photos namespace')
+//}
 
 

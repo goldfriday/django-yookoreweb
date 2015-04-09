@@ -14,6 +14,7 @@ requirejs.config({
     "resize-textarea": { "deps": ['jquery'] },
     "bootstrap3_player": { "deps": ['jquery'] },
     "rest": { "deps": ['jive'] },
+    "jquery.ba-bbq": { "deps": ['jquery'] },
     "jive.RestService": { "deps": ['jive'] }
   },
   "paths": {

@@ -11,7 +11,7 @@ define(function (require) {
   require('./comment')
 
   console.dir(photos);
-  console.log(jive.photos.Photos())
+  //console.log(jive.photos.Photos())
 
   var func = function() {
     console.log('calling stream.js');
