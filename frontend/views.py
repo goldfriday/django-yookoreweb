@@ -257,39 +257,65 @@ def search(request, q):
 	#return render(request, 'frontend/views/stream.html', context)
 
 def search2(request, q):
-	if request.is_ajax:
-		print 'From ajax'
-	print 'in search 2'
-	print 'Get: ' + q
-	context = {}
-	context['results'] = get_search_result(q)
-	print context
-	return HttpResponse(json.dumps(context, indent=4))
-	#return render(request, 'frontend/views/search.html', context)
+    if request.is_ajax:
+        print 'From ajax'
+    print 'in search 2'
+    print 'Get: ' + q
+
+    size = request.GET.get("size")
+    index = request.GET.get("from")
+
+    context = {}
+    context['payload'] = get_search_result(q, size, index)
+
+    print context
+    #return HttpResponse(json.dumps(context, indent=4))
+    return render(request, 'frontend/views/search.html', context)
+
+def get_search_result(query, size, index):
+    url = URL_SEARCH + "/_search?q=firstname:" + query
+
+    if size:
+        url += '&size=' + size
+
+    if index:
+        url += '&from=' + index
+
+    print url
+    headers = {'content-type': 'application/json'}
+
+    response = requests.get(url, headers=headers)
+    if response:
+        data = response.json()
+        nb = data['hits']['total']
+        result_list = data['hits']['hits']
+        # Constructing the results
+        results = []
+        for r in result_list:
+            results.append(r['_source'])
+
+        payload = {}
+        payload["results"] = results
+        payload["nb"] = nb
+        payload["query"] = query
+
+        if index and size:
+            payload["next"] = index + size
+
+            if int(index) > size:
+                payload["previous"] = int(index) - size
+
+            if nb > int(index) and int(index) > 0:
+                payload["current_page"] = nb / int(index)
 
 
-def get_search_result(query):
-	print 'In search result '
-	url = URL_SEARCH + "/_search?q=firstname:" + query
-	print url
-	headers = {'content-type': 'application/json'}
 
-	response = requests.get(url, headers=headers)
-	if response:
-		data = response.json()
-		nb = data['hits']['total']
-		result_list = data['hits']['hits']
-		# Constructing the results
-		results = []
-		for r in result_list:
-			results.append(r['_source'])
+        print payload
+        return payload
 
-		return results
-
-	else:
-		print 'Error occured when searching'
-		return 'error'
-
+    else:
+        print 'Error occured when searching'
+        return 'error'
 
 def test(request):
 	print 'in test'

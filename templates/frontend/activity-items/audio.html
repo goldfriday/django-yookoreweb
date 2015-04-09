@@ -19,8 +19,6 @@
 
                         <div class="status-update-timestamp">
                             {{ activity.object.publishdate|timedelta }} <br/>
-
-                            {# {{ activity.object.publishdate|timedelta }}#}
                         </div>
                     </div>
                     <div class="clear"></div>
@@ -39,9 +37,9 @@
                            <!-- <img src="img/uploads/port.jpg" class="img-responsive" alt="Photo">-->
                     </div>
                 </div>
-                <!-- <div class="text-content">
-                 The project "Women For Change Initiative" was established in 2010 to sensitise, empower and mobilise women to participate actively in governance.
-                 </div>
+                <div class="text-content">
+                        {{ activity.object.caption }}
+                </div>
                  <!--content stats-->
                 {% include 'frontend/activity-items/content-stats.html' %}
                 <!--interactin bar-->
