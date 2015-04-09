@@ -1,0 +1,111 @@
+{% extends 'frontend/base.html' %}
+
+{% block body %}
+    <body>
+    {% include 'frontend/_header.html' %}
+    <!--container ends-->
+    <div class="container">
+        <div class="row">
+            {% include 'frontend/_cover-profile.html' %}
+        </div>
+        <div class="row xtra-pad">
+            <!--left column-->
+            <div class="mp-left-col">
+                <!--user details-->
+                <!--side menu-->
+                <div class="side-menu-wrapper" style="background:none !important;">
+                    <div class="list-group">
+                        <a href="{% url 'userprofile_friends' %}" class="list-group-item active"><span
+                                class="list-group-icons"><img
+                                src="/static/images/icons/blogs.png" width="18"></span>All Friends</a>
+                        <a href="#" class="list-group-item disabled"><span class="list-group-icons"><img
+                                src="/static/images/icons/profile.png" width="18"></span>Recentlt Added</a>
+                        <a href="#" class="list-group-item disabled"><span class="list-group-icons"><img
+                                src="/static/images/icons/photo.png" width="18"></span>Friends of Friends</a>
+                        <a href="#" class="list-group-item disabled"><span class="list-group-icons"><img
+                                src="/static/images/icons/photo.png" width="18"></span>Suggested Friends</a>
+                    </div>
+                </div>
+                <div class="advert-wrapper">
+                    <div class="ad-section-header">
+                        <div class="sponsored-title">sponsored</div>
+                        <div class="create-ad-link">Create Ad</div>
+                        <div class="clear"></div>
+                    </div>
+                    <!--ad card begins-->
+                    <div class="ad-card">
+                        <div class="ad-image"><img src="/static/images/uploads/rado.png" width="100%"></div>
+                        <div class="ad-title">Timeless pieces from $120!</div>
+                        <div class="ad-link">www.buyright.co.za</div>
+                        <div class="ad-description">Loafers are arguable the best quality footwear that makes your feet
+                            stand out! Shop our wi...
+                        </div>
+                    </div>
+                    <!--ad card ends-->
+                </div>
+                <!--blogs-->
+            </div>
+            <!--left column ends-->
+            <!--right column starts-->
+            <div class="mp-right-col">
+                <div class="mp-view-header">
+                    <div style="padding:0px 0px;">
+                        <span style="font-size:22px; font-weight:700;"><span><img style="margin-right:7px;"
+                                                                                  src="/static/images/icons/friends.png"
+                                                                                  width="30"></span>Friends</span>
+
+                        <div style="padding:10px 0 0 0;">
+                            <a href="#"><span><img style="margin-right:4px;" src="/static/images/icons/search-icon.png"
+                                                   width="14"></span>Find Friends</a> · <a href="#"><span><img
+                                style="margin-right:4px;" src="/static/images/icons/notif.png" width="14"></span>Friend
+                            Request</a>
+                        </div>
+                    </div>
+                </div>
+                <!--mp-view-header ends-->
+                <div style="padding:15px;">
+                    <div class="row">
+                        {% if friends_list %}
+                            {% for friend in friends_list %}
+                                <div class="col-xs-4 col-sm-3 col-md-2 mp-less-pad-xs">
+                                    <a href="{% url 'userprofile' %}">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h4 style="padding:5px 0; font-weight:700;">{{ friend.firstname }} {{ friend.lastname }}</h4>
+                                                <!--interaction bar-->
+                                                <div class="thumbnail-socials">
+                                                    <span style="display:block; margin-right:10px;"> Unfriend</span>
+                                                </div>
+                                            </div>
+                                            <img src="{{ friend.imageurl }}">
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p>Placeholder for messaging to those without friends.</p>
+                        {% endif %}
+                        <div class="col-xs-4 col-sm-3 col-md-2 mp-less-pad-xs">
+                            <a href="userprofile_pub.php">
+                                <div class="thumbnail">
+                                    <div class="caption">
+                                        <h4 style="padding:5px 0; font-weight:700;">Name</h4>
+                                        <!--interactin bar-->
+                                        <div class="thumbnail-socials">
+                                            <span style="display:inline-block; margin-right:10px;"> Unfriend</span>
+                                        </div>
+                                    </div>
+                                    <img src="/static/images/people/guy-9.jpg">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--right column ends-->
+            <div class="clear"></div>
+        </div>
+        <div class="footer"></div>
+    </div>
+    </body>
+{% endblock %}

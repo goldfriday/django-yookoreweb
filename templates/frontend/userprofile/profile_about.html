@@ -1,0 +1,106 @@
+{% extends 'frontend/base.html' %}
+
+{% block body %}
+<body>
+{% include 'frontend/_header.html' %}
+<!--container ends-->
+<div class="container">
+<div class="row">
+{% include 'frontend/_cover-profile.html' %}
+</div>
+<div class="row xtra-pad">
+<!--left column-->
+	 <div class="col-lg-3 col-md-3 col-sm-3 left-col">
+     <!--user details-->
+   	   <!--side menu-->
+     	<div class="side-menu-wrapper" style="background:none !important;">
+        <div class="list-group">
+            <a href="#" class="list-group-item active">
+                <span class="list-group-icons"><img src="/static/images/icons/profile.png" width="18"></span> Overview</a>
+            <a href="#" class="list-group-item disabled">
+                <span class="list-group-icons"><img src="/static/images/icons/photo.png" width="18"></span>Work Experience</a>
+            <a href="#" class="list-group-item disabled">
+                <span class="list-group-icons"><img src="/static/images/icons/blogs.png" width="18"></span>Places You've Lived</a>
+            <a href="#" class="list-group-item disabled">
+                <span class="list-group-icons"><img src="/static/images/icons/video.png" width="18"></span>Contact and Basic Info</a>
+            <a href="#" class="list-group-item disabled">
+                <span class="list-group-icons"><img src="/static/images/icons/friends.png" width="18"></span>Family and Relationships</a>
+            <a href="#" class="list-group-item disabled"><span class="list-group-icons"><img src="/static/images/icons/pgs.png" width="18"></span>Details About You</a>
+            <a href="#" class="list-group-item disabled"><span class="list-group-icons"><img src="/static/images/icons/grp.png" width="18"></span> Life Events</a>
+        </div>
+        </div>
+     <!--blogs-->
+     </div>
+<!--left column ends-->
+<!--middle column starts-->
+     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 center-col">
+     	<div class="activity-stream-wrapper">
+        <!--content header-->
+        	<div class="content-header">
+                <div class="header-inner">
+                  <h2 style="float:left;"><span class="list-group-icons"><img src="/static/images/icons/prof.png" width="25"></span>About</h2>
+                  <div class="clear"></div>
+                </div>
+          </div>
+         <!--content body starts-->
+         <div class="content-body">
+         <!--upload picture starts-->
+         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 offset-padding add-margin-bottom">
+        	<div class="prof-list-wrap">
+            	<span style="margin-right:5px;"><img src="/static/images/icons/halflings-4-envelope.png"></span> {{ userdata.email }}
+            </div>
+            <div class="prof-list-wrap">
+            	<span style="margin-right:5px;"><img src="/static/images/icons/halflings-109-calendar.png"></span> {{ userdata.birthdate }}
+            </div>
+            <div class="prof-list-wrap">
+            	<span style="margin-right:5px;"><img src="/static/images/icons/halflings-5-heart.png"></span> {{ userdata.relationshipstatus }}
+            </div>
+            <div class="prof-list-wrap">
+            	<span style="margin-right:5px;"><img src="/static/images/icons/halflings-62-map-marker.png"></span> {{ userdata.homecountry }}
+            </div>
+            <div class="prof-list-wrap">
+            	<span style="margin-right:5px;"><img src="/static/images/icons/halflings-139-briefcase.png"></span>
+                 {{ userdata.biography }}
+            </div>
+        </div>
+        <!--upload picture ends-->
+
+    <div class="clear"></div>
+    <!--update profile details ends-->
+         </div>
+         <!--content body starts-->
+        </div>
+<!--activity card00 ends-->
+     </div>
+<!--middle column ends-->
+<!--right column starts-->
+     <div class="col-lg-3 col-md-3 col-sm-3 right-col">
+     <!--blogs-->
+     <div class="col-sm-cards">
+        </div>
+     	<div class="advert-wrapper">
+        	<div class="ad-section-header">
+            	<div class="sponsored-title">sponsored</div>
+                <div class="create-ad-link">Create Ad</div>
+            	<div class="clear"></div>
+            </div>
+            <!--ad card begins-->
+            <div class="ad-card">
+            	<div class="ad-image"><img src="/static/images/uploads/rado.png" width="100%" ></div>
+                <div class="ad-title">Timeless pieces from $120!</div>
+                <div class="ad-link">www.buyright.co.za</div>
+                <div class="ad-description">Loafers are arguable the best quality footwear that makes your feet stand out! Shop our wi...</div>
+            </div>
+            <!--ad card ends-->
+        </div>
+     </div>
+<!--right column ends-->
+<div class="clear"></div>
+</div>
+<div class="footer"></div>
+</div>
+
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+
+</body>
+{% endblock %}

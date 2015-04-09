@@ -1,0 +1,27 @@
+<div class="interaction-bar">
+	{% comment %}
+		id of the object to interact with {{ activity.object.id }}
+		{{ activity.actor.id }}
+	{% endcomment %}
+    <ul class="list-inline">
+    	{% if activity.liked %}
+	        <li><span> <img src="/static/images/icons/like.png" width="18"></span> Like</li>
+		{% else %}
+			{% with "like/"|add:activity.id|add:"/"|add:userdata.username as link_like %}
+	        	<button id = 'like-click-{{activity.id}}' style = 'border:none; background:none; active:none' >
+	        		<li><span> <img src="/static/images/icons/like.png" width="18"></span>
+	        	</button> Like</li>
+	        	
+			{% endwith %}
+		{% endif %}
+
+		{% with "comment/"|add:activity.id|add:"/"|add:userdata.username as link_comment %}
+			
+	        <li><span><img src="/static/images/icons/comment.png" width="18"></span> Comment</li>
+	        
+		{% endwith %}
+
+	        <li><span><img src="/static/images/icons/share.png" width="18"></span> Share</li>
+       
+    </ul>
+</div>

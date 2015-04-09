@@ -1,0 +1,184 @@
+{% extends 'frontend/base.html' %}
+
+{% block body %}
+    <body>
+    {% include 'frontend/_header.html' %}
+    <!--container ends-->
+    <div class="container">
+        <div class="row">
+            {% include 'frontend/_cover-profile.html' %}
+        </div>
+        <div class="row xtra-pad">
+            <!--left column-->
+            <div class="col-lg-3 col-md-3 col-sm-3 left-col">
+                <!--side menu-->
+                <div class="side-menu-wrapper" style="background:none !important;">
+                    <div class="list-group">
+                        <a href="my_blog.php" class="list-group-item"><span class="list-group-icons"><img
+                                src="/static/images/icons/profile.png" width="18"></span>All Blog Post</a>
+                        <a href="my-blog-post.php" class="list-group-item  active"><span class="list-group-icons"><img
+                                src="/static/images/icons/blogs.png" width="18"></span>My Blog Post</a>
+                        <a href="create-blog-post.php" class="list-group-item"><span class="list-group-icons"><img
+                                src="/static/images/icons/blogs.png" width="18"></span>New Blog Post</a>
+                        <a href="#" class="list-group-item disabled"><span class="list-group-icons"><img
+                                src="/static/images/icons/photo.png" width="18"></span>Friends Blog</a>
+                        <a href="#" class="list-group-item disabled"><span class="list-group-icons"><img
+                                src="/static/images/icons/photo.png" width="18"></span>Promote Blog</a>
+                    </div>
+                </div>
+
+                <!--about user ends-->
+                <!--user details-->
+                <div class="col-sm-cards">
+
+                </div>
+            </div>
+            <!--left column ends-->
+
+            <!--middle column starts-->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 center-col">
+                <!--sub menu-->
+                <div class="search-nav-wrapper show-div">
+                    <ul class="cover-nav">
+                        <li><a href="my_blog.php">All</a></li>
+                        <li class="active"><a href="my-blog-post.php">My Blog Post</a></li>
+                        <li><a href="create-blog-post-full.php">New Blog Post</a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                <!--blog post card1 starts-->
+
+                {% for activity in blogposts %}
+                    {% include 'frontend/activity-items/blogpost-profile.html' %}
+                {% endfor %}
+
+                <div class="activity-stream-wrapper">
+                    <div class="activity-card">
+                        <!--blog post header starts-->
+                        <div class="activity-header">
+                            <div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
+                            <div class="content-owner-wrapper">
+                                <div class="content-owner-name">Paul Imisi</div>
+                                <div class="status-update-timestamp" style="margin-left:0px;">2hours ago</div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!--blog post header stops-->
+                        <a href="blog_full_view.php"
+                           style="padding:0 0 7px 0; font-weight:bold; font-size:22px; color:#000;">This is my blog
+                            title: what a day!!!</a>
+                        <!--remove comment tag only if blog has a photo in post-->
+                        <div class="photo-in-post-wrapper">
+                            <div class="photo-in-status-update">
+                                <img class="img-responsive" style="vertical-align:middle"
+                                     src="/static/images/uploads/hazard.png">
+                            </div>
+                        </div>
+                        <div class="text-content">
+                            The project "Women For Change Initiative" was established in 2010 to sensitise, empower and
+                            mobilise women to participate actively in governance.
+                        </div>
+                        <!--content stats-->
+                        <div class="content-stats-wrapper">
+                            <div class="content-stats">82 Likes <span style="margin:0 5px"
+                                                                      class="glyphicon glyphicon-asterisk"></span>14
+                                Comments
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!--interactin bar-->
+                        <div class="interaction-bar">
+                            <ul class="list-inline">
+                                <li><span><img src="/static/images/icons/like.png" width="18"></span> Like</li>
+                                <li><span><img src="/static/images/icons/comment.png" width="18"></span> Comment</li>
+                                <li><span><img src="/static/images/icons/share.png" width="18"></span> Share</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <!--blog post card1 ends-->
+                <!--blog post card2 starts-->
+                <div class="activity-stream-wrapper">
+                    <div class="activity-card">
+                        <!--blog post header starts-->
+                        <div class="activity-header">
+                            <div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
+                            <div class="content-owner-wrapper">
+                                <div class="content-owner-name">Paul Imisi</div>
+                                <div class="status-update-timestamp" style="margin-left:0px;">2hours ago</div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!--blog post header stops-->
+                        <a href="blog_full_view.php"
+                           style="padding:0 0 7px 0; font-weight:bold; font-size:22px; color:#000;">This is my blog
+                            title: what a day!!!</a>
+                        <!--remove comment tag only if blog has a photo in post
+                                 <div class="photo-in-post-wrapper">
+                                     <div class="photo-in-status-update">
+                                  <img class="img-responsive" style="vertical-align:middle" src="img/uploads/hazard.png">
+                                  </div>
+                              </div>-->
+                        <div class="text-content">
+                            The project "Women For Change Initiative" was established in 2010 to sensitise, empower and
+                            mobilise women to participate actively in governance.
+                        </div>
+                        <!--content stats-->
+                        <div class="content-stats-wrapper">
+                            <div class="content-stats">82 Likes <span style="margin:0 5px"
+                                                                      class="glyphicon glyphicon-asterisk"></span>14
+                                Comments
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!--interactin bar-->
+                        <div class="interaction-bar">
+                            <ul class="list-inline">
+                                <li><span><img src="/static/images/icons/like.png" width="18"></span> Like</li>
+                                <li><span><img src="/static/images/icons/comment.png" width="18"></span> Comment</li>
+                                <li><span><img src="/static/images/icons/share.png" width="18"></span> Share</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <!--blog post card2 ends-->
+            </div>
+            <!--middle column ends-->
+            <!--right column starts-->
+            <div class="col-lg-3 col-md-3 col-sm-3 right-col">
+                <div class="advert-wrapper">
+                    <div class="ad-section-header">
+                        <div class="sponsored-title">sponsored</div>
+                        <div class="create-ad-link">Create Ad</div>
+                        <div class="clear"></div>
+                    </div>
+                    <!--ad card begins-->
+                    <div class="ad-card">
+                        <div class="ad-image"><img src="/static/images/uploads/rado.png" width="100%"></div>
+                        <div class="ad-title">Timeless pieces from $120!</div>
+                        <div class="ad-link">www.buyright.co.za</div>
+                        <div class="ad-description">Loafers are arguable the best quality footwear that makes your feet
+                            stand out! Shop our wi...
+                        </div>
+                    </div>
+                    <!--ad card begins-->
+                    <div class="ad-card">
+                        <div class="ad-image"><img src="/static/images/uploads/rado.png" width="100%"></div>
+                        <div class="ad-title">Timeless pieces from $120!</div>
+                        <div class="ad-link">www.buyright.co.za</div>
+                        <div class="ad-description">Loafers are arguable the best quality footwear that makes your feet
+                            stand out! Shop our wi...
+                        </div>
+                    </div>
+                    <!--ad card ends-->
+                </div>
+            </div>
+            <!--right column ends-->
+            <div class="clear"></div>
+        </div>
+        <div class="footer"></div>
+    </div>
+    </body>
+{% endblock %}

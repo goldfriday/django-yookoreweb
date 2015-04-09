@@ -24,10 +24,13 @@ urlpatterns = patterns('',
     url(r'^photo$', 'frontend.views.photo'),
 
     url(r'^friends$', 'frontend.views.friends', name="friends"),
-    url(r'^profile_friends$', 'frontend.views.profile_friends', name="profile_friends"),
     url(r'^profile_photos$', 'frontend.views.profile_photos', name="profile_photos"),
 
-    url(r'^profile', 'frontend.views.userprofile', name="userprofile"),
+    url(r'^profile$', 'frontend.views.userprofile', name="userprofile"),
+    url(r'^profile/about$', 'userprofile_app.views.userprofile_about', name='userprofile_about'),
+    url(r'^profile/friends$', 'userprofile_app.views.userprofile_friends', name='userprofile_friends'),
+    url(r'^profile/blogs$', 'userprofile_app.views.userprofile_blogs', name='userprofile_blogs'),
+
 
     # url(r'^photos', include('photo_app.urls')),
 

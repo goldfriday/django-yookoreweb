@@ -17,19 +17,20 @@
                </ul>
     </div>
     <div class="cover-info">
-         <div class="avatar"> <img src="/static/images/people/guy-4.jpg" alt="people"></div>
-         <div class="name"><a href="#">{{ fullname }}</a><span><a href="{% url 'userprofile' %}">Edit Profile</a></span></div>
+
+         <div class="avatar"><img src="{{ userdata.imageurl }}" alt="{{ userdata.username }}"></div>
+         <div class="name"><a href="#">{{ fullname }}</a><span><a class="userprofile-edit-link" href="{% url 'userprofile' %}">Edit Profile</a></span></div>
    </div>
 </div>
 <div class="profile-nav-wrapper">
       <ul class="cover-nav">
             <li><a class="userprofile" href="{%  url 'userprofile' %}"><img src="/static/images/icons/profile.png" width="20" style="margin:0 4px 0 0;"></span> Stream</a></li>
-            <li><a class="about_private" href="about_private.php"><img src="/static/images/icons/profile.png" width="20" style="margin:0 4px 0 0;"></span> About</a></li>
-            <li><a class="friends" href="{% url 'profile_friends' %}"><img src="/static/images/icons/friends.png" width="20" style="margin:0 4px 0 0;"></span> Friends</a></li>
+            <li><a class="about_private" href="{% url 'userprofile_about' %}"><img src="/static/images/icons/profile.png" width="20" style="margin:0 4px 0 0;"></span> About</a></li>
+            <li><a class="friends" href="{% url 'userprofile_friends' %}"><img src="/static/images/icons/friends.png" width="20" style="margin:0 4px 0 0;"></span> Friends</a></li>
        </ul>
        <ul class="cover-nav more-nav-show">
           <li><a class="my_photos_in" href="{% url 'profile_photos' %}"><img src="/static/images/icons/photo.png" width="20" style="margin:0 4px 0 0;"></span> Photos</a></li>
-            <li><a class="my_blog" href="my_blog.php"><img src="/static/images/icons/blogs.png" width="20" style="margin:0 4px 0 0;"></span> BlogPost</a></li>
+            <li><a class="my_blog" href="{% url 'userprofile_blogs' %}"><img src="/static/images/icons/blogs.png" width="20" style="margin:0 4px 0 0;"></span> Blog</a></li>
        </ul>
        <ul class="cover-nav navbar-right caret-right">
             <li class="dropdown">

@@ -4,6 +4,7 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 import requests
+from services import get_activities, get_user_profile
 
 # Create your views here.
 
@@ -115,29 +116,8 @@ def yookore_login(request):
             return render(request, '.')
 
 
-def get_activities(username):
-    url = URL_ACTIVITIES + "/" + username + "/activities"
-    print url
-    headers = {'content-type': 'application/json'}
-
-    response = requests.get(url, headers=headers)
-    if response:
-        data = response.json()
-        return data
-
-    return 'error'
 
 
-def get_user_profile(username):
-    url = "http://192.168.10.144:3000/auth/" + username
-    headers = {'content-type': 'application/json'}
-    try:
-        response = requests.get(url, headers=headers)
-        if response:
-            data = response.json()
-            return data
-    except:
-        pass
 
 
 def post_status_update(request):
@@ -380,21 +360,4 @@ def friends(request):
 
     return render(request, 'frontend/views/friends.html', context)
 
-
-def get_user_profile(username):
-    # firstname, lastname, imageurl
-    print 'Get user profile '
-    url = URL_USERACCOUNT + "/profile/" + username
-
-    headers = {'content-type': 'application/json'}
-
-    try:
-        response = requests.get(url, headers=headers)
-        if response:
-            data = response.json()
-            return data
-        else:
-            return 'error'
-    except Exception, e:
-        raise e
 

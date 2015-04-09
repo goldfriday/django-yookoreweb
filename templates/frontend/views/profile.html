@@ -283,11 +283,11 @@
                         {% endifequal %}
 
                         {% ifequal activity.object.type 'photo' %}
-                            <p>photo</p>
+                            {% include 'frontend/activity-items/photo.html' %}
                         {% endifequal %}
 
                         {% ifequal activity.object.type 'photoalbum' %}
-                            <p>photo album</p>
+                            {% include 'frontend/activity-items/photoalbum.html' %}
                         {% endifequal %}
 
                     {% endfor %}

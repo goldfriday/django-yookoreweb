@@ -1,0 +1,25 @@
+{% if userdata.imageurl %}
+    <div class="comment-owner-pix"><img src= {{ userdata.imageurl }}  width="100%"></div>
+{% else %}
+    <div class="comment-owner-pix"><img src= "/static/images/ico_placeholder_60.png" width="100%"></div>
+{% endif %}
+
+{% load dictionary_extras %}
+
+
+<div class="post-comment-form-wrap">
+
+    <div class="post-comment-card">
+        <div class="post-comment-form">
+            <textarea rows="1" placeholder="Add a comment" id = "comment-body" name = "comment-body" ></textarea>
+        </div>
+        <div class="add-comment-socials">
+            <img src="/static/images/icons/location.png" width="18"><img
+                src="/static/images/icons/photo-grey.png" width="18">
+        </div>
+        <div style="clear:left;"></div>
+    </div>
+    <div class="press-enter">Press enter to post comment</div>
+    <button class="post-update-button" value="Post" id="id-comment-{{activity.id}}">Post</button>
+</div>
+<div class="clear"></div>
