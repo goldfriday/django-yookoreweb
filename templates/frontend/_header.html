@@ -34,17 +34,25 @@
              </span>
 
         </div>
+        
         <!--search starts-->
         <div class="search-icon-xs">
             <div id="searchtext">
-                
-                <input type="search" placeholder="Search for people" id="id-search-text">
-                
+                <form>
+                    <input type="search" id="id-search-text" placeholder="Search for people">
+                </form>
             </div>
+        </div>
+        <div id="search-box">
+            <div class="search-holder-panel">
+                <div class="search-count"><a id="search-result-count-link"><span id="search-results-count"></span> results found...</a></div>
+                <div id="search-results">
 
+                </div>
+                <div class="search-footer"><a id="view-all-results">view all results</a></div>
+            </div>
         </div>
         <!--search form ends-->
-        
 
     </div>
     <div style="clear:both;"></div>
@@ -58,51 +66,63 @@
     // search for first name for now
     var uri = "http://192.168.10.20:9200/info/users/_search?q=firstname:";
 
-    $("#id-search-text").keypress(function(e){
+
+    $("#id-search-text").keyup(function(e){
         var query = $('#id-search-text').val();
-        uri = 'search/' + query;
-        //console.log('The text typed ' + uri+ query);
 
         if (query.length >= 3) {
-            console.log('search-->');
+            console.log('searching...');
+
+            $("#search-box").show();
+
             $.ajax({
-                url: uri ,
+                url: uri + query + " ",
                 type: 'GET',
                 success: function (data, status, xhr) {
-                    console.log('Search from keypress called');
-                    console.log(data);
-                    //window.location = uri;
-                    
+                    var $results_panel = $("#search-results");
+                    $results_panel.html("");
+
+                    $.each(data.hits.hits, function(idx, person){
+                        $results_panel.append(
+                            "<div class='search-user-card'>" +
+                                "<a href='/profile/" + person._source.username + "'>" +
+                                    "<div class='search-user-pix'><img src='static/images/pix.png' width='100%'></div>" +
+
+                                    "<div class='search-user-wrapper'>" +
+                                        "<a href='/profile/" + person._source.username + "' class='search-user-name'>" + person._source.firstname + " " + person._source.lastname + "<span>" + person._source.username + "</span>" +
+                                        "</a>" +
+                                    "</div>" +
+                                "</a>" +
+                                "<div class='clear'></div>" +
+                            "</div>"
+                        );
+                    });
+
+                    $("#search-results-count").html(data.hits.total);
                 },
                 error: function () {
-                    console.log('Ajax error occurred');
+                    console.log('could not retrieve search results.');
+                    $("#search-results").html("<h3>Could not retrieve search results.</h3>");
                 }
-            });  
+            });
 
+            $("#view-all-results").attr("href", "/search/" + query + "?size=50&from=0");
+            $("#search-result-count-link").attr("href", "/search/" + query + "?size=50&from=0");
         }
     });
-    // works
-    $("#id-search-text").change(function(){
-        var query = $('#id-search-text').val();
-        uri = 'search/' + query;
-        //uri = 'test';
-        console.log('The text changed ** ' + query);
-         $.ajax({
-                //url: 'search/'+ query,
-                url: uri,
-                type: 'GET',
-                success: function (data, status, xhr) {
-                    console.log('Search method from change called...');
-                    console.log(data);
-                    //window.location = uri;
-                    
-                },
-                error: function() {
-                    console.log('An error occurred');
-                }
-            });  
 
+    //close panel
+    $(document).keyup(function(event) {
+        if(event.which === 27) {
+            $('#search-box').hide();
+            $('#id-search-text').val();
+        }
     });
 
+    //listener to close panel when user clicks anywhere on screen
+    $(document).mouseup(function(){
+        $('#search-box').hide();
+        $('#id-search-text').val("");
+    });
 
 </script>
