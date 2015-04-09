@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+.photo-left-col{padding:0; width:100%; max-width:860px; float:left;}
+.photo-side-col{padding:0; width:100%; max-width:265px; float:right;}
+
+.photo-full-wrapper{margin:0px -15px 15px -15px;}
+.photo-full-header{padding-bottom:5px; margin-bottom:0px;}
+
+
+@media (min-width: 220px) and (max-width : 479px) {
+.photo-side-col{display:none;}
+.photo-left-col{padding:0; width:100%;}
+}
+@media (min-width: 480px) and (max-width: 859px) {
+.photo-side-col{display:none;}
+}
+@media (min-width: 860px) and (max-width: 1139px) {
+.photo-left-col{padding:0; width:100%; max-width:620px; float:left;}
+.photo-side-col{padding:0; width:100%; max-width:235px; float:right;}
+}
