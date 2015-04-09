@@ -1,5 +1,5 @@
 
-define(["jquery", "bootstrap", "recordmp3", "mikes-modal", "photo-modal", "resize-textarea", "bootstrap3_player", "jquery.ui.widget", "tmpl", "load-image", "load-image-orientation", "load-image-meta", "load-image-exif", "load-image-exif-map", "canvas-to-blob", "jquery.iframe-transport", "jquery.fileupload", "jquery.fileupload-process", "jquery.fileupload-image", "jquery.fileupload-audio", "jquery.fileupload-video", "jquery.fileupload-validate", "jquery.fileupload-ui", "jquery.message", "main", "jive", "jive.oo.Class", "rest", "jquery.ba-bbq", "jive.RestService"], function($, bootstrap, recordmp3, mikesModal, photoModal, resizeTextarea, bootstrapPlayer, uiwidget, tmpl, loadimage, loadimageOrient, loadimageMeta, loadImageExif, loadImageExifMap, canvasToBlob, $IFrameTransport, $Fileupload, $FileuploadProcess, $FileUploadImage, $FileuploadAudio, $FileuploadVideo, $FileuploadValidate, $FileuploadUI, $Message, main, namespace, Class, rest, $deparam, RestService) {
+define(["jquery", "bootstrap", "recordmp3", "mikes-modal", "photo-modal", "resize-textarea", "bootstrap3_player", "jquery.ui.widget", "tmpl", "load-image", "load-image-orientation", "load-image-meta", "load-image-exif", "load-image-exif-map", "canvas-to-blob", "jquery.iframe-transport", "jquery.fileupload", "jquery.fileupload-process", "jquery.fileupload-image", "jquery.fileupload-audio", "jquery.fileupload-video", "jquery.fileupload-validate", "jquery.fileupload-ui", "jquery.message", "main", "caption", "jive", "jive.oo.Class", "rest", "jquery.ba-bbq", "jive.RestService"], function($, bootstrap, recordmp3, mikesModal, photoModal, resizeTextarea, bootstrapPlayer, uiwidget, tmpl, loadimage, loadimageOrient, loadimageMeta, loadImageExif, loadImageExifMap, canvasToBlob, $IFrameTransport, $Fileupload, $FileuploadProcess, $FileUploadImage, $FileuploadAudio, $FileuploadVideo, $FileuploadValidate, $FileuploadUI, $Message, main, caption, namespace, Class, rest, $deparam, RestService) {
   
   $(function() {
     console.log('loading main app module');
@@ -43,6 +43,7 @@ define(["jquery", "bootstrap", "recordmp3", "mikes-modal", "photo-modal", "resiz
                           "</div>"
                       );
                   });
+
                   $("#search-results-count").html(data.hits.total);
                     $("#view-all-results").prop("href", "/search/" + query + "?size=50&from=0");
                     $("#search-result-count-link").prop("href", "/search/" + query + "?size=50&from=0");
@@ -51,8 +52,25 @@ define(["jquery", "bootstrap", "recordmp3", "mikes-modal", "photo-modal", "resiz
                   console.log('could not retrieve search results.');
                   $("#search-results").html("<h3>Could not retrieve search results.</h3>");
               }
-          });  
+          });
+
+          $("#view-all-results").attr("href", "/search/" + query + "?size=50&from=0");
+          $("#search-result-count-link").attr("href", "/search/" + query + "?size=50&from=0");
       }
+  });
+  
+  //close panel
+  $(document).keyup(function(event) {
+      if(event.which === 27) {
+          $('#search-box').hide();
+          $('#id-search-text').val();
+      }
+  });
+
+  //listener to close panel when user clicks anywhere on screen
+  $(document).mouseup(function(){
+      $('#search-box').hide();
+      $('#id-search-text').val("");
   });
 
   //close panel

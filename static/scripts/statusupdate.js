@@ -68,8 +68,9 @@ define(function (require) {
 
   var blogpost_photo;
 
-  var control = document.getElementById("blogpost-photo-file");
-  control.addEventListener("change", function(event) {
+  var control = $("#blogpost-photo-file")
+  control.bind("change", function(event) {
+  //control.addEventListener("change", function(event) {
 
       var i = 0,
           files = control.files,
