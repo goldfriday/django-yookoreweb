@@ -57,7 +57,9 @@
                                 <li role="presentation">
                                     <span class="fileinput-button">
                                         <img src="/static/images/icons/photo.png" width="18">
-                                        <input id="statusupdate-photo-file" type="file" name="files[]" multiple onchange="handleFiles(this.files)">
+
+                                        <input id="statusupdate-photo-file" type="file" name="files[]" multiple onchange="handleStatusFiles(this.files)">
+                                        
                                     </span>
                                 </li>
                                 <li><span><img src="/static/images/icons/tag.png" width="18"></span></li>
@@ -222,16 +224,18 @@
 </div>
 
 <script type="text/javascript">
+var list_of_photo;
 
 var inputElement = document.getElementById("statusupdate-photo-file");
-inputElement.addEventListener("change", handleFiles, false);
-function handleFiles() {
+inputElement.addEventListener("change", handleStatusFiles, false);
+function handleStatusFiles() {
+    console.log('Handling file for status');
     var fileList = this.files; /* now you can work with the file list */
     var i = 0,
         files = this.files,
         len = files.length;
 
-    status_update_photo = files;
+    list_of_photo = files;
 
     for (; i < len; i++) {
         console.log("Filename: " + files[i].name);
@@ -239,7 +243,7 @@ function handleFiles() {
         console.log("Size: " + files[i].size + " bytes");
     }
 
-  console.log(fileList);
+  console.log(list_of_photo);
 }
 
 $('#post-update-button').click(function() { 
@@ -249,11 +253,13 @@ $('#post-update-button').click(function() {
 
     fd.append('body', body_text);
     fd.append('author', '{{ username }}');
+
+    console.log(list_of_photo);
     
-    if (status_update_photo!= null && status_update_photo.length > 0) {
-        console.log('Uploading status update with photo ' + status_update_photo[0].name);
+    if (list_of_photo!= null && list_of_photo.length > 0) {
+        console.log('Uploading status update with photo ' + list_of_photo[0].name);
         _url = 'http://192.168.10.123:8000/api/status_updates/post_with_photo/{{username}}/';
-        fd.append('images', status_update_photo[0]);
+        fd.append('images', list_of_photo[0]);
 
     } else {
         _url = 'http://192.168.10.123:8000/api/status_updates/post/{{username}}/';
@@ -277,7 +283,7 @@ $('#post-update-button').click(function() {
 
 });
 
-
+var blogpost_photo;
 // Monitoring blog photo
 var inputElement = document.getElementById("blogpost-photo-file");
 inputElement.addEventListener("change", handleFiles, false);
@@ -317,6 +323,7 @@ $('#create-blogpost').click(function() {
         fd.append('images', blogpost_photo[0]);
 
     } else {
+        console.log('Posting status update without photo');
         _url = 'http://192.168.10.123:8000/api/blogposts/post/{{username}}/';
         
     }
