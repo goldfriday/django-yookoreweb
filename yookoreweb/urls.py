@@ -26,7 +26,7 @@ urlpatterns = patterns('',
 
     url(r'^profile', 'userprofile_app.views.userprofile', name="userprofile"),
 
-    url(r'^photos', include('photo_app.urls')),
+    # url(r'^photos', include('photo_app.urls')),
 
 
 )
