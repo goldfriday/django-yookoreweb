@@ -259,16 +259,26 @@ def search2(request, q):
         print 'From ajax'
     print 'in search 2'
     print 'Get: ' + q
+
+    size = request.GET.get("size")
+    index = request.GET.get("from")
+
     context = {}
-    context['results'] = get_search_result(q)
+    context['payload'] = get_search_result(q, size, index)
+
     print context
-    return HttpResponse(json.dumps(context, indent=4))
+    #return HttpResponse(json.dumps(context, indent=4))
     return render(request, 'frontend/views/search.html', context)
 
-
-def get_search_result(query):
-    print 'In search result '
+def get_search_result(query, size, index):
     url = URL_SEARCH + "/_search?q=firstname:" + query
+
+    if size:
+        url += '&size=' + size
+
+    if index:
+        url += '&from=' + index
+
     print url
     headers = {'content-type': 'application/json'}
 
@@ -282,12 +292,28 @@ def get_search_result(query):
         for r in result_list:
             results.append(r['_source'])
 
-        return results
+        payload = {}
+        payload["results"] = results
+        payload["nb"] = nb
+        payload["query"] = query
+
+        if index and size:
+            payload["next"] = index + size
+
+            if int(index) > size:
+                payload["previous"] = int(index) - size
+
+            if nb > int(index) and int(index) > 0:
+                payload["current_page"] = nb / int(index)
+
+
+
+        print payload
+        return payload
 
     else:
         print 'Error occured when searching'
         return 'error'
-
 
 def test(request):
     print 'in test'

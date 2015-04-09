@@ -14,7 +14,10 @@ urlpatterns = patterns('',
     url(r'^login$', 'frontend.views.yookore_login'),
     url(r'^like/(?P<id>[^/]+)/(?P<username>[\w\d]+)$', 'frontend.views.content_like'),
     url(r'^comment/(?P<id>[^/]+)/(?P<username>[\w\d]+)$', 'frontend.views.content_comment'),
+
     url(r'^search/(?P<q>[\w\d\ ]+)$', 'frontend.views.search2'),
+
+    url(r'^search', 'frontend.views.search2'),
 
     url(r'^test$', 'frontend.views.test'),
 

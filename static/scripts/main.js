@@ -44,6 +44,8 @@ define(["jquery", "bootstrap", "recordmp3", "mikes-modal", "photo-modal", "resiz
                       );
                   });
                   $("#search-results-count").html(data.hits.total);
+                    $("#view-all-results").prop("href", "/search/" + query + "?size=50&from=0");
+                    $("#search-result-count-link").prop("href", "/search/" + query + "?size=50&from=0");
               },
               error: function () {
                   console.log('could not retrieve search results.');
