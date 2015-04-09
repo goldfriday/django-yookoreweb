@@ -1,4 +1,4 @@
-define('yookore.statusupdate', function (require) {
+define(function (require) {
   console.log('loaded statusupdate module')
 
   require('./audio')
@@ -7,8 +7,8 @@ define('yookore.statusupdate', function (require) {
 
   var status_update_photo;
 
-  var control = document.getElementById("status-photo-file");
-  control.addEventListener("change", function(event) {
+  var control = $("#status-photo-file")
+  control.bind("change", function(event) {
 
       // When the control has changed, there are new files
 

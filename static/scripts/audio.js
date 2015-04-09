@@ -1,4 +1,4 @@
-define('yookore.audio', function(require) {
+define(function(require) {
 
   function __log(e, data) {
     log.innerHTML = "\n" + e + " " + (data || '');
@@ -139,7 +139,13 @@ define('yookore.audio', function(require) {
           processData: false,
           contentType: false,
           success: function (result) {
-              console.log("upload successful: " + result);
+            console.log("upload successful: " + result);
+            alert("Audio file uploaded successfully!");
+            window.location.reload(true);
+          },
+          error: function (result) {
+              console.log("An error occurred while uploading the Audio file.");
+              alert("An error occurred while uploading the Audio file.");
           }
       });
   });

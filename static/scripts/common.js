@@ -8,6 +8,7 @@ requirejs.config({
     "bootstrap" : { "deps" :['jquery'] },
     "mikes-modal": { "deps": ['jquery'] },
     "photo-modal": { "deps": ['jquery'] },
+    "jquery.message": { "deps": ['jquery'] },
     "main": { "deps": ['jquery'] },
     "resize-textarea": { "deps": ['jquery'] },
     "bootstrap3_player": { "deps": ['jquery'] },
