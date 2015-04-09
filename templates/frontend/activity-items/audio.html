@@ -1,32 +1,45 @@
+{% load dictionary_extras %}
 <div class="activity-stream-wrapper">
             <div class="activity-card">
+
                 <!--activity header starts-->
                 <div class="activity-header">
-                    <div class="content-owner-pix"><img src="/static/images/pix.png" width="100%"></div>
-                    <div class="content-owner-wrapper">
-                        <div class="content-owner-name">Paul Imisi</div>
-                        <div class="activity-verb">An audio blog post</div>
+                    <div class="content-owner-pix">
+
+                        {% if activity.actor.imageurl %} 
+                            <a href="{% url 'userprofile' %}"> <img src="{{activity.actor.imageurl }}" width="100%"></a>
+                        {% else %}
+                            <a href="{% url 'userprofile' %}"> <img src= "/static/images/ico_placeholder_60.png" width="100%"></a>
+                        {% endif %}
+
                     </div>
-                    <div class="status-update-timestamp">2hours ago</div>
+                    <div class="content-owner-wrapper">
+                        <div class="content-owner-name">{{ activity.actor.displayname }}</div>
+                        <div class="activity-verb">created an audio blog</div>
+
+                        <div class="status-update-timestamp">
+                            {{ activity.object.publishdate|timedelta }} <br/>
+                        </div>
+                    </div>
                     <div class="clear"></div>
                 </div>
                 <!--activity header stops-->
+
                 <!--Photo in post-->
                 <div class="photo-in-post-wrapper">
                     <div class="photo-in-status-update">
                         <audio controls>
                             {#  Handling the file sent here: url_original, filename, caption #}
-                            
-                            <source src="mp3/open_your_eyes.mp3" type="audio/mpeg"/>
-                            <a href="#">Open Your Eyes</a>
+                            <source src="{{activity.object.url_original}}" type="audio/mpeg"/>
+                            <a href="#">{{activity.object.filename}}</a>
                         </audio>
                         <!--<img src="img/uploads/hazard.png" class="img-responsive" alt="Photo">
                            <!-- <img src="img/uploads/port.jpg" class="img-responsive" alt="Photo">-->
                     </div>
                 </div>
-                <!-- <div class="text-content">
-                 The project "Women For Change Initiative" was established in 2010 to sensitise, empower and mobilise women to participate actively in governance.
-                 </div>
+                <div class="text-content">
+                        {{ activity.object.caption }}
+                </div>
                  <!--content stats-->
                 {% include 'frontend/activity-items/content-stats.html' %}
                 <!--interactin bar-->
@@ -43,6 +56,6 @@
                     {% include 'frontend/activity-items/comment-post.html' %}
                 </div>
                 <!--post comment ends-->
-                <div class="more-comments">See 25 more</div>
+                <!--div class="more-comments">See 25 more</div-->
             </div>
-        </div>
+            </div>
