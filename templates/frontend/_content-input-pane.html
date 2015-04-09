@@ -33,7 +33,7 @@
         <div role="tabpanel" class="tab-pane active" id="main" ng-controller="StatusupdateCtrl">
           <div class="status-update-form-wrapper" data-username="{{username}}">
               <textarea rows="3" class="update-status" ng-model="body" placeholder="What's on your mind?" id="body-id"></textarea>
-              <form id="fileupload" action="/test" method="POST"
+              <form class="fileupload" action="/test" method="POST"
                     enctype="multipart/form-data">
                     {% csrf_token %} 
                   <!-- Redirect browsers with JavaScript disabled to the origin page -->
@@ -75,7 +75,7 @@
             </div>
             <!-- The file upload form used as target for the file upload widget -->
 
-            <form id="fileupload" action="#" method="POST"
+            <form class="fileupload" action="#" method="POST"
                   enctype="multipart/form-data">
                   {% csrf_token %} 
                 <!-- Redirect browsers with JavaScript disabled to the origin page -->
@@ -88,7 +88,7 @@
                 <span class="btn add-photo-button fileinput-button">
                     <span class="add-photo-button-icon">Add Photos...</span>
                     <!-- The file input field used as target for the file upload widget -->
-                    <input id="fileupload2" type="file" name="images" multiple>
+                    <input id="fileupload" type="file" name="images" multiple>
                 </span>
                 </div>
                 <!-- The table listing the files available for upload/download -->
@@ -106,27 +106,54 @@
             </form>
         </div>
          <!-- BLOG POST -->
-
-        <!--blog post-->
         <div role="tabpanel" class="tab-pane" id="blog">
             <div class="blog-post-body">
                 <input type="text" class="form-control" placeholder="Title" id="id-blogpost-title" style="margin-bottom:10px;" >
                 <textarea rows="3" class="form-control" placeholder="Message" id="id-blogpost-body" ></textarea>
-                <span class="btn add-photo-button fileinput-button" style="margin-top:10px;">
-                <span class="add-photo-button-icon">Add Photos...</span>
-                <!-- The file input field used as target for the file upload widget -->
-                <input id="blogpost-photo-file" type="file" name="files[]" multiple>
+
+<!-- The file upload form used as target for the file upload widget -->
+
+            <form class="fileupload" action="/test" method="POST"
+                  enctype="multipart/form-data">
+                  {% csrf_token %} 
+                <!-- Redirect browsers with JavaScript disabled to the origin page -->
+                <noscript>
+                    <input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/">
+                </noscript>
+            
+                    <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn add-photo-button fileinput-button" style="margin:10px 0;">
+                    <span class="add-photo-button-icon">Add Photos...</span>
+                    <!-- The file input field used as target for the file upload widget -->
+
+                    <input id="blogpost-photo-file" type="file" name="files[]" multiple>
+
                 </span>
+                <!-- The table listing the files available for upload/download -->
+                <div role="presentation" style="padding:0 5px 0px; text-align:center;">
+                    <div class="files">
+                    </div>
+                    <div class="clear"></div>
+                    <div class="row fileupload-buttonbar"></div>
+                    
                 </div>
+            </div>
+
+            <div id="loading-blogpost"></div>
+
                 <div class="status-update-bottom">
                     <div class="status-update-bottom-icons">
                         <ul class="list-inline">
-                            <li><span>Posting to Frank's Blog</span></li>
+                            <li><span>  </span></li>
                         </ul>
                     </div>
                     <div id="create-blogpost" class="post-update-button" >Post</div>
                     <div class="clear"></div>
                 </div>
+                
+            </form>
+                
+                
         </div>
         <!--blog post ends-->
         <!--audio blog starts-->
