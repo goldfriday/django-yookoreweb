@@ -60,7 +60,6 @@ def update_user_profile(request, username=None):
     populate_context(context, username)
     context['friends_list'] = get_friends_for(username)
     context['profile_info'] = get_user_profile(username)
-    context['username'] = username
     if request.method == 'GET':
         print 'calling user profile'
         url = "http://192.168.10.144:3000/auth/profile/" + username
@@ -96,6 +95,8 @@ def populate_context(context, username):
     context['userdata'] = userdata
     context['activities'] = get_activities(username)
     context['fullname'] = userdata['firstname'] + " " + userdata['lastname']
+    context['username'] = username
+
     return context
 
 

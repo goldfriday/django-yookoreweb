@@ -14,13 +14,13 @@
                 <!--side menu-->
                 <div class="side-menu-wrapper" style="background:none !important;">
                     <div class="list-group">
-                        <a href="{% url 'userprofile_blogs' %}" class="list-group-item"><span
+                        <a href="{% url 'userprofile_blogs' username %}" class="list-group-item"><span
                                 class="list-group-icons"><img
                                 src="/static/images/icons/profile.png" width="18"></span>All Blog Post</a>
-                        <a href="{% url 'userprofile_blogs' %}" class="list-group-item"><span
+                        <a href="{% url 'userprofile_blogs' username %}" class="list-group-item"><span
                                 class="list-group-icons"><img
                                 src="/static/images/icons/blogs.png" width="18"></span>My Blog Post</a>
-                        <a href="{% url 'userprofile_createpost' %}" class="list-group-item   active"><span
+                        <a href="{% url 'userprofile_createpost' username %}" class="list-group-item   active"><span
                                 class="list-group-icons"><img
                                 src="/static/images/icons/blogs.png" width="18"></span>New Blog Post</a>
                         <a href="#" class="list-group-item disabled"><span class="list-group-icons"><img

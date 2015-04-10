@@ -15,7 +15,7 @@
                 <!--side menu-->
                 <div class="side-menu-wrapper" style="background:none !important;">
                     <div class="list-group">
-                        <a href="{% url 'userprofile_friends' %}" class="list-group-item active"><span
+                        <a href="{% url 'userprofile_friends' username %}" class="list-group-item active"><span
                                 class="list-group-icons"><img
                                 src="/static/images/icons/blogs.png" width="18"></span>All Friends</a>
                         <a href="#" class="list-group-item disabled"><span class="list-group-icons"><img
@@ -68,7 +68,7 @@
                         {% if friends_list %}
                             {% for friend in friends_list %}
                                 <div class="col-xs-4 col-sm-3 col-md-2 mp-less-pad-xs">
-                                    <a href="{% url 'userprofile' %}">
+                                    <a href="{% url 'userprofile' username %}">
                                         <div class="thumbnail">
                                             <div class="caption">
                                                 <h4 style="padding:5px 0; font-weight:700;">{{ friend.firstname }} {{ friend.lastname }}</h4>
