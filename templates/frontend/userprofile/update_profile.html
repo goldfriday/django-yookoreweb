@@ -76,7 +76,6 @@
                 </div>
                 <div class="clear"></div>
                </div>
-            {{ profile_info }}
              <div class="field-row">
              <div class="field50-wrap">
             	<div class="field50-left"><input type="text" name="firstname" class="form-control" id="profile_firstname" placeholder="First name" value="{% if profile_info.firstname %}{{ profile_info.firstname }}{% endif %}"></div>
@@ -666,120 +665,6 @@
 <div class="footer"></div>
 </div>
 
-<script>
-	function readURL(input) {
-	if (input.files && input.files[0]) {
-	var reader = new FileReader();
-	reader.onload = function(e) {
-	$('#previewHolder').attr('src', e.target.result);
-	}
-	reader.readAsDataURL(input.files[0]);
-	}
-	}
-	$("#filePhoto").change(function() {
-	 readURL(this);
-
-
-        var fd = new FormData();
-        fd.append('filedata',$('#filePhoto')[0].files[0]);
-
-        $.ajax({
-        url: 'http://41.160.30.173:3002/auth/profile/uploadphoto/'+'?username={{username}}',
-        type: 'POST',
-        data: fd,
-        processData:false,
-        contentType:false,
-        success: function (result) {
-            console.log(result);
-            $("#ImageUrl").val(result.fileUrl);
-            var imageUrl= result.fileUrl;
-            console.log(imageUrl);
-          //alert("Your profile has been updated");
-           //window.location.reload(false);
-        }
-    });
-
-	});
-
-</script>
-
-<script type="text/javascript">
-
-var numDays = {
-                '1': 31, '2': 28, '3': 31, '4': 30, '5': 31, '6': 30,
-                '7': 31, '8': 31, '9': 30, '10': 31, '11': 30, '12': 31
-              };
-
-function setDays(oMonthSel, oDaysSel, oYearSel)
-{
-	var nDays, oDaysSelLgth, opt, i = 1;
-	nDays = numDays[oMonthSel[oMonthSel.selectedIndex].value];
-	if (nDays == 28 && oYearSel[oYearSel.selectedIndex].value % 4 == 0)
-		++nDays;
-	oDaysSelLgth = oDaysSel.length;
-	if (nDays != oDaysSelLgth)
-	{
-		if (nDays < oDaysSelLgth)
-			oDaysSel.length = nDays;
-		else for (i; i < nDays - oDaysSelLgth + 1; i++)
-		{
-			opt = new Option(oDaysSelLgth + i, oDaysSelLgth + i);
-                  	oDaysSel.options[oDaysSel.length] = opt;
-		}
-	}
-	var oForm = oMonthSel.form;
-	var month = oMonthSel.options[oMonthSel.selectedIndex].value;
-	var day = oDaysSel.options[oDaysSel.selectedIndex].value;
-	var year = oYearSel.options[oYearSel.selectedIndex].value;
-{#	 oForm.birthdate.value = month + '/' + day + '/' + year;#}
-
-    var newDate = month + '/' + day + '/' + year;
-    oForm.birthdate.value = new Date(newDate).getTime();
-}
-
-</script>
-
-<script type="text/javascript">
-// handling profile update
-
-$('#profile_update').submit(function(event) {
-    event.preventDefault();
- //Remove empty fields
-        $(this).find('input[name], select[name],textarea[name]').each(function(){
-        if (!$(this).val()){
-            $(this).data('name', $(this).attr('name'));
-            $(this).removeAttr('name');
-        }
-    });
-      $(this.year).remove();
-      $(this.month).remove();
-      $(this.day).remove();
-
-	console.log('Submit button clicked');
-
-    var jsonData = {};
-    var jsonData = $("#profile_update").serializeJSON();
-
-    console.log(jsonData);
-
-    var json_text = JSON.stringify(jsonData, null, 2);
-
-     console.log(json_text);
-
-    $.ajax({
-        url: 'http://41.160.30.173:3002/auth/profile/update/'+'?username={{username}}',
-        type: 'PUT',
-        headers : {'content-type': 'application/json'},
-        data: json_text,
-        success: function (result) {
-          //alert("Your profile has been updated");
-           window.location.reload(true);
-        }
-    });
-
-});
-
-</script>
 
 </body>
 
