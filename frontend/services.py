@@ -45,3 +45,24 @@ def get_blogposts(username):
         return data
 
     return 'error'
+
+
+def get_friends_for(username):
+    print 'In search friends '
+    # Getting username from cookies or the session
+    url = URL_CONTENT + "/socialgraph/friends/" + username + "/"
+    print url
+    headers = {'content-type': 'application/json'}
+
+    response = requests.get(url, headers=headers)
+
+    results = []
+    if response:
+        data = response.json()
+        for f in data:
+            print f
+            results.append(get_user_profile(f['username']))
+        return results
+    else:
+        print 'A error occurred'
+        return results

@@ -14,7 +14,7 @@
             <span class="top-icons"><a href="#"><img width="100%" src="/static/images/icons/mess.png"></a></span>
             <span class="top-drop hide-div">
                 <div class="dropdown navbar-right">
-                    <span class="nav-profile-pix-img hide-div"><img width="100%" src="/static/images/people/guy-4.jpg"></span>
+                    <span class="nav-profile-pix-img hide-div"><img width="100%" src="{{ userdata.imageurl }}"></span>
                     <a style="color:#fff; display:inline-block; vertical-align:top;" aria-expanded="false" role="button"
                        data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <!-- Put name here from context variable -->
@@ -24,7 +24,7 @@
                         <span class="caret-top"></span>
                     </a>
                     <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu">
-                        <li><a href="{% url 'userprofile' %}">Profile</a></li>
+                        <li><a href="{% url 'userprofile' userdata.username %}">Profile</a></li>
                         <li><a href="#">Messages</a></li>
                         <li><a href="#">Settings</a></li>
                         <li class="divider"></li>

@@ -9,57 +9,72 @@ import json
 import requests
 
 # Create your views here.
-from frontend.services import get_activities, get_blogposts
+from frontend.services import get_activities, get_blogposts, get_friends_for
 from frontend.services import URL_CONTENT
 
 
-def userprofile_about(request):
-    username = request.session.get('username')
+def userprofile_about(request, username = None):
+    if username is None:
+        username = request.session.get('username')
+
     context = {}
     populate_context(context, username)
+    context['active'] = "about"
     return render(request, 'frontend/userprofile/profile_about.html', context)
 
+def userprofile(request, username=None):
 
-def userprofile_friends(request):
+    if username is None:
+        username = request.session.get('username')
+
+    # raise Exception(userdata)
+    context = {}
+    populate_context(context, username)
+    context['active'] = "stream"
+    context['friends_list'] = get_friends_for(username)
+    return render(request, 'frontend/views/profile.html', context)
+
+
+def userprofile_friends(request, username = None):
+    if username is None:
+        username = request.session.get('username')
 
     context = {}
-    username = request.session.get('username')
+
     populate_context(context, username)
-
-    print 'In search friends '
-    # Getting username from cookies or the session
-    url = URL_CONTENT + "/socialgraph/friends/" + request.session['username'] + "/"
-    print url
-    headers = {'content-type': 'application/json'}
-
-    response = requests.get(url, headers=headers)
-
-    if response:
-        data = response.json()
-        results = []
-
-    if data:
-        # Parsing all friends to retrieve the imageurl
-        for f in data:
-            print f
-            results.append(get_user_profile(f['username']))
-
-        print results
-        context['friends_list'] = results
-
-    else:
-        print 'Error occured when searching'
-
+    context['friends_list'] = get_friends_for(username)
+    context['active'] = "friends"
     return render(request, 'frontend/userprofile/profile_friends.html', context)
 
 
-def userprofile(request):
+
+def userprofile_blogs(request, username = None):
+    if username is None:
+        username = request.session.get('username')
 
     context = {}
-    context['profile_info'] = get_user_profile('ptchankue')
+    populate_context(context, username)
 
-    return render(request, 'frontend/views/profile.html', context)
+    context['blogposts'] = get_blogposts(username)
+    context['active'] = 'blogs'
 
+    return render(request, 'frontend/userprofile/profile_blogs.html', context)
+
+def userprofile_createpost(request, username):
+    if username is None:
+        username = request.session.get('username')
+
+    context = {}
+    populate_context(context, username)
+
+    return render(request, 'frontend/userprofile/profile_createpost.html', context)
+
+def populate_context(context, username):
+    userdata = get_user_profile(username)
+    context['userdata'] = userdata
+    context['activities'] = get_activities(username)
+    context['fullname'] = userdata['firstname'] + " " + userdata['lastname']
+    return context
 
 def get_user_profile(username):
     print 'calling profile user '
@@ -78,18 +93,3 @@ def get_user_profile(username):
     except:
         print 'An error occured'
         pass
-
-def userprofile_blogs(request):
-    context = {}
-    populate_context(context, request.session.get('username'))
-
-    context['blogposts'] = get_blogposts(request.session.get('username'))
-
-    return render(request, 'frontend/userprofile/profile_blogs.html', context)
-
-def populate_context(context, username):
-    userdata = get_user_profile(username)
-    context['userdata'] = userdata
-    context['activities'] = get_activities(username)
-    context['fullname'] = userdata['firstname'] + " " + userdata['lastname']
-    return context

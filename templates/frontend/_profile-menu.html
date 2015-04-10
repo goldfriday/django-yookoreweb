@@ -3,10 +3,11 @@
     <div class="profile-info-wrapper">
         <div class="profile-pix-card">
             <div class="profile-pix-img">
-                {% if activity.actor.imageurl %}
-                    <a href="{% url 'userprofile' %}" ><img src="{{ activity.object.actor.imageurl }}" width="100%"></a>
+
+                {% if userdata.imageurl %}
+                    <a href="{% url 'userprofile' userdata.username%}" ><img src="{{ userdata.imageurl }}" width="100%"></a>
                 {% else %}
-                    <a href="{% url 'userprofile' %}" ><img src="/static/images/ico_placeholder_60.png" width="100%"></a>
+                    <a href="{% url 'userprofile' userdata.username %}" ><img src="/static/images/ico_placeholder_60.png" width="100%"></a>
                 {% endif %}
             </div>
         </div>
@@ -15,7 +16,7 @@
                 {{ fullname }}
             {% endif %}
         </div>
-        <div class="edit-profile"><a href="{% url 'userprofile' %}"> Edit Profile</a></div>
+        <div class="edit-profile"><a href="{% url 'userprofile' userdata.username %}"> Edit Profile</a></div>
         <div class="profile-stats-wrapper">
             <div class="profile-stats-info">
                 <div class="ps-friends">0</div>
@@ -34,7 +35,7 @@
     <!--side menu-->
     <div class="side-menu-wrapper">
         <div class="list-group">
-            <a href="/profile" class="list-group-item">
+            <a href="{% url 'userprofile' userdata.username %}" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/profile.png" width="18"></span>
                 Profile</a>
             <a href="{% url 'profile_photos' %}" class="list-group-item">
@@ -49,7 +50,7 @@
                 <span class="list-group-icons"><img src="/static/images/icons/video.png" width="18"></span>
                 Videos <span class="badge">0</span>
             </a>
-            <a href="{% url 'userprofile_friends' %}" class="list-group-item">
+            <a href="{% url 'userprofile_friends' userdata.username %}" class="list-group-item">
                 <span class="list-group-icons"><img src="/static/images/icons/friends.png" width="18"></span>
                 Friends <span class="badge">0</span>
             </a>

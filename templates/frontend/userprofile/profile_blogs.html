@@ -14,11 +14,11 @@
                 <!--side menu-->
                 <div class="side-menu-wrapper" style="background:none !important;">
                     <div class="list-group">
-                        <a href="my_blog.php" class="list-group-item"><span class="list-group-icons"><img
+                        <a href="{% url 'userprofile_blogs' userdata.username %}" class="list-group-item"><span class="list-group-icons"><img
                                 src="/static/images/icons/profile.png" width="18"></span>All Blog Post</a>
-                        <a href="my-blog-post.php" class="list-group-item  active"><span class="list-group-icons"><img
-                                src="/static/images/icons/blogs.png" width="18"></span>My Blog Post</a>
-                        <a href="create-blog-post.php" class="list-group-item"><span class="list-group-icons"><img
+                        <a href="{% url 'userprofile_blogs' userdata.username %}" class="list-group-item  active"><span class="list-group-icons"><img
+                                src="/static/images/icons/blogs.png" width="18"></span>My Blog Posts</a>
+                        <a href="{% url 'userprofile_createpost' userdata.username %}" class="list-group-item"><span class="list-group-icons"><img
                                 src="/static/images/icons/blogs.png" width="18"></span>New Blog Post</a>
                         <a href="#" class="list-group-item disabled"><span class="list-group-icons"><img
                                 src="/static/images/icons/photo.png" width="18"></span>Friends Blog</a>
@@ -40,9 +40,9 @@
                 <!--sub menu-->
                 <div class="search-nav-wrapper show-div">
                     <ul class="cover-nav">
-                        <li><a href="my_blog.php">All</a></li>
-                        <li class="active"><a href="my-blog-post.php">My Blog Post</a></li>
-                        <li><a href="create-blog-post-full.php">New Blog Post</a></li>
+                        <li><a href="{% url 'userprofile_blogs' userdata.username %}">All</a></li>
+                        <li class="active"><a href="{% url 'userprofile_blogs' userdata.username %}">My Blog Posts</a></li>
+                        <li><a href="{% url 'userprofile_createpost' userdata.username %}">New Blog Post</a></li>
                     </ul>
                     <div class="clear"></div>
                 </div>
@@ -111,7 +111,7 @@
                             <div class="clear"></div>
                         </div>
                         <!--blog post header stops-->
-                        <a href="blog_full_view.php"
+                        <a href="#"
                            style="padding:0 0 7px 0; font-weight:bold; font-size:22px; color:#000;">This is my blog
                             title: what a day!!!</a>
                         <!--remove comment tag only if blog has a photo in post

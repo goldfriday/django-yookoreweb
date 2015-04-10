@@ -38,24 +38,12 @@ def activitystream(request):
         context['username'] = username
         context['activities'] = get_activities(username)
         context['fullname'] = userdata['firstname'] + " " + userdata['lastname']
-        context['user'] = userdata
+        context['userdata'] = userdata
         # raise Exception(userdata)
 
         return render(request, 'frontend/views/stream.html', context)
 
 
-def userprofile(request):
-
-    username = request.session.get('username')
-    userdata = get_user_profile(username)
-
-    # raise Exception(userdata)
-    context = {}
-    context['userdata'] = userdata
-    context['activities'] = get_activities(username)
-    context['fullname'] = userdata['firstname'] + " " + userdata['lastname']
-
-    return render(request, 'frontend/views/profile.html', context)
 
 
 def yookore_login(request):

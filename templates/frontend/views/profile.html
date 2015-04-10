@@ -46,13 +46,12 @@
                 <span class="list-group-item-heading"
                       style="padding-bottom:3px; margin-bottom:3px; font-weight:700; line-height:normal; font-size:12px;">
 
-                  South Africa
+                  Current Location
 
                 </span>
 
                                     <p class="list-group-item-text"
-                                       style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">Lives
-                                        in Randburg</p>
+                                       style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">{{ userdata.currentcountry }}</p>
                                 </a>
                             </div>
                             <div class="list-group" style="margin-bottom:5px;">
@@ -63,8 +62,8 @@
 
                                     <p class="list-group-item-text"
                                        style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">
-                                        {% if profile_info.gender %}
-                                            {{ profile_info.gender }}
+                                        {% if userdata.gender %}
+                                            {{ userdata.gender }}
                                         {% else %}
                                             None
                                         {% endif %}
@@ -80,7 +79,7 @@
 
                                     <p class="list-group-item-text"
                                        style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">
-                                        Married</p>
+                                        {{ userdata.relationshipstatus }}</p>
                                 </a>
                             </div>
                             <div class="list-group" style="margin-bottom:5px;">
@@ -91,7 +90,7 @@
 
                                     <p class="list-group-item-text"
                                        style="color:#666; font-weight:normal; line-height:normal; font-size:12px;">
-                                        Movies - Sports - Travel</p>
+                                        {% for interest in userdata.interests %} {{interest}}, {% endfor %}</p>
                                 </a>
                             </div>
                             <!--content body ends-->
