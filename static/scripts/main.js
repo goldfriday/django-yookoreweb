@@ -9,7 +9,6 @@ define(["jquery", "bootstrap", "recordmp3", "mikes-modal", "photo-modal", "resiz
     console.log(search_text);
 
     // search for first name for now
-    var local_ip = "192.168.10.20:9200";
     var public_ip = "41.160.30.173:3002";
     var uri = "http://" + public_ip + "/info/users/_search?q=firstname:";
 

@@ -1,0 +1,163 @@
+{% include 'frontend/site-base.html' %}
+
+{% block body %}
+  <body>
+    {% include 'frontend/_header.html' %}
+    <!--header ends-->
+<!--container ends-->
+<div class="container">
+<div class="row">
+{% include 'frontend/_cover-profile.html' %}
+</div>
+<div class="row xtra-pad">
+<!--left column-->
+	 <div class="mp-left-col">
+     <!--user details-->
+   	   <!--side menu-->
+     	<div class="side-menu-wrapper" style="background:none !important;">
+        <div class="list-group">
+            <a href="my_photos.php" class="list-group-item active"><span class="list-group-icons"><img src="/static/images/icons/blogs.png" width="18"></span>Albums</a>
+            <a href="my_photos_pu.php" class="list-group-item"><span class="list-group-icons"><img src="/static/images/icons/profile.png" width="18"></span> Photos of You</a>
+            <a href="my_photos_in.php" class="list-group-item"><span class="list-group-icons"><img src="/static/images/icons/photo.png" width="18"></span>Your Photos</a>
+        </div>
+        </div>
+        <div class="col-sm-cards">
+        </div>
+     	<div class="advert-wrapper">
+        	<div class="ad-section-header">
+            	<div class="sponsored-title">sponsored</div>
+                <div class="create-ad-link">Create Ad</div>
+            	<div class="clear"></div>
+            </div>
+            <!--ad card begins-->
+            <div class="ad-card">
+            	<div class="ad-image"><img src="/static/images/uploads/rado.png" width="100%" ></div>
+                <div class="ad-title">Timeless pieces from $120!</div>
+                <div class="ad-link">www.buyright.co.za</div>
+                <div class="ad-description">Loafers are arguable the best quality footwear that makes your feet stand out! Shop our wi...</div>
+            </div>
+            <!--ad card ends-->
+        </div>
+     <!--blogs-->
+     </div>
+<!--left column ends-->
+<!--right column starts-->
+<div class="mp-right-col">
+<div class="mp-view-header">
+    <div style="padding:0px 0px;">
+    	<span style="font-size:22px; font-weight:700;"><span><img style="margin-right:7px;" src="/static/images/icons/photox.png" width="30"></span>Photo Albums</span>
+        <div style="padding:10px 0 0 0;">
+        	<a href="create-album.php"><span><img style="margin-right:4px;" src="/static/images/icons/photo.png" width="12"></span>Create Album</a> · <a href="add_photos.php"><span><img style="margin-right:4px;" src="/static/images/icons/photo-grey.png" width="14"></span>Add Photos</a> · <a href="#"><span><img style="margin-right:4px;" src="/static/images/icons/video.png" width="14"></span>Add Video</a>
+        </div>
+    </div>
+</div>
+<!--mp-view-header ends-->
+<div style="padding:15px;">
+<div class="row">
+   <div class="col-xs-4 col-sm-4 col-md-3 mp-less-pad">
+   <a href="album_view.php">
+      <div class="thumbnail">
+         <img src="/static/images/people/guy-1.jpg">
+      </div>
+      <div class="caption">
+            <span class="btn btn-default photo-btn" role="button">
+               Welcome Party
+            </span>
+      </div>
+      </a>
+   </div>
+   <div class="col-xs-4 col-sm-4 col-md-3 mp-less-pad">
+   <a href="album_view.php">
+      <div class="thumbnail">
+         <img src="/static/images/people/guy-2.jpg">
+      </div>
+      <div class="caption">
+            <span class="btn btn-default photo-btn" role="button">
+               2014 Xmas Party
+            </span>
+      </div>
+      </a>
+   </div>
+   <div class="col-xs-4 col-sm-4 col-md-3 mp-less-pad">
+   <a href="album_view.php">
+      <div class="thumbnail">
+         <img src="/static/images/people/guy-4.jpg">
+      </div>
+      <div class="caption">
+            <span class="btn btn-default photo-btn" role="button">
+               Cover Photos
+            </span>
+      </div>
+      </a>
+   </div>
+   <div class="col-xs-4 col-sm-4 col-md-3 mp-less-pad">
+   <a href="album_view.php">
+      <div class="thumbnail">
+         <img src="/static/images/people/woman-3.jpg">
+      </div>
+      <div class="caption">
+            <span class="btn btn-default photo-btn" role="button">
+               Mobile Uploads
+            </span>
+      </div>
+      </a>
+   </div>
+   <div class="col-xs-4 col-sm-4 col-md-3 mp-less-pad">
+   <a href="album_view.php">
+      <div class="thumbnail">
+         <img src="/static/images/people/guy-1.jpg">
+      </div>
+      <div class="caption">
+            <span class="btn btn-default photo-btn" role="button">
+               Welcome Party
+            </span>
+      </div>
+      </a>
+   </div>
+   <div class="col-xs-4 col-sm-4 col-md-3 mp-less-pad">
+   <a href="album_view.php">
+      <div class="thumbnail">
+         <img src="/static/images/people/guy-4.jpg">
+      </div>
+      <div class="caption">
+            <span class="btn btn-default photo-btn" role="button">
+               2014 Xmas Party
+            </span>
+      </div>
+      </a>
+   </div>
+   <div class="col-xs-4 col-sm-4 col-md-3 mp-less-pad">
+   <a href="album_view.php">
+      <div class="thumbnail">
+         <img src="/static/images/people/guy-9.jpg">
+      </div>
+      <div class="caption">
+            <span class="btn btn-default photo-btn" role="button">
+               Cover Photos
+            </span>
+      </div>
+      </a>
+   </div>
+   <div class="col-xs-4 col-sm-4 col-md-3 mp-less-pad">
+   <a href="album_view.php">
+      <div class="thumbnail">
+         <img src="/static/images/people/woman-9.jpg">
+      </div>
+      <div class="caption">
+            <span class="btn btn-default photo-btn" role="button">
+               Mobile Uploads
+            </span>
+      </div>
+      </a>
+   </div>
+</div>
+</div>
+</div>
+<!--right column ends-->
+<div class="clear"></div>
+</div>
+<div class="footer"></div>
+</div>
+
+</body>
+{% endblock %}

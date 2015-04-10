@@ -8,40 +8,42 @@ define(function (require) {
   console.log('loaded photos module');
   
   var PHOTOS_BASE_URL = 'http://41.160.30.173:3002/';
- 
-  // Initialize the jQuery File Upload widget:
+  var $fileuploadWidget = $('#photo.fileupload')
+  
+    // Initialize the jQuery File Upload widget:
   //var files = $.makeArray(fileInput.prop('files'))
-  $('#fileupload').fileupload({
-      // Uncomment the following to send cross-domain cookies:
-      //xhrFields: {withCredentials: true},
-      url: PHOTOS_BASE_URL + "api/photos/photoalbum/e1c5d682-c7ec-11e4-9a71-685b35b7fe48/photos/",
-      dataType: 'json',
-      // Extra form data
-      //formData: postData,
-      submit: function(e, data) {
-        console.log('calling submit')
-        console.log(data)
-        data.formData = {
-          author: "ptchankue",
-          object_id: "e1c5d682-c7ec-11e4-9a71-685b35b7fe48",
-          images: data.files[0].name
+  if($fileuploadWidget) {
+    $fileuploadWidget.fileupload({
+        // Uncomment the following to send cross-domain cookies:
+        //xhrFields: {withCredentials: true},
+        url: PHOTOS_BASE_URL + "api/photos/photoalbum/e1c5d682-c7ec-11e4-9a71-685b35b7fe48/photos/",
+        dataType: 'json',
+        // Extra form data
+        //formData: postData,
+        submit: function(e, data) {
+          console.log(data)
+          data.formData = {
+            author: "ptchankue",
+            object_id: "e1c5d682-c7ec-11e4-9a71-685b35b7fe48",
+            images: data.files[0].name
+          }
+        },
+        done: function(e, data) {
+          // reset
+          $('div.files').empty()
+          $('.status-update-wrapper').find('#photo textarea').val("")
+        },
+        progressall: function(e, data) {
+          $('#photo.fileupload').addClass('fileupload-processing');
+        },
+        always: function(e, data) {
+          console.log('upload request completed')
+        },
+        fail: function(e, data) {
+          console.log('File upload failed', e)
         }
-      },
-      done: function(e, data) {
-        // reset
-        $('div.files').empty()
-        $('div.status-update-form-wrapper textarea').val("")
-      },
-      progressall: function(e, data) {
-        $('#fileupload').addClass('fileupload-processing');
-      },
-      always: function(e, data) {
-        console.log('upload request completed')
-      },
-      fail: function(e, data) {
-        console.log('File upload failed', e)
-      }
-  });
+    });
+  }
    
   this.PhotoService = jive.RestService.extend(function(protect, _super) {
     console.log('uploading ')
