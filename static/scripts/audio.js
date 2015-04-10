@@ -95,28 +95,28 @@ define(function(require) {
     });
   };
 
-  window.onload = function init() {
-    try {
-      // webkit shim
-      window.AudioContext = window.AudioContext || window.webkitAudioContext;
-      navigator.getUserMedia = ( navigator.getUserMedia ||
-      navigator.webkitGetUserMedia ||
-      navigator.mozGetUserMedia ||
-      navigator.msGetUserMedia);
-      window.URL = window.URL || window.webkitURL;
-
-      audio_context = new AudioContext;
-      console.log('Audio context set up.');
-      console.log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
-    } catch (e) {
-      alert('No web audio support found in this browser! You will not be able to use the audio blog feature.');
-    }
-
-
-    navigator.getUserMedia({audio: true}, startUserMedia, function(e) {
-      console.log('No live audio input: ' + e);
-    });
-  };
+//  window.onload = function init() {
+//    try {
+//      // webkit shim
+//      window.AudioContext = window.AudioContext || window.webkitAudioContext;
+//      navigator.getUserMedia = ( navigator.getUserMedia ||
+//      navigator.webkitGetUserMedia ||
+//      navigator.mozGetUserMedia ||
+//      navigator.msGetUserMedia);
+//      window.URL = window.URL || window.webkitURL;
+//
+//      audio_context = new AudioContext;
+//      console.log('Audio context set up.');
+//      console.log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
+//    } catch (e) {
+//      alert('No web audio support found in this browser! You will not be able to use the audio blog feature.');
+//    }
+//
+//
+//    navigator.getUserMedia({audio: true}, startUserMedia, function(e) {
+//      console.log('No live audio input: ' + e);
+//    });
+//  };
 
   /**
   * upload an audio-blog
@@ -125,7 +125,7 @@ define(function(require) {
       console.log('uploading audio file...');
 
       var fd = new FormData();
-      var username = '{{ username }}';
+      var username = $(".audio-post-body").data("username");
       var caption = $('textarea#audio-caption').val();
 
       fd.append('caption', caption);
@@ -133,7 +133,7 @@ define(function(require) {
       fd.append('file',  $('#audioFileUpload')[0].files[0] );
 
       $.ajax({
-          url: 'http://192.168.10.125:8080/audio',
+          url: 'http://41.160.30.173:3002/audio/web',
           type: 'POST',
           data: fd,
           processData: false,

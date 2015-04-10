@@ -98,6 +98,19 @@
                     <div class="clear"></div>
                     <div class="row fileupload-buttonbar">
                         <div class="post-photo-bottom">
+                      <div style="float:left;">
+  <ul class="nav nav-tabs">
+    <li class="dropdown" style="float:right;">
+        <a href="#" style="padding:5px 10px; margin-top:3px; border:1px solid #ccc; border-radius:4px;" data-toggle="dropdown">Assign Photo to Album<span class="caret-333"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li role="presentation"><a href="#tab4default" data-toggle="tab">The Day I Ate Kayode's Chicken</a></li>
+                <li role="presentation"><a href="#tab5default" data-toggle="tab">Time out at Zoo Lake</a></li>
+                <li class="divider"></li>
+                <li role="presentation"><a href="#tab5default" data-toggle="tab">Okay! Thats Enough</a></li>
+            </ul>
+    </li>
+   </ul>
+                      </div>
                             <button type="submit" class="post-update-button start" id="id-upload-photo">Post</button>
                             <div class="clear"></div>
                         </div>
@@ -160,13 +173,6 @@
         <div role="tabpanel" class="tab-pane" id="audio">
           <div class="audio-post-body" data-username="{{username}}" style="text-align:center;">
                 <textarea rows="1" id="audio-caption" class="update-status" placeholder="Write something..."></textarea>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn audio-blog-button" data-toggle="modal"
-                        data-target="#myModal">
-                    Record Your Message
-                </button>
-
-                <br>OR<br>
 
              <span class="btn add-photo-button fileinput-button" style="margin-top:10px;">
             <span class="add-photo-button-icon">Upload Audio Message</span>
