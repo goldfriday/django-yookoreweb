@@ -1,4 +1,4 @@
-define(["jquery", "bootstrap", "recordmp3", "mikes-modal", "photo-modal", "resize-textarea", "bootstrap3_player", "jquery.ui.widget", "tmpl", "load-image", "load-image-orientation", "load-image-meta", "load-image-exif", "load-image-exif-map", "canvas-to-blob", "jquery.iframe-transport", "jquery.fileupload", "jquery.fileupload-process", "jquery.fileupload-image", "jquery.fileupload-audio", "jquery.fileupload-video", "jquery.fileupload-validate", "jquery.fileupload-ui", "jquery.message", "main", "caption", "jive", "jive.oo.Class", "rest", "jquery.ba-bbq", "jive.RestService"], function ($, bootstrap, recordmp3, mikesModal, photoModal, resizeTextarea, bootstrapPlayer, uiwidget, tmpl, loadimage, loadimageOrient, loadimageMeta, loadImageExif, loadImageExifMap, canvasToBlob, $IFrameTransport, $Fileupload, $FileuploadProcess, $FileUploadImage, $FileuploadAudio, $FileuploadVideo, $FileuploadValidate, $FileuploadUI, $Message, main, caption, namespace, Class, rest, $deparam, RestService) {
+define(["jquery", "bootstrap", "recordmp3", "mikes-modal", "photo-modal", "resize-textarea", "bootstrap3_player", "jquery.ui.widget", "tmpl", "load-image", "load-image-orientation", "load-image-meta", "load-image-exif", "load-image-exif-map", "canvas-to-blob", "jquery.iframe-transport", "jquery.fileupload", "jquery.fileupload-process", "jquery.fileupload-image", "jquery.fileupload-audio", "jquery.fileupload-video", "jquery.fileupload-validate", "jquery.fileupload-ui", "jquery.message", "main", "caption", "jive", "jive.oo.Class", "rest", "jquery.ba-bbq", "jive.RestService", "jquery.serializejson.min"], function ($, bootstrap, recordmp3, mikesModal, photoModal, resizeTextarea, bootstrapPlayer, uiwidget, tmpl, loadimage, loadimageOrient, loadimageMeta, loadImageExif, loadImageExifMap, canvasToBlob, $IFrameTransport, $Fileupload, $FileuploadProcess, $FileUploadImage, $FileuploadAudio, $FileuploadVideo, $FileuploadValidate, $FileuploadUI, $Message, main, caption, namespace, Class, rest, $deparam, RestService, serializejson) {
 
     $(function () {
         console.log('loading main app module');
@@ -129,4 +129,5 @@ define(["jquery", "bootstrap", "recordmp3", "mikes-modal", "photo-modal", "resiz
             $(this).find('.caption').slideUp(250); //.fadeOut(205)
         });
     });
+
 });
